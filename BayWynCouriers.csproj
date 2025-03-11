@@ -86,5 +86,11 @@
   <ItemGroup>
     <None Include="Resources\minimise.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eyeOpen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eyeClose.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
