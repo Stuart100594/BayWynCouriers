@@ -38,16 +38,16 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtBoxUname = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picBoxShow = new System.Windows.Forms.PictureBox();
             this.picBoxHide = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picBoxMini = new System.Windows.Forms.PictureBox();
             this.picBoxClose = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxShow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxHide)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMini)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxClose)).BeginInit();
             this.SuspendLayout();
@@ -78,8 +78,8 @@
             this.groupBox1.Controls.Add(this.btnLogin);
             this.groupBox1.Controls.Add(this.txtBoxUname);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.picBoxShow);
             this.groupBox1.Controls.Add(this.picBoxHide);
+            this.groupBox1.Controls.Add(this.picBoxShow);
             this.groupBox1.Location = new System.Drawing.Point(292, 277);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(572, 487);
@@ -131,16 +131,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Username";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::BayWynCouriers.Properties.Resources.BayWynLogo;
-            this.pictureBox1.Location = new System.Drawing.Point(820, 102);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(650, 650);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
             // picBoxShow
             // 
             this.picBoxShow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -168,6 +158,16 @@
             this.picBoxHide.TabStop = false;
             this.picBoxHide.Click += new System.EventHandler(this.picBoxHide_Click);
             this.picBoxHide.MouseHover += new System.EventHandler(this.picBoxHide_MouseHover);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::BayWynCouriers.Properties.Resources.BayWynLogo;
+            this.pictureBox1.Location = new System.Drawing.Point(820, 102);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(650, 650);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
             // 
             // picBoxMini
             // 
@@ -221,9 +221,9 @@
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxShow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxHide)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMini)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxClose)).EndInit();
             this.ResumeLayout(false);

@@ -47,18 +47,16 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnLogOut = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.panelHome = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panelClients = new System.Windows.Forms.Panel();
             this.panelDeliveries = new System.Windows.Forms.Panel();
             this.panelReports = new System.Windows.Forms.Panel();
             this.panelCouriers = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -67,7 +65,6 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panelHome.SuspendLayout();
             this.panelClients.SuspendLayout();
             this.panelDeliveries.SuspendLayout();
             this.panelReports.SuspendLayout();
@@ -114,6 +111,7 @@
             this.btnCouriers.Text = "  Couriers Only";
             this.btnCouriers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCouriers.UseVisualStyleBackColor = true;
+            this.btnCouriers.Click += new System.EventHandler(this.btnCouriers_Click);
             // 
             // btnReports
             // 
@@ -129,6 +127,7 @@
             this.btnReports.Text = "  Reports";
             this.btnReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReports.UseVisualStyleBackColor = true;
+            this.btnReports.Click += new System.EventHandler(this.btnReports_Click);
             // 
             // btnDeliveries
             // 
@@ -144,6 +143,7 @@
             this.btnDeliveries.Text = "  Deliveries";
             this.btnDeliveries.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDeliveries.UseVisualStyleBackColor = true;
+            this.btnDeliveries.Click += new System.EventHandler(this.btnDeliveries_Click);
             // 
             // btnClients
             // 
@@ -159,6 +159,7 @@
             this.btnClients.Text = "   Clients";
             this.btnClients.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClients.UseVisualStyleBackColor = true;
+            this.btnClients.Click += new System.EventHandler(this.btnClients_Click);
             // 
             // btnHome
             // 
@@ -174,6 +175,7 @@
             this.btnHome.Text = "   Home";
             this.btnHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // panel5
             // 
@@ -187,7 +189,7 @@
             // lblDateTime
             // 
             this.lblDateTime.AutoSize = true;
-            this.lblDateTime.Location = new System.Drawing.Point(115, 18);
+            this.lblDateTime.Location = new System.Drawing.Point(18, 18);
             this.lblDateTime.Name = "lblDateTime";
             this.lblDateTime.Size = new System.Drawing.Size(23, 25);
             this.lblDateTime.TabIndex = 0;
@@ -281,30 +283,9 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "BayWynCouriers © 2025 - All Rights Reserved";
             // 
-            // btnLogOut
+            // timer1
             // 
-            this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogOut.BackColor = System.Drawing.Color.SteelBlue;
-            this.btnLogOut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLogOut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnLogOut.FlatAppearance.BorderSize = 3;
-            this.btnLogOut.ForeColor = System.Drawing.Color.White;
-            this.btnLogOut.Location = new System.Drawing.Point(1792, 12);
-            this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(120, 50);
-            this.btnLogOut.TabIndex = 1;
-            this.btnLogOut.Text = "Log Out";
-            this.btnLogOut.UseVisualStyleBackColor = false;
-            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
-            // 
-            // panelHome
-            // 
-            this.panelHome.Controls.Add(this.label3);
-            this.panelHome.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelHome.Location = new System.Drawing.Point(250, 0);
-            this.panelHome.Name = "panelHome";
-            this.panelHome.Size = new System.Drawing.Size(1674, 986);
-            this.panelHome.TabIndex = 0;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label6
             // 
@@ -332,15 +313,6 @@
             this.label4.Size = new System.Drawing.Size(123, 25);
             this.label4.TabIndex = 1;
             this.label4.Text = "Clients Page";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(134, 83);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(115, 25);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Home Page";
             // 
             // panelClients
             // 
@@ -383,18 +355,31 @@
             this.label7.TabIndex = 4;
             this.label7.Text = "Courier Page";
             // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnLogOut.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogOut.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnLogOut.Location = new System.Drawing.Point(1765, 12);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(147, 59);
+            this.btnLogOut.TabIndex = 1;
+            this.btnLogOut.Text = "Log Out";
+            this.btnLogOut.UseVisualStyleBackColor = false;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1924, 1052);
+            this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.panelCouriers);
             this.Controls.Add(this.panelReports);
             this.Controls.Add(this.panelDeliveries);
             this.Controls.Add(this.panelClients);
-            this.Controls.Add(this.panelHome);
-            this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -404,6 +389,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "0";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.DashboardForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
@@ -415,8 +401,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panelHome.ResumeLayout(false);
-            this.panelHome.PerformLayout();
             this.panelClients.ResumeLayout(false);
             this.panelClients.PerformLayout();
             this.panelDeliveries.ResumeLayout(false);
@@ -438,7 +422,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox picBoy;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Button btnLogOut;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label lblDateTime;
@@ -451,7 +434,6 @@
         private System.Windows.Forms.Button btnReports;
         private System.Windows.Forms.Button btnCouriers;
         private System.Windows.Forms.FlowLayoutPanel slideBarPanel;
-        private System.Windows.Forms.Panel panelHome;
         private System.Windows.Forms.Panel panelClients;
         private System.Windows.Forms.Panel panelDeliveries;
         private System.Windows.Forms.Panel panelReports;
@@ -459,7 +441,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnLogOut;
     }
 }
