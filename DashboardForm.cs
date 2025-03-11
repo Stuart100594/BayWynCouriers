@@ -12,11 +12,32 @@ namespace BayWynCouriers
 {
     public partial class DashboardForm : Form
     {
-        public string Username;
+        
 
-        public DashboardForm()
+        public DashboardForm(string StaffName, string Gender)
         {
             InitializeComponent();
+            lblUsername.Text = StaffName;
+
+            // Ensure gender check is case-insensitive
+            string genderLower = Gender.Trim().ToLower();
+
+            // Show or hide the correct avatar based on gender
+            if (genderLower == "male")
+            {
+                picBoy.Visible = true;
+                picGirl.Visible = false;
+            }
+            else if (genderLower == "female")
+            {
+                picBoy.Visible = false;
+                picGirl.Visible = true;
+            }
+            else
+            {
+                picBoy.Visible = false;
+                picGirl.Visible = false; // Hide both if gender is unspecified
+            }
         }
 
         private void MovePanel (Control btn)
@@ -38,7 +59,6 @@ namespace BayWynCouriers
         private void DashboardForm_Load(object sender, EventArgs e)
         {
             timer1.Start();
-            lblUsername.Text = Username;
         }
 
         //log out button click event//

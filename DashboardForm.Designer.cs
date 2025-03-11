@@ -41,8 +41,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblUsername = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.picGirl = new System.Windows.Forms.PictureBox();
-            this.picBoy = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -57,11 +55,11 @@
             this.panelCouriers = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
+            this.picBoy = new System.Windows.Forms.PictureBox();
+            this.picGirl = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picGirl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoy)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
@@ -69,6 +67,8 @@
             this.panelDeliveries.SuspendLayout();
             this.panelReports.SuspendLayout();
             this.panelCouriers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoy)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picGirl)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -99,6 +99,7 @@
             // 
             // btnCouriers
             // 
+            this.btnCouriers.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnCouriers.FlatAppearance.BorderSize = 0;
             this.btnCouriers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCouriers.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -115,6 +116,7 @@
             // 
             // btnReports
             // 
+            this.btnReports.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnReports.FlatAppearance.BorderSize = 0;
             this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -131,6 +133,7 @@
             // 
             // btnDeliveries
             // 
+            this.btnDeliveries.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnDeliveries.FlatAppearance.BorderSize = 0;
             this.btnDeliveries.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeliveries.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -147,6 +150,7 @@
             // 
             // btnClients
             // 
+            this.btnClients.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClients.FlatAppearance.BorderSize = 0;
             this.btnClients.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClients.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -163,6 +167,7 @@
             // 
             // btnHome
             // 
+            this.btnHome.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnHome.FlatAppearance.BorderSize = 0;
             this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -189,7 +194,7 @@
             // lblDateTime
             // 
             this.lblDateTime.AutoSize = true;
-            this.lblDateTime.Location = new System.Drawing.Point(18, 18);
+            this.lblDateTime.Location = new System.Drawing.Point(31, 18);
             this.lblDateTime.Name = "lblDateTime";
             this.lblDateTime.Size = new System.Drawing.Size(23, 25);
             this.lblDateTime.TabIndex = 0;
@@ -197,10 +202,10 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.lblUsername);
-            this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.picGirl);
             this.panel4.Controls.Add(this.picBoy);
+            this.panel4.Controls.Add(this.lblUsername);
+            this.panel4.Controls.Add(this.label2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 173);
             this.panel4.Name = "panel4";
@@ -210,40 +215,22 @@
             // lblUsername
             // 
             this.lblUsername.AutoSize = true;
-            this.lblUsername.Location = new System.Drawing.Point(86, 50);
+            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.Location = new System.Drawing.Point(102, 50);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(23, 25);
+            this.lblUsername.Size = new System.Drawing.Size(26, 29);
             this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "?";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(86, 15);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(102, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(101, 25);
+            this.label2.Size = new System.Drawing.Size(129, 29);
             this.label2.TabIndex = 0;
             this.label2.Text = "Welcome:";
-            // 
-            // picGirl
-            // 
-            this.picGirl.Image = global::BayWynCouriers.Properties.Resources.profileGirl;
-            this.picGirl.Location = new System.Drawing.Point(0, 0);
-            this.picGirl.Name = "picGirl";
-            this.picGirl.Size = new System.Drawing.Size(80, 90);
-            this.picGirl.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picGirl.TabIndex = 3;
-            this.picGirl.TabStop = false;
-            // 
-            // picBoy
-            // 
-            this.picBoy.Image = global::BayWynCouriers.Properties.Resources.profileBoy;
-            this.picBoy.Location = new System.Drawing.Point(0, 0);
-            this.picBoy.Name = "picBoy";
-            this.picBoy.Size = new System.Drawing.Size(80, 90);
-            this.picBoy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picBoy.TabIndex = 1;
-            this.picBoy.TabStop = false;
             // 
             // panel3
             // 
@@ -369,6 +356,28 @@
             this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
+            // picBoy
+            // 
+            this.picBoy.Image = global::BayWynCouriers.Properties.Resources.profileBoy;
+            this.picBoy.Location = new System.Drawing.Point(28, 15);
+            this.picBoy.Name = "picBoy";
+            this.picBoy.Size = new System.Drawing.Size(60, 60);
+            this.picBoy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picBoy.TabIndex = 2;
+            this.picBoy.TabStop = false;
+            this.picBoy.Visible = false;
+            // 
+            // picGirl
+            // 
+            this.picGirl.Image = global::BayWynCouriers.Properties.Resources.profileGirl;
+            this.picGirl.Location = new System.Drawing.Point(28, 15);
+            this.picGirl.Name = "picGirl";
+            this.picGirl.Size = new System.Drawing.Size(60, 60);
+            this.picGirl.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picGirl.TabIndex = 3;
+            this.picGirl.TabStop = false;
+            this.picGirl.Visible = false;
+            // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -395,8 +404,6 @@
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picGirl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoy)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -409,6 +416,8 @@
             this.panelReports.PerformLayout();
             this.panelCouriers.ResumeLayout(false);
             this.panelCouriers.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoy)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picGirl)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -420,7 +429,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.PictureBox picBoy;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Panel panel5;
@@ -428,7 +436,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.PictureBox picGirl;
         private System.Windows.Forms.Button btnDeliveries;
         private System.Windows.Forms.Button btnClients;
         private System.Windows.Forms.Button btnReports;
@@ -443,5 +450,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnLogOut;
+        private System.Windows.Forms.PictureBox picBoy;
+        private System.Windows.Forms.PictureBox picGirl;
     }
 }

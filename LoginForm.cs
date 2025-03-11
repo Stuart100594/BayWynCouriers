@@ -78,35 +78,49 @@ namespace BayWynCouriers
             string username = txtBoxUname.Text;
             string password = txtBoxPass.Text;
 
-            //Connection string to your SQL Server database file//
             string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
 
             try
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    //SQL query to check login credentials//
                     string query = "SELECT * FROM Staff WHERE Uname = @Username AND Password = @Password";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Username", username);
                     command.Parameters.AddWithValue("@Password", password);
 
-                    connection.Open(); //Open the connection//
-
+                    connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
                     if (reader.HasRows)
                     {
-                        //If login is successful, open the new form and hide login form//
-                        var newForm = new DashboardForm();
+                        reader.Close(); // Close reader after checking authentication
 
-                        newForm.Show();
+                        // Retrieve staffName and Gender
+                        string getUserInfoQuery = "SELECT StaffName, Gender FROM Staff WHERE Uname = @Username";
+                        SqlCommand userInfoCommand = new SqlCommand(getUserInfoQuery, connection);
+                        userInfoCommand.Parameters.AddWithValue("@Username", username);
+
+                        SqlDataReader userReader = userInfoCommand.ExecuteReader();
+
+                        string StaffName = "User";
+                        string Gender = "Unspecified";
+
+                        if (userReader.Read())
+                        {
+                            StaffName = userReader["StaffName"].ToString();
+                            Gender = userReader["Gender"].ToString();
+                        }
+
+                        userReader.Close();
+
+                        // Open DashboardForm and pass the full name and gender
+                        var DashboardForm = new DashboardForm(StaffName, Gender);
+                        DashboardForm.Show();
                         this.Hide();
-
-
                     }
                     else
-                    {   //failed login will display message box and clear text fields//
+                    {
                         MessageBox.Show("Invalid username or password. Please try again.");
                         txtBoxUname.Clear();
                         txtBoxPass.Clear();
@@ -115,7 +129,7 @@ namespace BayWynCouriers
                     reader.Close();
                 }
             }
-            catch (Exception ex)//error catcher//
+            catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
