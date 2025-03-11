@@ -38,15 +38,15 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtBoxUname = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.picBoxShow = new System.Windows.Forms.PictureBox();
             this.picBoxHide = new System.Windows.Forms.PictureBox();
+            this.picBoxShow = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.picBoxMini = new System.Windows.Forms.PictureBox();
             this.picBoxClose = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxShow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxHide)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxShow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMini)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxClose)).BeginInit();
@@ -105,8 +105,10 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.BackColor = System.Drawing.Color.Silver;
+            this.btnLogin.BackColor = System.Drawing.Color.DodgerBlue;
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.ForeColor = System.Drawing.SystemColors.Control;
             this.btnLogin.Location = new System.Drawing.Point(226, 279);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(126, 52);
@@ -131,20 +133,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "Username";
             // 
-            // picBoxShow
-            // 
-            this.picBoxShow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picBoxShow.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picBoxShow.Image = global::BayWynCouriers.Properties.Resources.eyeOpen;
-            this.picBoxShow.Location = new System.Drawing.Point(437, 222);
-            this.picBoxShow.Name = "picBoxShow";
-            this.picBoxShow.Size = new System.Drawing.Size(30, 30);
-            this.picBoxShow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.picBoxShow.TabIndex = 4;
-            this.picBoxShow.TabStop = false;
-            this.picBoxShow.Click += new System.EventHandler(this.picBoxShow_Click);
-            this.picBoxShow.MouseHover += new System.EventHandler(this.picBoxShow_MouseHover);
-            // 
             // picBoxHide
             // 
             this.picBoxHide.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -158,6 +146,20 @@
             this.picBoxHide.TabStop = false;
             this.picBoxHide.Click += new System.EventHandler(this.picBoxHide_Click);
             this.picBoxHide.MouseHover += new System.EventHandler(this.picBoxHide_MouseHover);
+            // 
+            // picBoxShow
+            // 
+            this.picBoxShow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picBoxShow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picBoxShow.Image = global::BayWynCouriers.Properties.Resources.eyeOpen;
+            this.picBoxShow.Location = new System.Drawing.Point(437, 222);
+            this.picBoxShow.Name = "picBoxShow";
+            this.picBoxShow.Size = new System.Drawing.Size(30, 30);
+            this.picBoxShow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picBoxShow.TabIndex = 4;
+            this.picBoxShow.TabStop = false;
+            this.picBoxShow.Click += new System.EventHandler(this.picBoxShow_Click);
+            this.picBoxShow.MouseHover += new System.EventHandler(this.picBoxShow_MouseHover);
             // 
             // pictureBox1
             // 
@@ -221,8 +223,8 @@
             this.panel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picBoxShow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxHide)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBoxShow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMini)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxClose)).EndInit();
