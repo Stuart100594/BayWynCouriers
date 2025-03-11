@@ -10,11 +10,33 @@ using System.Windows.Forms;
 
 namespace BayWynCouriers
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
-        public Form1()
+        public LoginForm()
         {
             InitializeComponent();
+        }
+
+        //minimize appears when hovered over button//
+        private void picBoxMini_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(picBoxMini, "Minimize");
+        }
+
+        //close appears when hovered over button//
+        private void picBoxClose_MouseHover(object sender, EventArgs e)
+        {
+            toolTip1.SetToolTip(picBoxClose, "Close");
+        }
+
+        private void picBoxClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void picBoxMini_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }
