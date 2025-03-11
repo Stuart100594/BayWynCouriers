@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace BayWynCouriers
 {
@@ -67,6 +69,55 @@ namespace BayWynCouriers
             picBoxShow.Hide();
             txtBoxPass.UseSystemPasswordChar = false;
             picBoxHide.Show();
+        }
+
+        //opens dashboard page when username/password successful//
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            string username = txtBoxUname.Text;
+            string password = txtBoxPass.Text;
+
+            //Connection string to your SQL Server database file//
+            string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    //SQL query to check login credentials//
+                    string query = "SELECT * FROM Staff WHERE Uname = @Username AND Password = @Password";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Username", username);
+                    command.Parameters.AddWithValue("@Password", password);
+
+                    connection.Open(); //Open the connection//
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        //If login is successful, open the new form and hide login form//
+                        var newForm = new DashboardForm();
+
+                        newForm.Show();
+                        this.Hide();
+
+
+                    }
+                    else
+                    {   //failed login will display message box and clear text fields//
+                        MessageBox.Show("Invalid username or password. Please try again.");
+                        txtBoxUname.Clear();
+                        txtBoxPass.Clear();
+                    }
+
+                    reader.Close();
+                }
+            }
+            catch (Exception ex)//error catcher//
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
