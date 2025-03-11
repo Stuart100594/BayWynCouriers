@@ -30,10 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.slideBarPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnCouriers = new System.Windows.Forms.Button();
+            this.btnReports = new System.Windows.Forms.Button();
+            this.btnDeliveries = new System.Windows.Forms.Button();
+            this.btnClients = new System.Windows.Forms.Button();
+            this.btnHome = new System.Windows.Forms.Button();
             this.panel5 = new System.Windows.Forms.Panel();
             this.lblDateTime = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -47,7 +49,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button5 = new System.Windows.Forms.Button();
+            this.panelHome = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panelClients = new System.Windows.Forms.Panel();
+            this.panelDeliveries = new System.Windows.Forms.Panel();
+            this.panelReports = new System.Windows.Forms.Panel();
+            this.panelCouriers = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -56,16 +67,22 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
+            this.panelHome.SuspendLayout();
+            this.panelClients.SuspendLayout();
+            this.panelDeliveries.SuspendLayout();
+            this.panelReports.SuspendLayout();
+            this.panelCouriers.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.LightCoral;
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.slideBarPanel);
+            this.panel1.Controls.Add(this.btnCouriers);
+            this.panel1.Controls.Add(this.btnReports);
+            this.panel1.Controls.Add(this.btnDeliveries);
+            this.panel1.Controls.Add(this.btnClients);
+            this.panel1.Controls.Add(this.btnHome);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel3);
@@ -75,65 +92,88 @@
             this.panel1.Size = new System.Drawing.Size(250, 1052);
             this.panel1.TabIndex = 0;
             // 
-            // button4
+            // slideBarPanel
             // 
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Image = global::BayWynCouriers.Properties.Resources.report;
-            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(33, 513);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(214, 56);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "   Reports";
-            this.button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button4.UseVisualStyleBackColor = true;
+            this.slideBarPanel.BackColor = System.Drawing.SystemColors.ControlText;
+            this.slideBarPanel.Location = new System.Drawing.Point(8, 327);
+            this.slideBarPanel.Name = "slideBarPanel";
+            this.slideBarPanel.Size = new System.Drawing.Size(10, 56);
+            this.slideBarPanel.TabIndex = 0;
             // 
-            // button3
+            // btnCouriers
             // 
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = global::BayWynCouriers.Properties.Resources.delivery_van;
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(33, 451);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(214, 56);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "   Deliveries";
-            this.button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnCouriers.FlatAppearance.BorderSize = 0;
+            this.btnCouriers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCouriers.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCouriers.Image = global::BayWynCouriers.Properties.Resources.courier_services;
+            this.btnCouriers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCouriers.Location = new System.Drawing.Point(23, 575);
+            this.btnCouriers.Name = "btnCouriers";
+            this.btnCouriers.Size = new System.Drawing.Size(227, 56);
+            this.btnCouriers.TabIndex = 5;
+            this.btnCouriers.Text = "  Couriers Only";
+            this.btnCouriers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCouriers.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnReports
             // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::BayWynCouriers.Properties.Resources.customer;
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(33, 389);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(214, 56);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "    Clients";
-            this.button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnReports.FlatAppearance.BorderSize = 0;
+            this.btnReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReports.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReports.Image = global::BayWynCouriers.Properties.Resources.report;
+            this.btnReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReports.Location = new System.Drawing.Point(23, 513);
+            this.btnReports.Name = "btnReports";
+            this.btnReports.Size = new System.Drawing.Size(227, 56);
+            this.btnReports.TabIndex = 4;
+            this.btnReports.Text = "  Reports";
+            this.btnReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReports.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnDeliveries
             // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Image = global::BayWynCouriers.Properties.Resources.home2;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(33, 327);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(214, 56);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "    Home";
-            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnDeliveries.FlatAppearance.BorderSize = 0;
+            this.btnDeliveries.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeliveries.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeliveries.Image = global::BayWynCouriers.Properties.Resources.delivery_van;
+            this.btnDeliveries.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeliveries.Location = new System.Drawing.Point(23, 451);
+            this.btnDeliveries.Name = "btnDeliveries";
+            this.btnDeliveries.Size = new System.Drawing.Size(227, 56);
+            this.btnDeliveries.TabIndex = 3;
+            this.btnDeliveries.Text = "  Deliveries";
+            this.btnDeliveries.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnDeliveries.UseVisualStyleBackColor = true;
+            // 
+            // btnClients
+            // 
+            this.btnClients.FlatAppearance.BorderSize = 0;
+            this.btnClients.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClients.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClients.Image = global::BayWynCouriers.Properties.Resources.customer;
+            this.btnClients.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClients.Location = new System.Drawing.Point(23, 389);
+            this.btnClients.Name = "btnClients";
+            this.btnClients.Size = new System.Drawing.Size(227, 56);
+            this.btnClients.TabIndex = 2;
+            this.btnClients.Text = "   Clients";
+            this.btnClients.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnClients.UseVisualStyleBackColor = true;
+            // 
+            // btnHome
+            // 
+            this.btnHome.FlatAppearance.BorderSize = 0;
+            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHome.Image = global::BayWynCouriers.Properties.Resources.home2;
+            this.btnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHome.Location = new System.Drawing.Point(23, 327);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(227, 56);
+            this.btnHome.TabIndex = 1;
+            this.btnHome.Text = "   Home";
+            this.btnHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHome.UseVisualStyleBackColor = true;
             // 
             // panel5
             // 
@@ -142,7 +182,7 @@
             this.panel5.Location = new System.Drawing.Point(0, 263);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(250, 58);
-            this.panel5.TabIndex = 3;
+            this.panel5.TabIndex = 0;
             // 
             // lblDateTime
             // 
@@ -171,7 +211,7 @@
             this.lblUsername.Location = new System.Drawing.Point(86, 50);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(23, 25);
-            this.lblUsername.TabIndex = 2;
+            this.lblUsername.TabIndex = 0;
             this.lblUsername.Text = "?";
             // 
             // label2
@@ -180,7 +220,7 @@
             this.label2.Location = new System.Drawing.Point(86, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 25);
-            this.label2.TabIndex = 1;
+            this.label2.TabIndex = 0;
             this.label2.Text = "Welcome:";
             // 
             // picGirl
@@ -235,7 +275,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(600, 34);
+            this.label1.Location = new System.Drawing.Point(380, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(416, 25);
             this.label1.TabIndex = 0;
@@ -244,10 +284,11 @@
             // btnLogOut
             // 
             this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogOut.BackColor = System.Drawing.Color.SkyBlue;
+            this.btnLogOut.BackColor = System.Drawing.Color.SteelBlue;
             this.btnLogOut.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogOut.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnLogOut.FlatAppearance.BorderSize = 3;
+            this.btnLogOut.ForeColor = System.Drawing.Color.White;
             this.btnLogOut.Location = new System.Drawing.Point(1792, 12);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(120, 50);
@@ -256,20 +297,91 @@
             this.btnLogOut.UseVisualStyleBackColor = false;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
-            // button5
+            // panelHome
             // 
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Image = global::BayWynCouriers.Properties.Resources.courier_services;
-            this.button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button5.Location = new System.Drawing.Point(33, 575);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(214, 56);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "   Couriers Only";
-            this.button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.button5.UseVisualStyleBackColor = true;
+            this.panelHome.Controls.Add(this.label3);
+            this.panelHome.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelHome.Location = new System.Drawing.Point(250, 0);
+            this.panelHome.Name = "panelHome";
+            this.panelHome.Size = new System.Drawing.Size(1674, 986);
+            this.panelHome.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(19, 42);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(130, 25);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "Reports Page";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(18, 41);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(133, 25);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Delivery Page";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(19, 41);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(123, 25);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Clients Page";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(134, 83);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(115, 25);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Home Page";
+            // 
+            // panelClients
+            // 
+            this.panelClients.Controls.Add(this.label4);
+            this.panelClients.Location = new System.Drawing.Point(836, 365);
+            this.panelClients.Name = "panelClients";
+            this.panelClients.Size = new System.Drawing.Size(165, 101);
+            this.panelClients.TabIndex = 0;
+            // 
+            // panelDeliveries
+            // 
+            this.panelDeliveries.Controls.Add(this.label5);
+            this.panelDeliveries.Location = new System.Drawing.Point(1067, 365);
+            this.panelDeliveries.Name = "panelDeliveries";
+            this.panelDeliveries.Size = new System.Drawing.Size(165, 101);
+            this.panelDeliveries.TabIndex = 0;
+            // 
+            // panelReports
+            // 
+            this.panelReports.Controls.Add(this.label6);
+            this.panelReports.Location = new System.Drawing.Point(693, 513);
+            this.panelReports.Name = "panelReports";
+            this.panelReports.Size = new System.Drawing.Size(165, 101);
+            this.panelReports.TabIndex = 0;
+            // 
+            // panelCouriers
+            // 
+            this.panelCouriers.Controls.Add(this.label7);
+            this.panelCouriers.Location = new System.Drawing.Point(933, 513);
+            this.panelCouriers.Name = "panelCouriers";
+            this.panelCouriers.Size = new System.Drawing.Size(165, 101);
+            this.panelCouriers.TabIndex = 0;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(17, 42);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(127, 25);
+            this.label7.TabIndex = 4;
+            this.label7.Text = "Courier Page";
             // 
             // DashboardForm
             // 
@@ -277,6 +389,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1924, 1052);
+            this.Controls.Add(this.panelCouriers);
+            this.Controls.Add(this.panelReports);
+            this.Controls.Add(this.panelDeliveries);
+            this.Controls.Add(this.panelClients);
+            this.Controls.Add(this.panelHome);
             this.Controls.Add(this.btnLogOut);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -285,7 +402,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "DashboardForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DashboardForm";
+            this.Text = "0";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
@@ -298,6 +415,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panelHome.ResumeLayout(false);
+            this.panelHome.PerformLayout();
+            this.panelClients.ResumeLayout(false);
+            this.panelClients.PerformLayout();
+            this.panelDeliveries.ResumeLayout(false);
+            this.panelDeliveries.PerformLayout();
+            this.panelReports.ResumeLayout(false);
+            this.panelReports.PerformLayout();
+            this.panelCouriers.ResumeLayout(false);
+            this.panelCouriers.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -316,12 +443,23 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label lblDateTime;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.PictureBox picGirl;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnDeliveries;
+        private System.Windows.Forms.Button btnClients;
+        private System.Windows.Forms.Button btnReports;
+        private System.Windows.Forms.Button btnCouriers;
+        private System.Windows.Forms.FlowLayoutPanel slideBarPanel;
+        private System.Windows.Forms.Panel panelHome;
+        private System.Windows.Forms.Panel panelClients;
+        private System.Windows.Forms.Panel panelDeliveries;
+        private System.Windows.Forms.Panel panelReports;
+        private System.Windows.Forms.Panel panelCouriers;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label7;
     }
 }

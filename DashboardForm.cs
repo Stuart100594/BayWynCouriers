@@ -17,6 +17,15 @@ namespace BayWynCouriers
             InitializeComponent();
         }
 
+        private void MovePanel (Control btn)
+        {
+            slideBarPanel.Top = btn.Top;
+            slideBarPanel.Height = btn.Height;
+        }
+
+
+
+
         //logout button to return to login form//
         private void btnLogOut_Click(object sender, EventArgs e)
         {
