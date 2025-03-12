@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnLogOut = new System.Windows.Forms.Button();
             this.slideBarPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCouriers = new System.Windows.Forms.Button();
@@ -47,12 +49,14 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelClientsPage = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelDeliveriesPage = new System.Windows.Forms.Panel();
             this.panelReportsPage = new System.Windows.Forms.Panel();
             this.panelCouriersPage = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -60,6 +64,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoy)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panelClientsPage.SuspendLayout();
+            this.panelDeliveriesPage.SuspendLayout();
+            this.panelReportsPage.SuspendLayout();
+            this.panelCouriersPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -83,10 +91,29 @@
             this.panel1.Size = new System.Drawing.Size(250, 1052);
             this.panel1.TabIndex = 0;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(50, 823);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(181, 25);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "All Rights Reserved";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(36, 798);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(230, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "BayWynCouriers © 2024";
+            // 
             // btnLogOut
             // 
             this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLogOut.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnLogOut.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogOut.ForeColor = System.Drawing.SystemColors.Control;
             this.btnLogOut.Location = new System.Drawing.Point(6, 726);
@@ -285,20 +312,12 @@
             // panelClientsPage
             // 
             this.panelClientsPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelClientsPage.BackColor = System.Drawing.Color.Red;
+            this.panelClientsPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelClientsPage.Controls.Add(this.label4);
             this.panelClientsPage.Location = new System.Drawing.Point(0, 0);
             this.panelClientsPage.Name = "panelClientsPage";
             this.panelClientsPage.Size = new System.Drawing.Size(1926, 1052);
             this.panelClientsPage.TabIndex = 0;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 798);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(230, 25);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "BayWynCouriers © 2024";
             // 
             // timer1
             // 
@@ -307,7 +326,8 @@
             // panelDeliveriesPage
             // 
             this.panelDeliveriesPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelDeliveriesPage.BackColor = System.Drawing.Color.Yellow;
+            this.panelDeliveriesPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelDeliveriesPage.Controls.Add(this.label5);
             this.panelDeliveriesPage.Location = new System.Drawing.Point(0, 0);
             this.panelDeliveriesPage.Name = "panelDeliveriesPage";
             this.panelDeliveriesPage.Size = new System.Drawing.Size(1926, 1052);
@@ -316,7 +336,8 @@
             // panelReportsPage
             // 
             this.panelReportsPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelReportsPage.BackColor = System.Drawing.Color.Cyan;
+            this.panelReportsPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelReportsPage.Controls.Add(this.label6);
             this.panelReportsPage.Location = new System.Drawing.Point(0, 0);
             this.panelReportsPage.Name = "panelReportsPage";
             this.panelReportsPage.Size = new System.Drawing.Size(1926, 1052);
@@ -325,20 +346,48 @@
             // panelCouriersPage
             // 
             this.panelCouriersPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelCouriersPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panelCouriersPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelCouriersPage.Controls.Add(this.label7);
             this.panelCouriersPage.Location = new System.Drawing.Point(0, 0);
             this.panelCouriersPage.Name = "panelCouriersPage";
             this.panelCouriersPage.Size = new System.Drawing.Size(1926, 1052);
             this.panelCouriersPage.TabIndex = 3;
             // 
-            // label3
+            // label4
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(50, 823);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(181, 25);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "All Rights Reserved";
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(1182, 38);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(116, 25);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "clients page";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(1182, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(128, 25);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "delivery page";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1182, 38);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(121, 25);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "reports page";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(1182, 38);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(171, 25);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "couriers only page";
             // 
             // DashboardForm
             // 
@@ -369,6 +418,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.picBoy)).EndInit();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelClientsPage.ResumeLayout(false);
+            this.panelClientsPage.PerformLayout();
+            this.panelDeliveriesPage.ResumeLayout(false);
+            this.panelDeliveriesPage.PerformLayout();
+            this.panelReportsPage.ResumeLayout(false);
+            this.panelReportsPage.PerformLayout();
+            this.panelCouriersPage.ResumeLayout(false);
+            this.panelCouriersPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -399,5 +456,9 @@
         private System.Windows.Forms.Panel panelReportsPage;
         private System.Windows.Forms.Panel panelCouriersPage;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }
