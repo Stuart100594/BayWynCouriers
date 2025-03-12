@@ -249,7 +249,7 @@
             this.tabPageUpdateClient.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageUpdateClient.Size = new System.Drawing.Size(1099, 497);
             this.tabPageUpdateClient.TabIndex = 2;
-            this.tabPageUpdateClient.Text = "Update Clients";
+            this.tabPageUpdateClient.Text = "Edit Clients";
             // 
             // label6
             // 
