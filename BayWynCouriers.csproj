@@ -62,12 +62,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControlClients.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControlClients.Designer.cs">
-      <DependentUpon>UserControlClients.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,9 +78,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="UserControlClients.resx">
-      <DependentUpon>UserControlClients.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
