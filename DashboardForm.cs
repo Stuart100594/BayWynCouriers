@@ -194,9 +194,10 @@ namespace BayWynCouriers
         }
 
         // Method to add contracted clients//
+        //details enter Clients table in database//
         private void AddContractedClient(string businessName, string address, string phoneNumber, string email, string notes)
         {
-            // SQL connection string
+            
             string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
 
             try
@@ -213,7 +214,7 @@ namespace BayWynCouriers
 
                     connection.Open();
                     command.ExecuteNonQuery();
-
+                    //successful entry and clears text fields//
                     MessageBox.Show("Contracted client added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtBoxBusinessName.Clear();
                     txtBoxAddress.Clear();
@@ -229,9 +230,10 @@ namespace BayWynCouriers
         }
 
         //Method to add non-contracted client (Courier Job)//
+        //details enter CourierJobs table in database//
         private void AddNonContractedClient(string businessName, string address, string phoneNumber, string email, string notes)
         {
-            // SQL connection string
+            
             string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
 
             try
@@ -248,7 +250,7 @@ namespace BayWynCouriers
 
                     connection.Open();
                     command.ExecuteNonQuery();
-
+                    //successful entry and clears text fields//
                     MessageBox.Show("Non-contracted client added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtBoxBusinessName.Clear();
                     txtBoxAddress.Clear();
@@ -271,6 +273,84 @@ namespace BayWynCouriers
             txtBoxPhoneNumb.Clear();
             txtBoxEmail.Clear();
             txtBoxNotes.Clear();
+        }
+
+        //Method to view client data into DataGridView//
+        private void LoadClients()
+        {
+            string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
+            string query = "";
+
+            //checking Contracted/Non-Contracted clients based on chosen radio button//
+            if (rbViewContractClient.Checked)
+            {
+                query = "SELECT ClientID, BusinessName, Address, PhoneNumber, Email, Notes FROM Clients";
+            }
+            else if (rbViewNonContractClient.Checked)
+            {
+                query = "SELECT JobID, ClientName, Address, PhoneNumber, Email, Notes FROM CourierJobs";
+            }
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
+                    DataTable dataTable = new DataTable();
+                    dataAdapter.Fill(dataTable);
+                    dgvViewClients.DataSource = dataTable; //Bind data to DataGridView//
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error fetching client data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //performs load method when button clicked//
+        private void btnLoadClient_Click(object sender, EventArgs e)
+        {
+            LoadClients();
+        }
+
+        //clears search field/DataGridView when clicked//
+        private void btnClearViewClient_Click(object sender, EventArgs e)
+        {
+            dgvViewClients.DataSource = null;
+        }
+
+        //method to load clients within search bar//
+        private void txtBoxSearchClient_TextChanged(object sender, EventArgs e)
+        {
+            string searchTerm = txtBoxSearchClient.Text;
+            string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
+            string query = "";
+
+            if (rbViewContractClient.Checked)
+            {
+                query = "SELECT ClientID, BusinessName, Address, PhoneNumber, Email, Notes FROM Clients WHERE BusinessName LIKE @SearchTerm";
+            }
+            else if (rbViewNonContractClient.Checked)
+            {
+                query = "SELECT JobID, ClientName, Address, PhoneNumber, Email, Notes FROM CourierJobs WHERE ClientName LIKE @SearchTerm";
+            }
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
+                    SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
+                    DataTable dataTable = new DataTable();
+                    dataAdapter.Fill(dataTable);
+                    dgvViewClients.DataSource = dataTable; 
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error searching for client data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

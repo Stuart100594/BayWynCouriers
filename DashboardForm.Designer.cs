@@ -52,13 +52,27 @@
             this.btnEditClients = new System.Windows.Forms.Button();
             this.btnViewClients = new System.Windows.Forms.Button();
             this.btnAddClients = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panelEditClients = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
             this.panelAddClients = new System.Windows.Forms.Panel();
+            this.btnClearNewClient = new System.Windows.Forms.Button();
+            this.txtBoxNotes = new System.Windows.Forms.TextBox();
+            this.txtBoxEmail = new System.Windows.Forms.TextBox();
+            this.txtBoxPhoneNumb = new System.Windows.Forms.TextBox();
+            this.txtBoxAddress = new System.Windows.Forms.TextBox();
+            this.txtBoxBusinessName = new System.Windows.Forms.TextBox();
+            this.btnAddNewClient = new System.Windows.Forms.Button();
+            this.radioButtonNonContracted = new System.Windows.Forms.RadioButton();
+            this.radioButtonContracted = new System.Windows.Forms.RadioButton();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.panelViewClients = new System.Windows.Forms.Panel();
             this.label9 = new System.Windows.Forms.Label();
+            this.panelEditClients = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelDeliveriesPage = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
@@ -66,21 +80,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.panelCouriersPage = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.radioButtonContracted = new System.Windows.Forms.RadioButton();
-            this.radioButtonNonContracted = new System.Windows.Forms.RadioButton();
-            this.btnAddNewClient = new System.Windows.Forms.Button();
-            this.txtBoxBusinessName = new System.Windows.Forms.TextBox();
-            this.txtBoxAddress = new System.Windows.Forms.TextBox();
-            this.txtBoxPhoneNumb = new System.Windows.Forms.TextBox();
-            this.txtBoxEmail = new System.Windows.Forms.TextBox();
-            this.txtBoxNotes = new System.Windows.Forms.TextBox();
-            this.btnClearNewClient = new System.Windows.Forms.Button();
+            this.dgvViewClients = new System.Windows.Forms.DataGridView();
+            this.rbViewContractClient = new System.Windows.Forms.RadioButton();
+            this.rbViewNonContractClient = new System.Windows.Forms.RadioButton();
+            this.label17 = new System.Windows.Forms.Label();
+            this.btnLoadClient = new System.Windows.Forms.Button();
+            this.btnClearViewClient = new System.Windows.Forms.Button();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtBoxSearchClient = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -89,12 +96,13 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelClientsPage.SuspendLayout();
-            this.panelEditClients.SuspendLayout();
             this.panelAddClients.SuspendLayout();
             this.panelViewClients.SuspendLayout();
+            this.panelEditClients.SuspendLayout();
             this.panelDeliveriesPage.SuspendLayout();
             this.panelReportsPage.SuspendLayout();
             this.panelCouriersPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvViewClients)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -343,10 +351,9 @@
             this.panelClientsPage.Controls.Add(this.btnEditClients);
             this.panelClientsPage.Controls.Add(this.btnViewClients);
             this.panelClientsPage.Controls.Add(this.btnAddClients);
-            this.panelClientsPage.Controls.Add(this.label4);
+            this.panelClientsPage.Controls.Add(this.panelEditClients);
             this.panelClientsPage.Controls.Add(this.panelAddClients);
             this.panelClientsPage.Controls.Add(this.panelViewClients);
-            this.panelClientsPage.Controls.Add(this.panelEditClients);
             this.panelClientsPage.Location = new System.Drawing.Point(0, 0);
             this.panelClientsPage.Name = "panelClientsPage";
             this.panelClientsPage.Size = new System.Drawing.Size(1926, 1052);
@@ -388,38 +395,10 @@
             this.btnAddClients.UseVisualStyleBackColor = false;
             this.btnAddClients.Click += new System.EventHandler(this.btnAddClients_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(680, 38);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 25);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "clients page";
-            // 
-            // panelEditClients
-            // 
-            this.panelEditClients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelEditClients.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.panelEditClients.Controls.Add(this.label10);
-            this.panelEditClients.Location = new System.Drawing.Point(685, 253);
-            this.panelEditClients.Name = "panelEditClients";
-            this.panelEditClients.Size = new System.Drawing.Size(1190, 434);
-            this.panelEditClients.TabIndex = 2;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 5);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(106, 25);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Edit Client:";
-            // 
             // panelAddClients
             // 
             this.panelAddClients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelAddClients.BackColor = System.Drawing.Color.Silver;
+            this.panelAddClients.BackColor = System.Drawing.Color.Transparent;
             this.panelAddClients.Controls.Add(this.btnClearNewClient);
             this.panelAddClients.Controls.Add(this.txtBoxNotes);
             this.panelAddClients.Controls.Add(this.txtBoxEmail);
@@ -441,6 +420,140 @@
             this.panelAddClients.Size = new System.Drawing.Size(1190, 434);
             this.panelAddClients.TabIndex = 1;
             // 
+            // btnClearNewClient
+            // 
+            this.btnClearNewClient.BackColor = System.Drawing.Color.Salmon;
+            this.btnClearNewClient.Location = new System.Drawing.Point(696, 341);
+            this.btnClearNewClient.Name = "btnClearNewClient";
+            this.btnClearNewClient.Size = new System.Drawing.Size(203, 63);
+            this.btnClearNewClient.TabIndex = 15;
+            this.btnClearNewClient.Text = "Clear";
+            this.btnClearNewClient.UseVisualStyleBackColor = false;
+            this.btnClearNewClient.Click += new System.EventHandler(this.btnClearNewClient_Click);
+            // 
+            // txtBoxNotes
+            // 
+            this.txtBoxNotes.Location = new System.Drawing.Point(625, 190);
+            this.txtBoxNotes.Multiline = true;
+            this.txtBoxNotes.Name = "txtBoxNotes";
+            this.txtBoxNotes.Size = new System.Drawing.Size(483, 133);
+            this.txtBoxNotes.TabIndex = 14;
+            // 
+            // txtBoxEmail
+            // 
+            this.txtBoxEmail.Location = new System.Drawing.Point(149, 374);
+            this.txtBoxEmail.Name = "txtBoxEmail";
+            this.txtBoxEmail.Size = new System.Drawing.Size(359, 30);
+            this.txtBoxEmail.TabIndex = 13;
+            // 
+            // txtBoxPhoneNumb
+            // 
+            this.txtBoxPhoneNumb.Location = new System.Drawing.Point(149, 304);
+            this.txtBoxPhoneNumb.Name = "txtBoxPhoneNumb";
+            this.txtBoxPhoneNumb.Size = new System.Drawing.Size(359, 30);
+            this.txtBoxPhoneNumb.TabIndex = 12;
+            // 
+            // txtBoxAddress
+            // 
+            this.txtBoxAddress.Location = new System.Drawing.Point(146, 224);
+            this.txtBoxAddress.Name = "txtBoxAddress";
+            this.txtBoxAddress.Size = new System.Drawing.Size(359, 30);
+            this.txtBoxAddress.TabIndex = 11;
+            // 
+            // txtBoxBusinessName
+            // 
+            this.txtBoxBusinessName.Location = new System.Drawing.Point(149, 148);
+            this.txtBoxBusinessName.Name = "txtBoxBusinessName";
+            this.txtBoxBusinessName.Size = new System.Drawing.Size(359, 30);
+            this.txtBoxBusinessName.TabIndex = 10;
+            // 
+            // btnAddNewClient
+            // 
+            this.btnAddNewClient.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnAddNewClient.Location = new System.Drawing.Point(905, 341);
+            this.btnAddNewClient.Name = "btnAddNewClient";
+            this.btnAddNewClient.Size = new System.Drawing.Size(203, 63);
+            this.btnAddNewClient.TabIndex = 9;
+            this.btnAddNewClient.Text = "Add New Client";
+            this.btnAddNewClient.UseVisualStyleBackColor = false;
+            this.btnAddNewClient.Click += new System.EventHandler(this.btnAddNewClient_Click);
+            // 
+            // radioButtonNonContracted
+            // 
+            this.radioButtonNonContracted.AutoSize = true;
+            this.radioButtonNonContracted.Location = new System.Drawing.Point(370, 66);
+            this.radioButtonNonContracted.Name = "radioButtonNonContracted";
+            this.radioButtonNonContracted.Size = new System.Drawing.Size(172, 29);
+            this.radioButtonNonContracted.TabIndex = 8;
+            this.radioButtonNonContracted.TabStop = true;
+            this.radioButtonNonContracted.Text = "Non-Contracted";
+            this.radioButtonNonContracted.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonContracted
+            // 
+            this.radioButtonContracted.AutoSize = true;
+            this.radioButtonContracted.Location = new System.Drawing.Point(225, 66);
+            this.radioButtonContracted.Name = "radioButtonContracted";
+            this.radioButtonContracted.Size = new System.Drawing.Size(129, 29);
+            this.radioButtonContracted.TabIndex = 7;
+            this.radioButtonContracted.TabStop = true;
+            this.radioButtonContracted.Text = "Contracted";
+            this.radioButtonContracted.UseVisualStyleBackColor = true;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(620, 153);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(69, 25);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "Notes:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(144, 346);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(66, 25);
+            this.label15.TabIndex = 5;
+            this.label15.Text = "Email:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(144, 276);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(149, 25);
+            this.label14.TabIndex = 4;
+            this.label14.Text = "Phone Number:";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(144, 196);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(91, 25);
+            this.label13.TabIndex = 3;
+            this.label13.Text = "Address:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(144, 120);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(155, 25);
+            this.label12.TabIndex = 2;
+            this.label12.Text = "Business Name:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(77, 68);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(142, 25);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Contract Type:";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -453,7 +566,15 @@
             // panelViewClients
             // 
             this.panelViewClients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelViewClients.BackColor = System.Drawing.Color.Orange;
+            this.panelViewClients.BackColor = System.Drawing.Color.Transparent;
+            this.panelViewClients.Controls.Add(this.txtBoxSearchClient);
+            this.panelViewClients.Controls.Add(this.label18);
+            this.panelViewClients.Controls.Add(this.btnClearViewClient);
+            this.panelViewClients.Controls.Add(this.btnLoadClient);
+            this.panelViewClients.Controls.Add(this.label17);
+            this.panelViewClients.Controls.Add(this.rbViewNonContractClient);
+            this.panelViewClients.Controls.Add(this.rbViewContractClient);
+            this.panelViewClients.Controls.Add(this.dgvViewClients);
             this.panelViewClients.Controls.Add(this.label9);
             this.panelViewClients.Location = new System.Drawing.Point(685, 253);
             this.panelViewClients.Name = "panelViewClients";
@@ -468,6 +589,25 @@
             this.label9.Size = new System.Drawing.Size(180, 25);
             this.label9.TabIndex = 0;
             this.label9.Text = "View Client Details:";
+            // 
+            // panelEditClients
+            // 
+            this.panelEditClients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelEditClients.BackColor = System.Drawing.Color.Silver;
+            this.panelEditClients.Controls.Add(this.label10);
+            this.panelEditClients.Location = new System.Drawing.Point(685, 253);
+            this.panelEditClients.Name = "panelEditClients";
+            this.panelEditClients.Size = new System.Drawing.Size(1190, 434);
+            this.panelEditClients.TabIndex = 2;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 5);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(106, 25);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Edit Client:";
             // 
             // timer1
             // 
@@ -530,139 +670,86 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "couriers only page";
             // 
-            // label11
+            // dgvViewClients
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(61, 70);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(142, 25);
-            this.label11.TabIndex = 1;
-            this.label11.Text = "Contract Type:";
+            this.dgvViewClients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvViewClients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvViewClients.Location = new System.Drawing.Point(23, 142);
+            this.dgvViewClients.Name = "dgvViewClients";
+            this.dgvViewClients.RowHeadersWidth = 51;
+            this.dgvViewClients.RowTemplate.Height = 24;
+            this.dgvViewClients.Size = new System.Drawing.Size(1153, 273);
+            this.dgvViewClients.TabIndex = 1;
             // 
-            // label12
+            // rbViewContractClient
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(48, 153);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(155, 25);
-            this.label12.TabIndex = 2;
-            this.label12.Text = "Business Name:";
+            this.rbViewContractClient.AutoSize = true;
+            this.rbViewContractClient.Location = new System.Drawing.Point(235, 66);
+            this.rbViewContractClient.Name = "rbViewContractClient";
+            this.rbViewContractClient.Size = new System.Drawing.Size(129, 29);
+            this.rbViewContractClient.TabIndex = 2;
+            this.rbViewContractClient.TabStop = true;
+            this.rbViewContractClient.Text = "Contracted";
+            this.rbViewContractClient.UseVisualStyleBackColor = true;
             // 
-            // label13
+            // rbViewNonContractClient
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(112, 203);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(91, 25);
-            this.label13.TabIndex = 3;
-            this.label13.Text = "Address:";
+            this.rbViewNonContractClient.AutoSize = true;
+            this.rbViewNonContractClient.Location = new System.Drawing.Point(235, 101);
+            this.rbViewNonContractClient.Name = "rbViewNonContractClient";
+            this.rbViewNonContractClient.Size = new System.Drawing.Size(172, 29);
+            this.rbViewNonContractClient.TabIndex = 3;
+            this.rbViewNonContractClient.TabStop = true;
+            this.rbViewNonContractClient.Text = "Non-Contracted";
+            this.rbViewNonContractClient.UseVisualStyleBackColor = true;
             // 
-            // label14
+            // label17
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(54, 248);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(149, 25);
-            this.label14.TabIndex = 4;
-            this.label14.Text = "Phone Number:";
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(27, 68);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(202, 25);
+            this.label17.TabIndex = 4;
+            this.label17.Text = "Select Contract Type:";
             // 
-            // label15
+            // btnLoadClient
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(137, 296);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(66, 25);
-            this.label15.TabIndex = 5;
-            this.label15.Text = "Email:";
+            this.btnLoadClient.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnLoadClient.Location = new System.Drawing.Point(825, 70);
+            this.btnLoadClient.Name = "btnLoadClient";
+            this.btnLoadClient.Size = new System.Drawing.Size(166, 64);
+            this.btnLoadClient.TabIndex = 5;
+            this.btnLoadClient.Text = "Load Clients";
+            this.btnLoadClient.UseVisualStyleBackColor = false;
+            this.btnLoadClient.Click += new System.EventHandler(this.btnLoadClient_Click);
             // 
-            // label16
+            // btnClearViewClient
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(620, 153);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(69, 25);
-            this.label16.TabIndex = 6;
-            this.label16.Text = "Notes:";
+            this.btnClearViewClient.BackColor = System.Drawing.Color.Salmon;
+            this.btnClearViewClient.Location = new System.Drawing.Point(1010, 70);
+            this.btnClearViewClient.Name = "btnClearViewClient";
+            this.btnClearViewClient.Size = new System.Drawing.Size(166, 64);
+            this.btnClearViewClient.TabIndex = 6;
+            this.btnClearViewClient.Text = "Clear Search";
+            this.btnClearViewClient.UseVisualStyleBackColor = false;
+            this.btnClearViewClient.Click += new System.EventHandler(this.btnClearViewClient_Click);
             // 
-            // radioButtonContracted
+            // label18
             // 
-            this.radioButtonContracted.AutoSize = true;
-            this.radioButtonContracted.Location = new System.Drawing.Point(225, 66);
-            this.radioButtonContracted.Name = "radioButtonContracted";
-            this.radioButtonContracted.Size = new System.Drawing.Size(129, 29);
-            this.radioButtonContracted.TabIndex = 7;
-            this.radioButtonContracted.TabStop = true;
-            this.radioButtonContracted.Text = "Contracted";
-            this.radioButtonContracted.UseVisualStyleBackColor = true;
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(461, 70);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(136, 25);
+            this.label18.TabIndex = 7;
+            this.label18.Text = "Search Client:";
             // 
-            // radioButtonNonContracted
+            // txtBoxSearchClient
             // 
-            this.radioButtonNonContracted.AutoSize = true;
-            this.radioButtonNonContracted.Location = new System.Drawing.Point(225, 101);
-            this.radioButtonNonContracted.Name = "radioButtonNonContracted";
-            this.radioButtonNonContracted.Size = new System.Drawing.Size(172, 29);
-            this.radioButtonNonContracted.TabIndex = 8;
-            this.radioButtonNonContracted.TabStop = true;
-            this.radioButtonNonContracted.Text = "Non-Contracted";
-            this.radioButtonNonContracted.UseVisualStyleBackColor = true;
-            // 
-            // btnAddNewClient
-            // 
-            this.btnAddNewClient.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnAddNewClient.Location = new System.Drawing.Point(905, 341);
-            this.btnAddNewClient.Name = "btnAddNewClient";
-            this.btnAddNewClient.Size = new System.Drawing.Size(203, 63);
-            this.btnAddNewClient.TabIndex = 9;
-            this.btnAddNewClient.Text = "Add New Client";
-            this.btnAddNewClient.UseVisualStyleBackColor = false;
-            this.btnAddNewClient.Click += new System.EventHandler(this.btnAddNewClient_Click);
-            // 
-            // txtBoxBusinessName
-            // 
-            this.txtBoxBusinessName.Location = new System.Drawing.Point(225, 150);
-            this.txtBoxBusinessName.Name = "txtBoxBusinessName";
-            this.txtBoxBusinessName.Size = new System.Drawing.Size(359, 30);
-            this.txtBoxBusinessName.TabIndex = 10;
-            // 
-            // txtBoxAddress
-            // 
-            this.txtBoxAddress.Location = new System.Drawing.Point(225, 200);
-            this.txtBoxAddress.Name = "txtBoxAddress";
-            this.txtBoxAddress.Size = new System.Drawing.Size(359, 30);
-            this.txtBoxAddress.TabIndex = 11;
-            // 
-            // txtBoxPhoneNumb
-            // 
-            this.txtBoxPhoneNumb.Location = new System.Drawing.Point(225, 245);
-            this.txtBoxPhoneNumb.Name = "txtBoxPhoneNumb";
-            this.txtBoxPhoneNumb.Size = new System.Drawing.Size(359, 30);
-            this.txtBoxPhoneNumb.TabIndex = 12;
-            // 
-            // txtBoxEmail
-            // 
-            this.txtBoxEmail.Location = new System.Drawing.Point(225, 293);
-            this.txtBoxEmail.Name = "txtBoxEmail";
-            this.txtBoxEmail.Size = new System.Drawing.Size(359, 30);
-            this.txtBoxEmail.TabIndex = 13;
-            // 
-            // txtBoxNotes
-            // 
-            this.txtBoxNotes.Location = new System.Drawing.Point(625, 190);
-            this.txtBoxNotes.Multiline = true;
-            this.txtBoxNotes.Name = "txtBoxNotes";
-            this.txtBoxNotes.Size = new System.Drawing.Size(483, 133);
-            this.txtBoxNotes.TabIndex = 14;
-            // 
-            // btnClearNewClient
-            // 
-            this.btnClearNewClient.BackColor = System.Drawing.Color.Salmon;
-            this.btnClearNewClient.Location = new System.Drawing.Point(696, 341);
-            this.btnClearNewClient.Name = "btnClearNewClient";
-            this.btnClearNewClient.Size = new System.Drawing.Size(203, 63);
-            this.btnClearNewClient.TabIndex = 15;
-            this.btnClearNewClient.Text = "Clear";
-            this.btnClearNewClient.UseVisualStyleBackColor = false;
-            this.btnClearNewClient.Click += new System.EventHandler(this.btnClearNewClient_Click);
+            this.txtBoxSearchClient.Location = new System.Drawing.Point(466, 98);
+            this.txtBoxSearchClient.Name = "txtBoxSearchClient";
+            this.txtBoxSearchClient.Size = new System.Drawing.Size(318, 30);
+            this.txtBoxSearchClient.TabIndex = 8;
+            this.txtBoxSearchClient.TextChanged += new System.EventHandler(this.txtBoxSearchClient_TextChanged);
             // 
             // DashboardForm
             // 
@@ -694,19 +781,19 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelClientsPage.ResumeLayout(false);
-            this.panelClientsPage.PerformLayout();
-            this.panelEditClients.ResumeLayout(false);
-            this.panelEditClients.PerformLayout();
             this.panelAddClients.ResumeLayout(false);
             this.panelAddClients.PerformLayout();
             this.panelViewClients.ResumeLayout(false);
             this.panelViewClients.PerformLayout();
+            this.panelEditClients.ResumeLayout(false);
+            this.panelEditClients.PerformLayout();
             this.panelDeliveriesPage.ResumeLayout(false);
             this.panelDeliveriesPage.PerformLayout();
             this.panelReportsPage.ResumeLayout(false);
             this.panelReportsPage.PerformLayout();
             this.panelCouriersPage.ResumeLayout(false);
             this.panelCouriersPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvViewClients)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -737,7 +824,6 @@
         private System.Windows.Forms.Panel panelReportsPage;
         private System.Windows.Forms.Panel panelCouriersPage;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
@@ -765,5 +851,13 @@
         private System.Windows.Forms.TextBox txtBoxBusinessName;
         private System.Windows.Forms.TextBox txtBoxNotes;
         private System.Windows.Forms.Button btnClearNewClient;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.RadioButton rbViewNonContractClient;
+        private System.Windows.Forms.RadioButton rbViewContractClient;
+        private System.Windows.Forms.DataGridView dgvViewClients;
+        private System.Windows.Forms.Button btnLoadClient;
+        private System.Windows.Forms.Button btnClearViewClient;
+        private System.Windows.Forms.TextBox txtBoxSearchClient;
+        private System.Windows.Forms.Label label18;
     }
 }
