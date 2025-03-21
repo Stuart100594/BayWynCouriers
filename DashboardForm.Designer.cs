@@ -57,6 +57,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.panelCouriersPage = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
+            this.panelAddClients = new System.Windows.Forms.Panel();
+            this.label8 = new System.Windows.Forms.Label();
+            this.btnAddClients = new System.Windows.Forms.Button();
+            this.btnViewClients = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.panelViewClients = new System.Windows.Forms.Panel();
+            this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -68,6 +75,8 @@
             this.panelDeliveriesPage.SuspendLayout();
             this.panelReportsPage.SuspendLayout();
             this.panelCouriersPage.SuspendLayout();
+            this.panelAddClients.SuspendLayout();
+            this.panelViewClients.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -313,7 +322,12 @@
             // 
             this.panelClientsPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelClientsPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelClientsPage.Controls.Add(this.button3);
+            this.panelClientsPage.Controls.Add(this.btnViewClients);
+            this.panelClientsPage.Controls.Add(this.btnAddClients);
+            this.panelClientsPage.Controls.Add(this.panelAddClients);
             this.panelClientsPage.Controls.Add(this.label4);
+            this.panelClientsPage.Controls.Add(this.panelViewClients);
             this.panelClientsPage.Location = new System.Drawing.Point(0, 0);
             this.panelClientsPage.Name = "panelClientsPage";
             this.panelClientsPage.Size = new System.Drawing.Size(1926, 1052);
@@ -389,6 +403,77 @@
             this.label7.TabIndex = 0;
             this.label7.Text = "couriers only page";
             // 
+            // panelAddClients
+            // 
+            this.panelAddClients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelAddClients.BackColor = System.Drawing.Color.IndianRed;
+            this.panelAddClients.Controls.Add(this.label8);
+            this.panelAddClients.Location = new System.Drawing.Point(685, 287);
+            this.panelAddClients.Name = "panelAddClients";
+            this.panelAddClients.Size = new System.Drawing.Size(1000, 727);
+            this.panelAddClients.TabIndex = 1;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(680, 38);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(154, 25);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "add clients page";
+            // 
+            // btnAddClients
+            // 
+            this.btnAddClients.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnAddClients.ForeColor = System.Drawing.Color.White;
+            this.btnAddClients.Location = new System.Drawing.Point(685, 111);
+            this.btnAddClients.Name = "btnAddClients";
+            this.btnAddClients.Size = new System.Drawing.Size(162, 95);
+            this.btnAddClients.TabIndex = 1;
+            this.btnAddClients.Text = "Add Client";
+            this.btnAddClients.UseVisualStyleBackColor = false;
+            this.btnAddClients.Click += new System.EventHandler(this.btnAddClients_Click);
+            // 
+            // btnViewClients
+            // 
+            this.btnViewClients.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnViewClients.ForeColor = System.Drawing.Color.White;
+            this.btnViewClients.Location = new System.Drawing.Point(920, 111);
+            this.btnViewClients.Name = "btnViewClients";
+            this.btnViewClients.Size = new System.Drawing.Size(162, 95);
+            this.btnViewClients.TabIndex = 2;
+            this.btnViewClients.Text = "View Client";
+            this.btnViewClients.UseVisualStyleBackColor = false;
+            this.btnViewClients.Click += new System.EventHandler(this.btnViewClients_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(1151, 111);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(162, 95);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "button3";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // panelViewClients
+            // 
+            this.panelViewClients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelViewClients.BackColor = System.Drawing.Color.Orange;
+            this.panelViewClients.Controls.Add(this.label9);
+            this.panelViewClients.Location = new System.Drawing.Point(682, 284);
+            this.panelViewClients.Name = "panelViewClients";
+            this.panelViewClients.Size = new System.Drawing.Size(1000, 727);
+            this.panelViewClients.TabIndex = 2;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(680, 38);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(160, 25);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "view clients page";
+            // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -426,6 +511,10 @@
             this.panelReportsPage.PerformLayout();
             this.panelCouriersPage.ResumeLayout(false);
             this.panelCouriersPage.PerformLayout();
+            this.panelAddClients.ResumeLayout(false);
+            this.panelAddClients.PerformLayout();
+            this.panelViewClients.ResumeLayout(false);
+            this.panelViewClients.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -460,5 +549,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnViewClients;
+        private System.Windows.Forms.Button btnAddClients;
+        private System.Windows.Forms.Panel panelAddClients;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Panel panelViewClients;
+        private System.Windows.Forms.Label label9;
     }
 }

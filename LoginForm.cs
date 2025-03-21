@@ -84,7 +84,7 @@ namespace BayWynCouriers
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT * FROM Staff WHERE Uname = @Username AND Password = @Password";
+                    string query = "SELECT StaffName, Gender, StaffRole FROM Staff WHERE Uname = @Username AND Password = @Password";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Username", username);
                     command.Parameters.AddWithValue("@Password", password);
@@ -92,31 +92,19 @@ namespace BayWynCouriers
                     connection.Open();
                     SqlDataReader reader = command.ExecuteReader();
 
-                    if (reader.HasRows)
+                    if (reader.Read())  // If user exists
                     {
-                        reader.Close(); // Close reader after checking authentication
+                        string StaffName = reader["StaffName"].ToString();
+                        string Gender = reader["Gender"].ToString();
+                        string StaffRole = reader["StaffRole"].ToString().Trim().ToLower(); // Ensure lowercase
 
-                        // Retrieve staffName and Gender
-                        string getUserInfoQuery = "SELECT StaffName, Gender FROM Staff WHERE Uname = @Username";
-                        SqlCommand userInfoCommand = new SqlCommand(getUserInfoQuery, connection);
-                        userInfoCommand.Parameters.AddWithValue("@Username", username);
+                        MessageBox.Show($"Role Retrieved: {StaffRole}"); // Debugging step
 
-                        SqlDataReader userReader = userInfoCommand.ExecuteReader();
+                        reader.Close();
 
-                        string StaffName = "User";
-                        string Gender = "Unspecified";
-
-                        if (userReader.Read())
-                        {
-                            StaffName = userReader["StaffName"].ToString();
-                            Gender = userReader["Gender"].ToString();
-                        }
-
-                        userReader.Close();
-
-                        // Open DashboardForm and pass the full name and gender
-                        var DashboardForm = new DashboardForm(StaffName, Gender);
-                        DashboardForm.Show();
+                        // Open DashboardForm and pass role
+                        var dashboardForm = new DashboardForm(StaffName, Gender, StaffRole);
+                        dashboardForm.Show();
                         this.Hide();
                     }
                     else
@@ -125,8 +113,6 @@ namespace BayWynCouriers
                         txtBoxUname.Clear();
                         txtBoxPass.Clear();
                     }
-
-                    reader.Close();
                 }
             }
             catch (Exception ex)

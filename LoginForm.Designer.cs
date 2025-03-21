@@ -68,7 +68,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(416, 25);
             this.label1.TabIndex = 1;
-            this.label1.Text = "BayWynCouriers © 2025 - All Rights Reserved";
+            this.label1.Text = "BayWynCouriers © 2024 - All Rights Reserved";
             // 
             // groupBox1
             // 
