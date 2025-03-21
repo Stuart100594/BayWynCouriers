@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.Linq;
@@ -29,17 +31,14 @@ namespace BayWynCouriers
             // Debugging step
             MessageBox.Show($"Staff Role: {this.StaffRole}");
 
-            
+
         }
 
-        private void MovePanel (Control btn)
+        private void MovePanel(Control btn)
         {
             slideBarPanel.Top = btn.Top;
             slideBarPanel.Height = btn.Height;
         }
-
-
-        
 
         //setting date/time label to real time with approved display format//
         private void timer1_Tick(object sender, EventArgs e)
@@ -95,6 +94,7 @@ namespace BayWynCouriers
             panelCouriersPage.Hide();
             panelAddClients.Hide();
             panelViewClients.Hide();
+            panelEditClients.Hide();
         }
         //delivery button click event//
         private void btnDeliveries_Click(object sender, EventArgs e)
@@ -139,16 +139,118 @@ namespace BayWynCouriers
             panelCouriersPage.Show();
         }
 
+        //opens add clients panel//
         private void btnAddClients_Click(object sender, EventArgs e)
         {
             panelAddClients.Show();
             panelViewClients.Hide();
+            panelEditClients.Hide();
         }
 
+        //opens view clients panel//
         private void btnViewClients_Click(object sender, EventArgs e)
         {
             panelAddClients.Hide();
             panelViewClients.Show();
+            panelEditClients.Hide();
+        }
+
+        //opens edit clients panel//
+        private void btnEditClients_Click(object sender, EventArgs e)
+        {
+            panelAddClients.Hide();
+            panelViewClients.Hide();
+            panelEditClients.Show();
+        }
+
+        //adding new clients//
+        private void btnAddNewClient_Click(object sender, EventArgs e)
+        {
+            string businessName = txtBoxBusinessName.Text;
+            string address = txtBoxAddress.Text;
+            string phoneNumber = txtBoxPhoneNumb.Text;
+            string email = txtBoxEmail.Text;
+            string notes = txtBoxNotes.Text;
+
+            if (string.IsNullOrEmpty(businessName) || string.IsNullOrEmpty(address) || string.IsNullOrEmpty(phoneNumber) || string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Please fill in all required fields.", "Missing Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Check if the client is contracted or non-contracted
+            if (radioButtonContracted.Checked)
+            {
+                AddContractedClient(businessName, address, phoneNumber, email, notes);
+            }
+            else if (radioButtonNonContracted.Checked)
+            {
+                AddNonContractedClient(businessName, address, phoneNumber, email, notes);
+            }
+            else
+            {
+                MessageBox.Show("Please select whether the client is Contracted or Non-Contracted.", "Missing Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        // Method to add contracted clients//
+        private void AddContractedClient(string businessName, string address, string phoneNumber, string email, string notes)
+        {
+            // SQL connection string
+            string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = "INSERT INTO Clients (BusinessName, Address, PhoneNumber, Email, Notes) VALUES (@BusinessName, @Address, @PhoneNumber, @Email, @Notes)";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@BusinessName", businessName);
+                    command.Parameters.AddWithValue("@Address", address);
+                    command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@Notes", notes);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    MessageBox.Show("Contracted client added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding contracted client: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //Method to add non-contracted client (Courier Job)//
+        private void AddNonContractedClient(string businessName, string address, string phoneNumber, string email, string notes)
+        {
+            // SQL connection string
+            string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = "INSERT INTO CourierJobs (ClientName, Address, PhoneNumber, Email, Notes) VALUES (@ClientName, @Address, @PhoneNumber, @Email, @Notes)";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@ClientName", businessName);
+                    command.Parameters.AddWithValue("@Address", address);
+                    command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+                    command.Parameters.AddWithValue("@Email", email);
+                    command.Parameters.AddWithValue("@Notes", notes);
+
+                    connection.Open();
+                    command.ExecuteNonQuery();
+
+                    MessageBox.Show("Non-contracted client added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding non-contracted client: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
