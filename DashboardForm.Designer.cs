@@ -49,13 +49,13 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelClientsPage = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelDeliveriesPage = new System.Windows.Forms.Panel();
-            this.panelReportsPage = new System.Windows.Forms.Panel();
-            this.panelCouriersPage = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.panelReportsPage = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
+            this.panelCouriersPage = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -319,6 +319,15 @@
             this.panelClientsPage.Size = new System.Drawing.Size(1926, 1052);
             this.panelClientsPage.TabIndex = 0;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(680, 38);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(116, 25);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "clients page";
+            // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
@@ -333,6 +342,15 @@
             this.panelDeliveriesPage.Size = new System.Drawing.Size(1926, 1052);
             this.panelDeliveriesPage.TabIndex = 1;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(680, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(128, 25);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "delivery page";
+            // 
             // panelReportsPage
             // 
             this.panelReportsPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -342,6 +360,15 @@
             this.panelReportsPage.Name = "panelReportsPage";
             this.panelReportsPage.Size = new System.Drawing.Size(1926, 1052);
             this.panelReportsPage.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(680, 38);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(121, 25);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "reports page";
             // 
             // panelCouriersPage
             // 
@@ -353,37 +380,10 @@
             this.panelCouriersPage.Size = new System.Drawing.Size(1926, 1052);
             this.panelCouriersPage.TabIndex = 3;
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1182, 38);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 25);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "clients page";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1182, 38);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(128, 25);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "delivery page";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1182, 38);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(121, 25);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "reports page";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(1182, 38);
+            this.label7.Location = new System.Drawing.Point(680, 38);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(171, 25);
             this.label7.TabIndex = 0;
