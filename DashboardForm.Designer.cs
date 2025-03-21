@@ -80,6 +80,7 @@
             this.txtBoxPhoneNumb = new System.Windows.Forms.TextBox();
             this.txtBoxEmail = new System.Windows.Forms.TextBox();
             this.txtBoxNotes = new System.Windows.Forms.TextBox();
+            this.btnClearNewClient = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -419,6 +420,7 @@
             // 
             this.panelAddClients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelAddClients.BackColor = System.Drawing.Color.Silver;
+            this.panelAddClients.Controls.Add(this.btnClearNewClient);
             this.panelAddClients.Controls.Add(this.txtBoxNotes);
             this.panelAddClients.Controls.Add(this.txtBoxEmail);
             this.panelAddClients.Controls.Add(this.txtBoxPhoneNumb);
@@ -607,7 +609,7 @@
             // btnAddNewClient
             // 
             this.btnAddNewClient.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnAddNewClient.Location = new System.Drawing.Point(905, 351);
+            this.btnAddNewClient.Location = new System.Drawing.Point(905, 341);
             this.btnAddNewClient.Name = "btnAddNewClient";
             this.btnAddNewClient.Size = new System.Drawing.Size(203, 63);
             this.btnAddNewClient.TabIndex = 9;
@@ -650,6 +652,17 @@
             this.txtBoxNotes.Name = "txtBoxNotes";
             this.txtBoxNotes.Size = new System.Drawing.Size(483, 133);
             this.txtBoxNotes.TabIndex = 14;
+            // 
+            // btnClearNewClient
+            // 
+            this.btnClearNewClient.BackColor = System.Drawing.Color.Salmon;
+            this.btnClearNewClient.Location = new System.Drawing.Point(696, 341);
+            this.btnClearNewClient.Name = "btnClearNewClient";
+            this.btnClearNewClient.Size = new System.Drawing.Size(203, 63);
+            this.btnClearNewClient.TabIndex = 15;
+            this.btnClearNewClient.Text = "Clear";
+            this.btnClearNewClient.UseVisualStyleBackColor = false;
+            this.btnClearNewClient.Click += new System.EventHandler(this.btnClearNewClient_Click);
             // 
             // DashboardForm
             // 
@@ -751,5 +764,6 @@
         private System.Windows.Forms.TextBox txtBoxAddress;
         private System.Windows.Forms.TextBox txtBoxBusinessName;
         private System.Windows.Forms.TextBox txtBoxNotes;
+        private System.Windows.Forms.Button btnClearNewClient;
     }
 }

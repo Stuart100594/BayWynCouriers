@@ -215,6 +215,11 @@ namespace BayWynCouriers
                     command.ExecuteNonQuery();
 
                     MessageBox.Show("Contracted client added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtBoxBusinessName.Clear();
+                    txtBoxAddress.Clear();
+                    txtBoxPhoneNumb.Clear();
+                    txtBoxEmail.Clear();
+                    txtBoxNotes.Clear();
                 }
             }
             catch (Exception ex)
@@ -245,12 +250,27 @@ namespace BayWynCouriers
                     command.ExecuteNonQuery();
 
                     MessageBox.Show("Non-contracted client added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtBoxBusinessName.Clear();
+                    txtBoxAddress.Clear();
+                    txtBoxPhoneNumb.Clear();
+                    txtBoxEmail.Clear();
+                    txtBoxNotes.Clear();
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error adding non-contracted client: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        //clear button on add new client panel//
+        private void btnClearNewClient_Click(object sender, EventArgs e)
+        {
+            txtBoxBusinessName.Clear();
+            txtBoxAddress.Clear();
+            txtBoxPhoneNumb.Clear();
+            txtBoxEmail.Clear();
+            txtBoxNotes.Clear();
         }
     }
 }
