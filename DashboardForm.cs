@@ -560,7 +560,6 @@ namespace BayWynCouriers
             txtEmail.Clear();
             txtPhoneNumber.Clear();
             txtNotes.Clear();
-
         }
     }
 }
