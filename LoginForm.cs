@@ -98,8 +98,6 @@ namespace BayWynCouriers
                         string Gender = reader["Gender"].ToString();
                         string StaffRole = reader["StaffRole"].ToString().Trim().ToLower(); // Ensure lowercase
 
-                        MessageBox.Show($"Role Retrieved: {StaffRole}"); // Debugging step
-
                         reader.Close();
 
                         // Open DashboardForm and pass role

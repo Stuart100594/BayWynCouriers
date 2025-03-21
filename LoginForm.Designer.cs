@@ -135,10 +135,9 @@
             // 
             // picBoxHide
             // 
-            this.picBoxHide.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picBoxHide.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picBoxHide.Image = global::BayWynCouriers.Properties.Resources.eyeClose;
-            this.picBoxHide.Location = new System.Drawing.Point(437, 222);
+            this.picBoxHide.Location = new System.Drawing.Point(440, 223);
             this.picBoxHide.Name = "picBoxHide";
             this.picBoxHide.Size = new System.Drawing.Size(30, 30);
             this.picBoxHide.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -149,10 +148,9 @@
             // 
             // picBoxShow
             // 
-            this.picBoxShow.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picBoxShow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picBoxShow.Image = global::BayWynCouriers.Properties.Resources.eyeOpen;
-            this.picBoxShow.Location = new System.Drawing.Point(437, 222);
+            this.picBoxShow.Location = new System.Drawing.Point(440, 223);
             this.picBoxShow.Name = "picBoxShow";
             this.picBoxShow.Size = new System.Drawing.Size(30, 30);
             this.picBoxShow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
