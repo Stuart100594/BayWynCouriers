@@ -13,32 +13,23 @@ namespace BayWynCouriers
 {
     public partial class DashboardForm : Form
     {
-        
+        private string StaffRole;
 
-        public DashboardForm(string StaffName, string Gender)
+        public DashboardForm(string StaffName, string Gender, string StaffRole)
         {
             InitializeComponent();
             lblUsername.Text = StaffName;
+            this.StaffRole = StaffRole.Trim().ToLower();  // Ensure lowercase comparison
 
-            // Ensure gender check is case-insensitive//
+            // Display correct avatar based on gender
             string genderLower = Gender.Trim().ToLower();
+            picBoy.Visible = genderLower == "male";
+            picGirl.Visible = genderLower == "female";
 
-            // Show or hide the correct avatar based on gender//
-            if (genderLower == "male")
-            {
-                picBoy.Visible = true;
-                picGirl.Visible = false;
-            }
-            else if (genderLower == "female")
-            {
-                picBoy.Visible = false;
-                picGirl.Visible = true;
-            }
-            else
-            {
-                picBoy.Visible = false;
-                picGirl.Visible = false; // Hide both if gender is unspecified//
-            }
+            // Debugging step
+            MessageBox.Show($"Staff Role: {this.StaffRole}");
+
+            
         }
 
         private void MovePanel (Control btn)
@@ -91,6 +82,12 @@ namespace BayWynCouriers
         //client button click event//
         private void btnClients_Click(object sender, EventArgs e)
         {
+            if (StaffRole == "courier")
+            {
+                MessageBox.Show("Access Denied: Couriers do not have access to the Clients page.", "Restricted Access", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             MovePanel(btnClients);
             panelClientsPage.Show();
             panelDeliveriesPage.Hide();
@@ -100,6 +97,11 @@ namespace BayWynCouriers
         //delivery button click event//
         private void btnDeliveries_Click(object sender, EventArgs e)
         {
+            if (StaffRole == "courier")
+            {
+                MessageBox.Show("Access Denied: Couriers do not have access to the Deliveries page.", "Restricted Access", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             MovePanel(btnDeliveries);
             panelDeliveriesPage.Show();
             panelClientsPage.Hide();
@@ -109,6 +111,11 @@ namespace BayWynCouriers
         //reports button click event//
         private void btnReports_Click(object sender, EventArgs e)
         {
+            if (StaffRole == "courier")
+            {
+                MessageBox.Show("Access Denied: Couriers do not have access to the Reports page.", "Restricted Access", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             MovePanel(btnReports);
             panelClientsPage.Hide();
             panelDeliveriesPage.Hide();
@@ -118,6 +125,11 @@ namespace BayWynCouriers
         //couriers button click event//
         private void btnCouriers_Click(object sender, EventArgs e)
         {
+            if (StaffRole == "admin" || StaffRole == "logisticscoordinator" || StaffRole == "owner/manager")
+            {
+                MessageBox.Show("Access Denied: You do not have access to the Couriers page.", "Restricted Access", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             MovePanel(btnCouriers);
             panelClientsPage.Hide();
             panelDeliveriesPage.Hide();
