@@ -93,6 +93,8 @@ namespace BayWynCouriers
             panelDeliveriesPage.Hide();
             panelReportsPage.Hide();
             panelCouriersPage.Hide();
+            panelAddClients.Hide();
+            panelViewClients.Hide();
         }
         //delivery button click event//
         private void btnDeliveries_Click(object sender, EventArgs e)
@@ -137,6 +139,16 @@ namespace BayWynCouriers
             panelCouriersPage.Show();
         }
 
-        
+        private void btnAddClients_Click(object sender, EventArgs e)
+        {
+            panelAddClients.Show();
+            panelViewClients.Hide();
+        }
+
+        private void btnViewClients_Click(object sender, EventArgs e)
+        {
+            panelAddClients.Hide();
+            panelViewClients.Show();
+        }
     }
 }
