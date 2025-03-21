@@ -102,6 +102,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.panelCouriersPage = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
+            this.comBoxClientType = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -365,9 +367,9 @@
             this.panelClientsPage.Controls.Add(this.btnEditClients);
             this.panelClientsPage.Controls.Add(this.btnViewClients);
             this.panelClientsPage.Controls.Add(this.btnAddClients);
-            this.panelClientsPage.Controls.Add(this.panelEditClients);
             this.panelClientsPage.Controls.Add(this.panelAddClients);
             this.panelClientsPage.Controls.Add(this.panelViewClients);
+            this.panelClientsPage.Controls.Add(this.panelEditClients);
             this.panelClientsPage.Location = new System.Drawing.Point(0, 0);
             this.panelClientsPage.Name = "panelClientsPage";
             this.panelClientsPage.Size = new System.Drawing.Size(1926, 1052);
@@ -376,8 +378,9 @@
             // btnEditClients
             // 
             this.btnEditClients.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnEditClients.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnEditClients.ForeColor = System.Drawing.Color.White;
-            this.btnEditClients.Location = new System.Drawing.Point(1151, 111);
+            this.btnEditClients.Location = new System.Drawing.Point(1462, 99);
             this.btnEditClients.Name = "btnEditClients";
             this.btnEditClients.Size = new System.Drawing.Size(162, 95);
             this.btnEditClients.TabIndex = 3;
@@ -388,8 +391,9 @@
             // btnViewClients
             // 
             this.btnViewClients.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnViewClients.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnViewClients.ForeColor = System.Drawing.Color.White;
-            this.btnViewClients.Location = new System.Drawing.Point(920, 111);
+            this.btnViewClients.Location = new System.Drawing.Point(1231, 99);
             this.btnViewClients.Name = "btnViewClients";
             this.btnViewClients.Size = new System.Drawing.Size(162, 95);
             this.btnViewClients.TabIndex = 2;
@@ -400,8 +404,9 @@
             // btnAddClients
             // 
             this.btnAddClients.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnAddClients.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddClients.ForeColor = System.Drawing.Color.White;
-            this.btnAddClients.Location = new System.Drawing.Point(685, 111);
+            this.btnAddClients.Location = new System.Drawing.Point(996, 99);
             this.btnAddClients.Name = "btnAddClients";
             this.btnAddClients.Size = new System.Drawing.Size(162, 95);
             this.btnAddClients.TabIndex = 1;
@@ -412,7 +417,9 @@
             // panelEditClients
             // 
             this.panelEditClients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelEditClients.BackColor = System.Drawing.Color.Silver;
+            this.panelEditClients.BackColor = System.Drawing.Color.Transparent;
+            this.panelEditClients.Controls.Add(this.comBoxClientType);
+            this.panelEditClients.Controls.Add(this.label24);
             this.panelEditClients.Controls.Add(this.comBoxClientList);
             this.panelEditClients.Controls.Add(this.label23);
             this.panelEditClients.Controls.Add(this.btnClearEditClient);
@@ -436,15 +443,16 @@
             // comBoxClientList
             // 
             this.comBoxClientList.FormattingEnabled = true;
-            this.comBoxClientList.Location = new System.Drawing.Point(22, 88);
+            this.comBoxClientList.Location = new System.Drawing.Point(23, 170);
             this.comBoxClientList.Name = "comBoxClientList";
             this.comBoxClientList.Size = new System.Drawing.Size(359, 33);
             this.comBoxClientList.TabIndex = 29;
+            this.comBoxClientList.SelectedIndexChanged += new System.EventHandler(this.comBoxClientList_SelectedIndexChanged);
             // 
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(17, 60);
+            this.label23.Location = new System.Drawing.Point(18, 142);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(128, 25);
             this.label23.TabIndex = 28;
@@ -453,12 +461,14 @@
             // btnClearEditClient
             // 
             this.btnClearEditClient.BackColor = System.Drawing.Color.Salmon;
+            this.btnClearEditClient.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClearEditClient.Location = new System.Drawing.Point(549, 341);
             this.btnClearEditClient.Name = "btnClearEditClient";
             this.btnClearEditClient.Size = new System.Drawing.Size(218, 63);
             this.btnClearEditClient.TabIndex = 27;
             this.btnClearEditClient.Text = "Clear";
             this.btnClearEditClient.UseVisualStyleBackColor = false;
+            this.btnClearEditClient.Click += new System.EventHandler(this.btnClearEditClient_Click);
             // 
             // txtNotes
             // 
@@ -499,12 +509,14 @@
             // btnUpdateClientDetails
             // 
             this.btnUpdateClientDetails.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnUpdateClientDetails.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUpdateClientDetails.Location = new System.Drawing.Point(773, 341);
             this.btnUpdateClientDetails.Name = "btnUpdateClientDetails";
             this.btnUpdateClientDetails.Size = new System.Drawing.Size(218, 63);
             this.btnUpdateClientDetails.TabIndex = 21;
             this.btnUpdateClientDetails.Text = "Update Client Details";
             this.btnUpdateClientDetails.UseVisualStyleBackColor = false;
+            this.btnUpdateClientDetails.Click += new System.EventHandler(this.btnUpdateClientDetails_Click);
             // 
             // label4
             // 
@@ -588,6 +600,7 @@
             // btnClearNewClient
             // 
             this.btnClearNewClient.BackColor = System.Drawing.Color.Salmon;
+            this.btnClearNewClient.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClearNewClient.Location = new System.Drawing.Point(696, 341);
             this.btnClearNewClient.Name = "btnClearNewClient";
             this.btnClearNewClient.Size = new System.Drawing.Size(203, 63);
@@ -635,6 +648,7 @@
             // btnAddNewClient
             // 
             this.btnAddNewClient.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnAddNewClient.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnAddNewClient.Location = new System.Drawing.Point(905, 341);
             this.btnAddNewClient.Name = "btnAddNewClient";
             this.btnAddNewClient.Size = new System.Drawing.Size(203, 63);
@@ -766,6 +780,7 @@
             // btnClearViewClient
             // 
             this.btnClearViewClient.BackColor = System.Drawing.Color.Salmon;
+            this.btnClearViewClient.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClearViewClient.Location = new System.Drawing.Point(1010, 70);
             this.btnClearViewClient.Name = "btnClearViewClient";
             this.btnClearViewClient.Size = new System.Drawing.Size(166, 64);
@@ -777,6 +792,7 @@
             // btnLoadClient
             // 
             this.btnLoadClient.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnLoadClient.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLoadClient.Location = new System.Drawing.Point(825, 70);
             this.btnLoadClient.Name = "btnLoadClient";
             this.btnLoadClient.Size = new System.Drawing.Size(166, 64);
@@ -896,6 +912,24 @@
             this.label7.Size = new System.Drawing.Size(171, 25);
             this.label7.TabIndex = 0;
             this.label7.Text = "couriers only page";
+            // 
+            // comBoxClientType
+            // 
+            this.comBoxClientType.FormattingEnabled = true;
+            this.comBoxClientType.Location = new System.Drawing.Point(23, 83);
+            this.comBoxClientType.Name = "comBoxClientType";
+            this.comBoxClientType.Size = new System.Drawing.Size(359, 33);
+            this.comBoxClientType.TabIndex = 31;
+            this.comBoxClientType.SelectedIndexChanged += new System.EventHandler(this.comBoxClientType_SelectedIndexChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(18, 55);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(178, 25);
+            this.label24.TabIndex = 30;
+            this.label24.Text = "Select Client Type:";
             // 
             // DashboardForm
             // 
@@ -1019,5 +1053,7 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ComboBox comBoxClientType;
+        private System.Windows.Forms.Label label24;
     }
 }
