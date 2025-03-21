@@ -317,9 +317,10 @@ namespace BayWynCouriers
         private void btnClearViewClient_Click(object sender, EventArgs e)
         {
             dgvViewClients.DataSource = null;
+            txtBoxSearchClient.Clear();
         }
 
-        //method to load clients within search bar//
+        //method to load clients using search bar//
         private void txtBoxSearchClient_TextChanged(object sender, EventArgs e)
         {
             string searchTerm = txtBoxSearchClient.Text;
@@ -352,5 +353,7 @@ namespace BayWynCouriers
                 MessageBox.Show("Error searching for client data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        
     }
 }
