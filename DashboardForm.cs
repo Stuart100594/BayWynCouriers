@@ -113,6 +113,9 @@ namespace BayWynCouriers
             panelClientsPage.Hide();
             panelReportsPage.Hide();
             panelCouriersPage.Hide();
+            panelCreateDeliveryPage.Hide();
+            panelEditDeliveryPage.Hide();
+            panelCancelDeliveryPage.Hide();
         }
         //reports button click event//
         private void btnReports_Click(object sender, EventArgs e)
@@ -560,6 +563,28 @@ namespace BayWynCouriers
             txtEmail.Clear();
             txtPhoneNumber.Clear();
             txtNotes.Clear();
+        }
+
+        //opens create delivery page//
+        private void btnCreateDelivery_Click(object sender, EventArgs e)
+        {
+            panelCreateDeliveryPage.Show();
+            panelEditDeliveryPage.Hide();
+            panelCancelDeliveryPage.Hide();
+        }
+        //opens edit delivery page//
+        private void btnEditDelivery_Click(object sender, EventArgs e)
+        {
+            panelCreateDeliveryPage.Hide();
+            panelEditDeliveryPage.Show();
+            panelCancelDeliveryPage.Hide();
+        }
+        //opens cancel delivery page//
+        private void btnCancelDelivery_Click(object sender, EventArgs e)
+        {
+            panelCreateDeliveryPage.Hide();
+            panelEditDeliveryPage.Hide();
+            panelCancelDeliveryPage.Show();
         }
     }
 }

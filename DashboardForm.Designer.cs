@@ -52,22 +52,6 @@
             this.btnEditClients = new System.Windows.Forms.Button();
             this.btnViewClients = new System.Windows.Forms.Button();
             this.btnAddClients = new System.Windows.Forms.Button();
-            this.panelEditClients = new System.Windows.Forms.Panel();
-            this.comBoxClientList = new System.Windows.Forms.ComboBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.btnClearEditClient = new System.Windows.Forms.Button();
-            this.txtNotes = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtPhoneNumber = new System.Windows.Forms.TextBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.txtBusinessName = new System.Windows.Forms.TextBox();
-            this.btnUpdateClientDetails = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.panelAddClients = new System.Windows.Forms.Panel();
             this.btnClearNewClient = new System.Windows.Forms.Button();
             this.txtBoxNotes = new System.Windows.Forms.TextBox();
@@ -95,15 +79,41 @@
             this.rbViewContractClient = new System.Windows.Forms.RadioButton();
             this.dgvViewClients = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
+            this.panelEditClients = new System.Windows.Forms.Panel();
+            this.comBoxClientType = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.comBoxClientList = new System.Windows.Forms.ComboBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.btnClearEditClient = new System.Windows.Forms.Button();
+            this.txtNotes = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtPhoneNumber = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.txtBusinessName = new System.Windows.Forms.TextBox();
+            this.btnUpdateClientDetails = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelDeliveriesPage = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panelReportsPage = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
             this.panelCouriersPage = new System.Windows.Forms.Panel();
+            this.btnCreateDelivery = new System.Windows.Forms.Button();
+            this.btnEditDelivery = new System.Windows.Forms.Button();
+            this.btnCancelDelivery = new System.Windows.Forms.Button();
+            this.panelCreateDeliveryPage = new System.Windows.Forms.Panel();
+            this.panelEditDeliveryPage = new System.Windows.Forms.Panel();
+            this.panelCancelDeliveryPage = new System.Windows.Forms.Panel();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.comBoxClientType = new System.Windows.Forms.ComboBox();
-            this.label24 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -112,13 +122,16 @@
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelClientsPage.SuspendLayout();
-            this.panelEditClients.SuspendLayout();
             this.panelAddClients.SuspendLayout();
             this.panelViewClients.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewClients)).BeginInit();
+            this.panelEditClients.SuspendLayout();
             this.panelDeliveriesPage.SuspendLayout();
             this.panelReportsPage.SuspendLayout();
             this.panelCouriersPage.SuspendLayout();
+            this.panelCreateDeliveryPage.SuspendLayout();
+            this.panelEditDeliveryPage.SuspendLayout();
+            this.panelCancelDeliveryPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -370,6 +383,7 @@
             this.panelClientsPage.Controls.Add(this.panelAddClients);
             this.panelClientsPage.Controls.Add(this.panelViewClients);
             this.panelClientsPage.Controls.Add(this.panelEditClients);
+            this.panelClientsPage.Controls.Add(this.label28);
             this.panelClientsPage.Location = new System.Drawing.Point(0, 0);
             this.panelClientsPage.Name = "panelClientsPage";
             this.panelClientsPage.Size = new System.Drawing.Size(1926, 1052);
@@ -413,164 +427,6 @@
             this.btnAddClients.Text = "Add Client";
             this.btnAddClients.UseVisualStyleBackColor = false;
             this.btnAddClients.Click += new System.EventHandler(this.btnAddClients_Click);
-            // 
-            // panelEditClients
-            // 
-            this.panelEditClients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelEditClients.BackColor = System.Drawing.Color.Transparent;
-            this.panelEditClients.Controls.Add(this.comBoxClientType);
-            this.panelEditClients.Controls.Add(this.label24);
-            this.panelEditClients.Controls.Add(this.comBoxClientList);
-            this.panelEditClients.Controls.Add(this.label23);
-            this.panelEditClients.Controls.Add(this.btnClearEditClient);
-            this.panelEditClients.Controls.Add(this.txtNotes);
-            this.panelEditClients.Controls.Add(this.txtEmail);
-            this.panelEditClients.Controls.Add(this.txtPhoneNumber);
-            this.panelEditClients.Controls.Add(this.txtAddress);
-            this.panelEditClients.Controls.Add(this.txtBusinessName);
-            this.panelEditClients.Controls.Add(this.btnUpdateClientDetails);
-            this.panelEditClients.Controls.Add(this.label4);
-            this.panelEditClients.Controls.Add(this.label19);
-            this.panelEditClients.Controls.Add(this.label20);
-            this.panelEditClients.Controls.Add(this.label21);
-            this.panelEditClients.Controls.Add(this.label22);
-            this.panelEditClients.Controls.Add(this.label10);
-            this.panelEditClients.Location = new System.Drawing.Point(685, 253);
-            this.panelEditClients.Name = "panelEditClients";
-            this.panelEditClients.Size = new System.Drawing.Size(1190, 434);
-            this.panelEditClients.TabIndex = 2;
-            // 
-            // comBoxClientList
-            // 
-            this.comBoxClientList.FormattingEnabled = true;
-            this.comBoxClientList.Location = new System.Drawing.Point(23, 170);
-            this.comBoxClientList.Name = "comBoxClientList";
-            this.comBoxClientList.Size = new System.Drawing.Size(359, 33);
-            this.comBoxClientList.TabIndex = 29;
-            this.comBoxClientList.SelectedIndexChanged += new System.EventHandler(this.comBoxClientList_SelectedIndexChanged);
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(18, 142);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(128, 25);
-            this.label23.TabIndex = 28;
-            this.label23.Text = "Select Client:";
-            // 
-            // btnClearEditClient
-            // 
-            this.btnClearEditClient.BackColor = System.Drawing.Color.Salmon;
-            this.btnClearEditClient.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClearEditClient.Location = new System.Drawing.Point(549, 341);
-            this.btnClearEditClient.Name = "btnClearEditClient";
-            this.btnClearEditClient.Size = new System.Drawing.Size(218, 63);
-            this.btnClearEditClient.TabIndex = 27;
-            this.btnClearEditClient.Text = "Clear";
-            this.btnClearEditClient.UseVisualStyleBackColor = false;
-            this.btnClearEditClient.Click += new System.EventHandler(this.btnClearEditClient_Click);
-            // 
-            // txtNotes
-            // 
-            this.txtNotes.Location = new System.Drawing.Point(443, 198);
-            this.txtNotes.Multiline = true;
-            this.txtNotes.Name = "txtNotes";
-            this.txtNotes.Size = new System.Drawing.Size(548, 133);
-            this.txtNotes.TabIndex = 26;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Location = new System.Drawing.Point(817, 126);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(359, 30);
-            this.txtEmail.TabIndex = 25;
-            // 
-            // txtPhoneNumber
-            // 
-            this.txtPhoneNumber.Location = new System.Drawing.Point(817, 56);
-            this.txtPhoneNumber.Name = "txtPhoneNumber";
-            this.txtPhoneNumber.Size = new System.Drawing.Size(359, 30);
-            this.txtPhoneNumber.TabIndex = 24;
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.Location = new System.Drawing.Point(443, 127);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(359, 30);
-            this.txtAddress.TabIndex = 23;
-            // 
-            // txtBusinessName
-            // 
-            this.txtBusinessName.Location = new System.Drawing.Point(444, 56);
-            this.txtBusinessName.Name = "txtBusinessName";
-            this.txtBusinessName.Size = new System.Drawing.Size(359, 30);
-            this.txtBusinessName.TabIndex = 22;
-            // 
-            // btnUpdateClientDetails
-            // 
-            this.btnUpdateClientDetails.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnUpdateClientDetails.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnUpdateClientDetails.Location = new System.Drawing.Point(773, 341);
-            this.btnUpdateClientDetails.Name = "btnUpdateClientDetails";
-            this.btnUpdateClientDetails.Size = new System.Drawing.Size(218, 63);
-            this.btnUpdateClientDetails.TabIndex = 21;
-            this.btnUpdateClientDetails.Text = "Update Client Details";
-            this.btnUpdateClientDetails.UseVisualStyleBackColor = false;
-            this.btnUpdateClientDetails.Click += new System.EventHandler(this.btnUpdateClientDetails_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(443, 170);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(69, 25);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "Notes:";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(812, 98);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(66, 25);
-            this.label19.TabIndex = 19;
-            this.label19.Text = "Email:";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(812, 28);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(149, 25);
-            this.label20.TabIndex = 18;
-            this.label20.Text = "Phone Number:";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(441, 99);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(91, 25);
-            this.label21.TabIndex = 17;
-            this.label21.Text = "Address:";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(439, 28);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(155, 25);
-            this.label22.TabIndex = 16;
-            this.label22.Text = "Business Name:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 5);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(170, 25);
-            this.label10.TabIndex = 0;
-            this.label10.Text = "Edit Client Details:";
             // 
             // panelAddClients
             // 
@@ -852,66 +708,31 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "View Client Details:";
             // 
-            // timer1
+            // panelEditClients
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // panelDeliveriesPage
-            // 
-            this.panelDeliveriesPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelDeliveriesPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panelDeliveriesPage.Controls.Add(this.label5);
-            this.panelDeliveriesPage.Location = new System.Drawing.Point(0, 0);
-            this.panelDeliveriesPage.Name = "panelDeliveriesPage";
-            this.panelDeliveriesPage.Size = new System.Drawing.Size(1926, 1052);
-            this.panelDeliveriesPage.TabIndex = 1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(680, 38);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(128, 25);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "delivery page";
-            // 
-            // panelReportsPage
-            // 
-            this.panelReportsPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelReportsPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panelReportsPage.Controls.Add(this.label6);
-            this.panelReportsPage.Location = new System.Drawing.Point(0, 0);
-            this.panelReportsPage.Name = "panelReportsPage";
-            this.panelReportsPage.Size = new System.Drawing.Size(1926, 1052);
-            this.panelReportsPage.TabIndex = 2;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(680, 38);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(121, 25);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "reports page";
-            // 
-            // panelCouriersPage
-            // 
-            this.panelCouriersPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelCouriersPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.panelCouriersPage.Controls.Add(this.label7);
-            this.panelCouriersPage.Location = new System.Drawing.Point(0, 0);
-            this.panelCouriersPage.Name = "panelCouriersPage";
-            this.panelCouriersPage.Size = new System.Drawing.Size(1926, 1052);
-            this.panelCouriersPage.TabIndex = 3;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(680, 38);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(171, 25);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "couriers only page";
+            this.panelEditClients.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelEditClients.BackColor = System.Drawing.Color.Transparent;
+            this.panelEditClients.Controls.Add(this.comBoxClientType);
+            this.panelEditClients.Controls.Add(this.label24);
+            this.panelEditClients.Controls.Add(this.comBoxClientList);
+            this.panelEditClients.Controls.Add(this.label23);
+            this.panelEditClients.Controls.Add(this.btnClearEditClient);
+            this.panelEditClients.Controls.Add(this.txtNotes);
+            this.panelEditClients.Controls.Add(this.txtEmail);
+            this.panelEditClients.Controls.Add(this.txtPhoneNumber);
+            this.panelEditClients.Controls.Add(this.txtAddress);
+            this.panelEditClients.Controls.Add(this.txtBusinessName);
+            this.panelEditClients.Controls.Add(this.btnUpdateClientDetails);
+            this.panelEditClients.Controls.Add(this.label4);
+            this.panelEditClients.Controls.Add(this.label19);
+            this.panelEditClients.Controls.Add(this.label20);
+            this.panelEditClients.Controls.Add(this.label21);
+            this.panelEditClients.Controls.Add(this.label22);
+            this.panelEditClients.Controls.Add(this.label10);
+            this.panelEditClients.Location = new System.Drawing.Point(685, 253);
+            this.panelEditClients.Name = "panelEditClients";
+            this.panelEditClients.Size = new System.Drawing.Size(1190, 434);
+            this.panelEditClients.TabIndex = 2;
             // 
             // comBoxClientType
             // 
@@ -931,6 +752,308 @@
             this.label24.TabIndex = 30;
             this.label24.Text = "Select Client Type:";
             // 
+            // comBoxClientList
+            // 
+            this.comBoxClientList.FormattingEnabled = true;
+            this.comBoxClientList.Location = new System.Drawing.Point(23, 170);
+            this.comBoxClientList.Name = "comBoxClientList";
+            this.comBoxClientList.Size = new System.Drawing.Size(359, 33);
+            this.comBoxClientList.TabIndex = 29;
+            this.comBoxClientList.SelectedIndexChanged += new System.EventHandler(this.comBoxClientList_SelectedIndexChanged);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(18, 142);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(128, 25);
+            this.label23.TabIndex = 28;
+            this.label23.Text = "Select Client:";
+            // 
+            // btnClearEditClient
+            // 
+            this.btnClearEditClient.BackColor = System.Drawing.Color.Salmon;
+            this.btnClearEditClient.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnClearEditClient.Location = new System.Drawing.Point(549, 341);
+            this.btnClearEditClient.Name = "btnClearEditClient";
+            this.btnClearEditClient.Size = new System.Drawing.Size(218, 63);
+            this.btnClearEditClient.TabIndex = 27;
+            this.btnClearEditClient.Text = "Clear";
+            this.btnClearEditClient.UseVisualStyleBackColor = false;
+            this.btnClearEditClient.Click += new System.EventHandler(this.btnClearEditClient_Click);
+            // 
+            // txtNotes
+            // 
+            this.txtNotes.Location = new System.Drawing.Point(443, 198);
+            this.txtNotes.Multiline = true;
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.Size = new System.Drawing.Size(548, 133);
+            this.txtNotes.TabIndex = 26;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(817, 126);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(359, 30);
+            this.txtEmail.TabIndex = 25;
+            // 
+            // txtPhoneNumber
+            // 
+            this.txtPhoneNumber.Location = new System.Drawing.Point(817, 56);
+            this.txtPhoneNumber.Name = "txtPhoneNumber";
+            this.txtPhoneNumber.Size = new System.Drawing.Size(359, 30);
+            this.txtPhoneNumber.TabIndex = 24;
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(443, 127);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(359, 30);
+            this.txtAddress.TabIndex = 23;
+            // 
+            // txtBusinessName
+            // 
+            this.txtBusinessName.Location = new System.Drawing.Point(444, 56);
+            this.txtBusinessName.Name = "txtBusinessName";
+            this.txtBusinessName.Size = new System.Drawing.Size(359, 30);
+            this.txtBusinessName.TabIndex = 22;
+            // 
+            // btnUpdateClientDetails
+            // 
+            this.btnUpdateClientDetails.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnUpdateClientDetails.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdateClientDetails.Location = new System.Drawing.Point(773, 341);
+            this.btnUpdateClientDetails.Name = "btnUpdateClientDetails";
+            this.btnUpdateClientDetails.Size = new System.Drawing.Size(218, 63);
+            this.btnUpdateClientDetails.TabIndex = 21;
+            this.btnUpdateClientDetails.Text = "Update Client Details";
+            this.btnUpdateClientDetails.UseVisualStyleBackColor = false;
+            this.btnUpdateClientDetails.Click += new System.EventHandler(this.btnUpdateClientDetails_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(443, 170);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(69, 25);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Notes:";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(812, 98);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(66, 25);
+            this.label19.TabIndex = 19;
+            this.label19.Text = "Email:";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(812, 28);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(149, 25);
+            this.label20.TabIndex = 18;
+            this.label20.Text = "Phone Number:";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(441, 99);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(91, 25);
+            this.label21.TabIndex = 17;
+            this.label21.Text = "Address:";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(439, 28);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(155, 25);
+            this.label22.TabIndex = 16;
+            this.label22.Text = "Business Name:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 5);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(170, 25);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Edit Client Details:";
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // panelDeliveriesPage
+            // 
+            this.panelDeliveriesPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelDeliveriesPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelDeliveriesPage.Controls.Add(this.btnCancelDelivery);
+            this.panelDeliveriesPage.Controls.Add(this.btnEditDelivery);
+            this.panelDeliveriesPage.Controls.Add(this.btnCreateDelivery);
+            this.panelDeliveriesPage.Controls.Add(this.label5);
+            this.panelDeliveriesPage.Controls.Add(this.panelCreateDeliveryPage);
+            this.panelDeliveriesPage.Controls.Add(this.panelEditDeliveryPage);
+            this.panelDeliveriesPage.Controls.Add(this.panelCancelDeliveryPage);
+            this.panelDeliveriesPage.Location = new System.Drawing.Point(0, 0);
+            this.panelDeliveriesPage.Name = "panelDeliveriesPage";
+            this.panelDeliveriesPage.Size = new System.Drawing.Size(1926, 1052);
+            this.panelDeliveriesPage.TabIndex = 1;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(653, 38);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(397, 91);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Deliveries";
+            // 
+            // panelReportsPage
+            // 
+            this.panelReportsPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelReportsPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelReportsPage.Controls.Add(this.label6);
+            this.panelReportsPage.Location = new System.Drawing.Point(0, 0);
+            this.panelReportsPage.Name = "panelReportsPage";
+            this.panelReportsPage.Size = new System.Drawing.Size(1926, 1052);
+            this.panelReportsPage.TabIndex = 2;
+            // 
+            // panelCouriersPage
+            // 
+            this.panelCouriersPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelCouriersPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelCouriersPage.Controls.Add(this.label7);
+            this.panelCouriersPage.Location = new System.Drawing.Point(0, 0);
+            this.panelCouriersPage.Name = "panelCouriersPage";
+            this.panelCouriersPage.Size = new System.Drawing.Size(1926, 1052);
+            this.panelCouriersPage.TabIndex = 3;
+            // 
+            // btnCreateDelivery
+            // 
+            this.btnCreateDelivery.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnCreateDelivery.ForeColor = System.Drawing.Color.White;
+            this.btnCreateDelivery.Location = new System.Drawing.Point(996, 99);
+            this.btnCreateDelivery.Name = "btnCreateDelivery";
+            this.btnCreateDelivery.Size = new System.Drawing.Size(162, 95);
+            this.btnCreateDelivery.TabIndex = 1;
+            this.btnCreateDelivery.Text = "Create Delivery";
+            this.btnCreateDelivery.UseVisualStyleBackColor = false;
+            this.btnCreateDelivery.Click += new System.EventHandler(this.btnCreateDelivery_Click);
+            // 
+            // btnEditDelivery
+            // 
+            this.btnEditDelivery.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnEditDelivery.ForeColor = System.Drawing.Color.White;
+            this.btnEditDelivery.Location = new System.Drawing.Point(1231, 99);
+            this.btnEditDelivery.Name = "btnEditDelivery";
+            this.btnEditDelivery.Size = new System.Drawing.Size(162, 95);
+            this.btnEditDelivery.TabIndex = 2;
+            this.btnEditDelivery.Text = "Edit Delivery";
+            this.btnEditDelivery.UseVisualStyleBackColor = false;
+            this.btnEditDelivery.Click += new System.EventHandler(this.btnEditDelivery_Click);
+            // 
+            // btnCancelDelivery
+            // 
+            this.btnCancelDelivery.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnCancelDelivery.ForeColor = System.Drawing.Color.White;
+            this.btnCancelDelivery.Location = new System.Drawing.Point(1462, 99);
+            this.btnCancelDelivery.Name = "btnCancelDelivery";
+            this.btnCancelDelivery.Size = new System.Drawing.Size(162, 95);
+            this.btnCancelDelivery.TabIndex = 3;
+            this.btnCancelDelivery.Text = "Cancel Delivery";
+            this.btnCancelDelivery.UseVisualStyleBackColor = false;
+            this.btnCancelDelivery.Click += new System.EventHandler(this.btnCancelDelivery_Click);
+            // 
+            // panelCreateDeliveryPage
+            // 
+            this.panelCreateDeliveryPage.BackColor = System.Drawing.Color.LightCoral;
+            this.panelCreateDeliveryPage.Controls.Add(this.label25);
+            this.panelCreateDeliveryPage.Location = new System.Drawing.Point(685, 253);
+            this.panelCreateDeliveryPage.Name = "panelCreateDeliveryPage";
+            this.panelCreateDeliveryPage.Size = new System.Drawing.Size(1190, 434);
+            this.panelCreateDeliveryPage.TabIndex = 4;
+            // 
+            // panelEditDeliveryPage
+            // 
+            this.panelEditDeliveryPage.BackColor = System.Drawing.Color.DarkSeaGreen;
+            this.panelEditDeliveryPage.Controls.Add(this.label26);
+            this.panelEditDeliveryPage.Location = new System.Drawing.Point(685, 253);
+            this.panelEditDeliveryPage.Name = "panelEditDeliveryPage";
+            this.panelEditDeliveryPage.Size = new System.Drawing.Size(1190, 434);
+            this.panelEditDeliveryPage.TabIndex = 5;
+            // 
+            // panelCancelDeliveryPage
+            // 
+            this.panelCancelDeliveryPage.BackColor = System.Drawing.Color.Plum;
+            this.panelCancelDeliveryPage.Controls.Add(this.label27);
+            this.panelCancelDeliveryPage.Location = new System.Drawing.Point(685, 253);
+            this.panelCancelDeliveryPage.Name = "panelCancelDeliveryPage";
+            this.panelCancelDeliveryPage.Size = new System.Drawing.Size(1190, 434);
+            this.panelCancelDeliveryPage.TabIndex = 5;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(3, 5);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(168, 25);
+            this.label25.TabIndex = 6;
+            this.label25.Text = "Create a Delivery:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(4, 4);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(126, 25);
+            this.label26.TabIndex = 7;
+            this.label26.Text = "Edit Delivery:";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(3, 4);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(155, 25);
+            this.label27.TabIndex = 8;
+            this.label27.Text = "Cancel Delivery:";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(653, 38);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(288, 91);
+            this.label28.TabIndex = 4;
+            this.label28.Text = "Clients";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(653, 38);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(325, 91);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Reports";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(653, 38);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(559, 91);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Couriers Page";
+            // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -938,10 +1061,10 @@
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1924, 1052);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panelClientsPage);
             this.Controls.Add(this.panelDeliveriesPage);
             this.Controls.Add(this.panelReportsPage);
             this.Controls.Add(this.panelCouriersPage);
+            this.Controls.Add(this.panelClientsPage);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -961,19 +1084,26 @@
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelClientsPage.ResumeLayout(false);
-            this.panelEditClients.ResumeLayout(false);
-            this.panelEditClients.PerformLayout();
+            this.panelClientsPage.PerformLayout();
             this.panelAddClients.ResumeLayout(false);
             this.panelAddClients.PerformLayout();
             this.panelViewClients.ResumeLayout(false);
             this.panelViewClients.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewClients)).EndInit();
+            this.panelEditClients.ResumeLayout(false);
+            this.panelEditClients.PerformLayout();
             this.panelDeliveriesPage.ResumeLayout(false);
             this.panelDeliveriesPage.PerformLayout();
             this.panelReportsPage.ResumeLayout(false);
             this.panelReportsPage.PerformLayout();
             this.panelCouriersPage.ResumeLayout(false);
             this.panelCouriersPage.PerformLayout();
+            this.panelCreateDeliveryPage.ResumeLayout(false);
+            this.panelCreateDeliveryPage.PerformLayout();
+            this.panelEditDeliveryPage.ResumeLayout(false);
+            this.panelEditDeliveryPage.PerformLayout();
+            this.panelCancelDeliveryPage.ResumeLayout(false);
+            this.panelCancelDeliveryPage.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1005,8 +1135,6 @@
         private System.Windows.Forms.Panel panelCouriersPage;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnEditClients;
         private System.Windows.Forms.Button btnViewClients;
         private System.Windows.Forms.Button btnAddClients;
@@ -1055,5 +1183,17 @@
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ComboBox comBoxClientType;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button btnCancelDelivery;
+        private System.Windows.Forms.Button btnEditDelivery;
+        private System.Windows.Forms.Button btnCreateDelivery;
+        private System.Windows.Forms.Panel panelCreateDeliveryPage;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Panel panelEditDeliveryPage;
+        private System.Windows.Forms.Panel panelCancelDeliveryPage;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
     }
 }
