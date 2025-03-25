@@ -105,7 +105,7 @@
             this.btnCreateDelivery = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.panelCreateDeliveryPage = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvAddDelivery = new System.Windows.Forms.DataGridView();
             this.label34 = new System.Windows.Forms.Label();
             this.comBoxClientTypeDelivery = new System.Windows.Forms.ComboBox();
             this.label33 = new System.Windows.Forms.Label();
@@ -142,7 +142,7 @@
             this.panelEditClients.SuspendLayout();
             this.panelDeliveriesPage.SuspendLayout();
             this.panelCreateDeliveryPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAddDelivery)).BeginInit();
             this.panelEditDeliveryPage.SuspendLayout();
             this.panelCancelDeliveryPage.SuspendLayout();
             this.panelReportsPage.SuspendLayout();
@@ -977,13 +977,10 @@
             // 
             // panelCreateDeliveryPage
             // 
-            this.panelCreateDeliveryPage.BackColor = System.Drawing.Color.Silver;
-            this.panelCreateDeliveryPage.Controls.Add(this.dataGridView1);
-            this.panelCreateDeliveryPage.Controls.Add(this.label34);
+            this.panelCreateDeliveryPage.BackColor = System.Drawing.Color.Transparent;
+            this.panelCreateDeliveryPage.Controls.Add(this.dgvAddDelivery);
             this.panelCreateDeliveryPage.Controls.Add(this.comBoxClientTypeDelivery);
-            this.panelCreateDeliveryPage.Controls.Add(this.label33);
             this.panelCreateDeliveryPage.Controls.Add(this.txtBoxClientAddressDelivery);
-            this.panelCreateDeliveryPage.Controls.Add(this.label32);
             this.panelCreateDeliveryPage.Controls.Add(this.comBoxClientsDelivery);
             this.panelCreateDeliveryPage.Controls.Add(this.btnAddDelivery);
             this.panelCreateDeliveryPage.Controls.Add(this.label31);
@@ -993,25 +990,29 @@
             this.panelCreateDeliveryPage.Controls.Add(this.comBoxTimeslots);
             this.panelCreateDeliveryPage.Controls.Add(this.dateTimePickDelivery);
             this.panelCreateDeliveryPage.Controls.Add(this.label25);
+            this.panelCreateDeliveryPage.Controls.Add(this.label34);
+            this.panelCreateDeliveryPage.Controls.Add(this.label33);
+            this.panelCreateDeliveryPage.Controls.Add(this.label32);
             this.panelCreateDeliveryPage.Location = new System.Drawing.Point(685, 253);
             this.panelCreateDeliveryPage.Name = "panelCreateDeliveryPage";
             this.panelCreateDeliveryPage.Size = new System.Drawing.Size(1190, 434);
             this.panelCreateDeliveryPage.TabIndex = 4;
             // 
-            // dataGridView1
+            // dgvAddDelivery
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(34, 209);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1115, 206);
-            this.dataGridView1.TabIndex = 8;
+            this.dgvAddDelivery.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvAddDelivery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAddDelivery.Location = new System.Drawing.Point(34, 209);
+            this.dgvAddDelivery.Name = "dgvAddDelivery";
+            this.dgvAddDelivery.RowHeadersWidth = 51;
+            this.dgvAddDelivery.RowTemplate.Height = 24;
+            this.dgvAddDelivery.Size = new System.Drawing.Size(1115, 206);
+            this.dgvAddDelivery.TabIndex = 8;
             // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(29, 50);
+            this.label34.Location = new System.Drawing.Point(71, 50);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(202, 25);
             this.label34.TabIndex = 19;
@@ -1029,7 +1030,7 @@
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(85, 155);
+            this.label33.Location = new System.Drawing.Point(114, 155);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(146, 25);
             this.label33.TabIndex = 17;
@@ -1045,7 +1046,7 @@
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(103, 105);
+            this.label32.Location = new System.Drawing.Point(130, 105);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(128, 25);
             this.label32.TabIndex = 15;
@@ -1248,7 +1249,7 @@
             this.panelDeliveriesPage.PerformLayout();
             this.panelCreateDeliveryPage.ResumeLayout(false);
             this.panelCreateDeliveryPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAddDelivery)).EndInit();
             this.panelEditDeliveryPage.ResumeLayout(false);
             this.panelEditDeliveryPage.PerformLayout();
             this.panelCancelDeliveryPage.ResumeLayout(false);
@@ -1359,7 +1360,7 @@
         private System.Windows.Forms.ComboBox comBoxClientsDelivery;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.TextBox txtBoxClientAddressDelivery;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvAddDelivery;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.ComboBox comBoxClientTypeDelivery;
     }

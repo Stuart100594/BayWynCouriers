@@ -725,18 +725,16 @@ namespace BayWynCouriers
             // Step 1: Get values from form fields
             string clientType = comBoxClientTypeDelivery.SelectedItem?.ToString();
             string selectedTimeSlot = comBoxTimeslots.SelectedItem?.ToString();
-            string selectedCourierID = comBoxCourierList.SelectedValue?.ToString(); // Courier ID
+            string selectedCourierName = comBoxCourierList.Text; // Get Staff Name
             DateTime selectedDate = dateTimePickDelivery.Value;
 
             // Step 2: Retrieve client address based on the selected client type
             string address = string.Empty;
-            int clientID = 0;
-            int jobID = 0;
+            int clientID = 0, jobID = 0;
 
             if (comBoxClientsDelivery.SelectedItem != null)
             {
                 object selectedValue = comBoxClientsDelivery.SelectedValue;
-
                 if (selectedValue == null || string.IsNullOrEmpty(selectedValue.ToString()))
                 {
                     MessageBox.Show("No client selected or value is empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -764,7 +762,7 @@ namespace BayWynCouriers
             }
 
             // Step 3: Validate inputs
-            if (string.IsNullOrEmpty(clientType) || string.IsNullOrEmpty(selectedTimeSlot) || string.IsNullOrEmpty(selectedCourierID))
+            if (string.IsNullOrEmpty(clientType) || string.IsNullOrEmpty(selectedTimeSlot) || string.IsNullOrEmpty(selectedCourierName))
             {
                 MessageBox.Show("Please fill in all required fields before adding the delivery.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -779,15 +777,15 @@ namespace BayWynCouriers
             // Step 4: Insert the delivery into the Deliveries table
             try
             {
-                string query = "INSERT INTO Deliveries (StaffID, DeliveryDate, DeliveryTime, Address, Status) " +
-                               "VALUES (@StaffID, @DeliveryDate, @DeliveryTime, @Address, @Status)";
+                string query = "INSERT INTO Deliveries (StaffName, DeliveryDate, DeliveryTime, Address, Status) " +
+                               "VALUES (@StaffName, @DeliveryDate, @DeliveryTime, @Address, @Status)";
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     // Add parameters for the query
-                    cmd.Parameters.AddWithValue("@StaffID", selectedCourierID);  // Courier ID (Staff)
+                    cmd.Parameters.AddWithValue("@StaffName", selectedCourierName);  // Store Staff Name
                     cmd.Parameters.AddWithValue("@DeliveryDate", selectedDate.ToString("yyyy-MM-dd")); // Format date
                     cmd.Parameters.AddWithValue("@DeliveryTime", selectedTimeSlot); // Timeslot
                     cmd.Parameters.AddWithValue("@Address", address); // Address from client table
@@ -799,6 +797,8 @@ namespace BayWynCouriers
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("Delivery added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Refresh the DataGridView with the new deliveries
+                        LoadDeliveries();
                     }
                     else
                     {
@@ -862,6 +862,31 @@ namespace BayWynCouriers
                 MessageBox.Show("Error retrieving address: " + ex.Message);
             }
             return address;
+        }
+        //method to load deliveries into datagridview on deliveries page//
+        private void LoadDeliveries()
+        {
+            try
+            {
+                // Query to retrieve all deliveries from the Deliveries table
+                string query = "SELECT DeliveryID, StaffName, DeliveryDate, DeliveryTime, Address, Status FROM Deliveries";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+
+                    // Fill the DataTable with the results of the query
+                    da.Fill(dt);
+
+                    // Bind the DataTable to the DataGridView
+                    dgvAddDelivery.DataSource = dt; // Assuming your DataGridView is named dataGridViewDeliveries
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading deliveries: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
