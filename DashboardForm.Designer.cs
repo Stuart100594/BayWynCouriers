@@ -104,13 +104,29 @@
             this.btnEditDelivery = new System.Windows.Forms.Button();
             this.btnCreateDelivery = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.panelEditDeliveryPage = new System.Windows.Forms.Panel();
+            this.txtBoxDeliveryID = new System.Windows.Forms.TextBox();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.dgvEditDelivery = new System.Windows.Forms.DataGridView();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.btnUpdateDelivery = new System.Windows.Forms.Button();
+            this.cbEditDelivCouriers = new System.Windows.Forms.ComboBox();
+            this.cbEditDelivTimeslots = new System.Windows.Forms.ComboBox();
+            this.dtpEditDelivery = new System.Windows.Forms.DateTimePicker();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.panelCancelDeliveryPage = new System.Windows.Forms.Panel();
+            this.label27 = new System.Windows.Forms.Label();
             this.panelCreateDeliveryPage = new System.Windows.Forms.Panel();
             this.dgvAddDelivery = new System.Windows.Forms.DataGridView();
-            this.label34 = new System.Windows.Forms.Label();
             this.comBoxClientTypeDelivery = new System.Windows.Forms.ComboBox();
-            this.label33 = new System.Windows.Forms.Label();
             this.txtBoxClientAddressDelivery = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
             this.comBoxClientsDelivery = new System.Windows.Forms.ComboBox();
             this.btnAddDelivery = new System.Windows.Forms.Button();
             this.label31 = new System.Windows.Forms.Label();
@@ -120,10 +136,9 @@
             this.comBoxTimeslots = new System.Windows.Forms.ComboBox();
             this.dateTimePickDelivery = new System.Windows.Forms.DateTimePicker();
             this.label25 = new System.Windows.Forms.Label();
-            this.panelEditDeliveryPage = new System.Windows.Forms.Panel();
-            this.label26 = new System.Windows.Forms.Label();
-            this.panelCancelDeliveryPage = new System.Windows.Forms.Panel();
-            this.label27 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.panelReportsPage = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.panelCouriersPage = new System.Windows.Forms.Panel();
@@ -141,10 +156,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvViewClients)).BeginInit();
             this.panelEditClients.SuspendLayout();
             this.panelDeliveriesPage.SuspendLayout();
+            this.panelEditDeliveryPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEditDelivery)).BeginInit();
+            this.panelCancelDeliveryPage.SuspendLayout();
             this.panelCreateDeliveryPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddDelivery)).BeginInit();
-            this.panelEditDeliveryPage.SuspendLayout();
-            this.panelCancelDeliveryPage.SuspendLayout();
             this.panelReportsPage.SuspendLayout();
             this.panelCouriersPage.SuspendLayout();
             this.SuspendLayout();
@@ -921,9 +937,9 @@
             this.panelDeliveriesPage.Controls.Add(this.btnEditDelivery);
             this.panelDeliveriesPage.Controls.Add(this.btnCreateDelivery);
             this.panelDeliveriesPage.Controls.Add(this.label5);
-            this.panelDeliveriesPage.Controls.Add(this.panelCreateDeliveryPage);
             this.panelDeliveriesPage.Controls.Add(this.panelEditDeliveryPage);
             this.panelDeliveriesPage.Controls.Add(this.panelCancelDeliveryPage);
+            this.panelDeliveriesPage.Controls.Add(this.panelCreateDeliveryPage);
             this.panelDeliveriesPage.Location = new System.Drawing.Point(0, 0);
             this.panelDeliveriesPage.Name = "panelDeliveriesPage";
             this.panelDeliveriesPage.Size = new System.Drawing.Size(1926, 1052);
@@ -975,6 +991,190 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Deliveries";
             // 
+            // panelEditDeliveryPage
+            // 
+            this.panelEditDeliveryPage.BackColor = System.Drawing.Color.Silver;
+            this.panelEditDeliveryPage.Controls.Add(this.txtBoxDeliveryID);
+            this.panelEditDeliveryPage.Controls.Add(this.label42);
+            this.panelEditDeliveryPage.Controls.Add(this.label41);
+            this.panelEditDeliveryPage.Controls.Add(this.dgvEditDelivery);
+            this.panelEditDeliveryPage.Controls.Add(this.textBox1);
+            this.panelEditDeliveryPage.Controls.Add(this.comboBox2);
+            this.panelEditDeliveryPage.Controls.Add(this.btnUpdateDelivery);
+            this.panelEditDeliveryPage.Controls.Add(this.cbEditDelivCouriers);
+            this.panelEditDeliveryPage.Controls.Add(this.cbEditDelivTimeslots);
+            this.panelEditDeliveryPage.Controls.Add(this.dtpEditDelivery);
+            this.panelEditDeliveryPage.Controls.Add(this.label39);
+            this.panelEditDeliveryPage.Controls.Add(this.label40);
+            this.panelEditDeliveryPage.Controls.Add(this.label26);
+            this.panelEditDeliveryPage.Controls.Add(this.label37);
+            this.panelEditDeliveryPage.Controls.Add(this.label36);
+            this.panelEditDeliveryPage.Controls.Add(this.label35);
+            this.panelEditDeliveryPage.Location = new System.Drawing.Point(685, 253);
+            this.panelEditDeliveryPage.Name = "panelEditDeliveryPage";
+            this.panelEditDeliveryPage.Size = new System.Drawing.Size(1190, 434);
+            this.panelEditDeliveryPage.TabIndex = 5;
+            // 
+            // txtBoxDeliveryID
+            // 
+            this.txtBoxDeliveryID.Location = new System.Drawing.Point(32, 271);
+            this.txtBoxDeliveryID.Name = "txtBoxDeliveryID";
+            this.txtBoxDeliveryID.Size = new System.Drawing.Size(238, 30);
+            this.txtBoxDeliveryID.TabIndex = 35;
+            this.txtBoxDeliveryID.Visible = false;
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(27, 243);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(112, 25);
+            this.label42.TabIndex = 36;
+            this.label42.Text = "Delivery ID:";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(33, 46);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(207, 25);
+            this.label41.TabIndex = 34;
+            this.label41.Text = "Select Delivery to Edit:";
+            // 
+            // dgvEditDelivery
+            // 
+            this.dgvEditDelivery.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvEditDelivery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEditDelivery.Location = new System.Drawing.Point(41, 78);
+            this.dgvEditDelivery.Name = "dgvEditDelivery";
+            this.dgvEditDelivery.RowHeadersWidth = 51;
+            this.dgvEditDelivery.RowTemplate.Height = 24;
+            this.dgvEditDelivery.Size = new System.Drawing.Size(1115, 147);
+            this.dgvEditDelivery.TabIndex = 27;
+            this.dgvEditDelivery.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEditDelivery_CellClick);
+            this.dgvEditDelivery.SelectionChanged += new System.EventHandler(this.dgvEditDelivery_SelectionChanged);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(696, 271);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(238, 30);
+            this.textBox1.TabIndex = 22;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(343, 268);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(238, 33);
+            this.comboBox2.TabIndex = 21;
+            // 
+            // btnUpdateDelivery
+            // 
+            this.btnUpdateDelivery.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnUpdateDelivery.Location = new System.Drawing.Point(966, 304);
+            this.btnUpdateDelivery.Name = "btnUpdateDelivery";
+            this.btnUpdateDelivery.Size = new System.Drawing.Size(200, 51);
+            this.btnUpdateDelivery.TabIndex = 26;
+            this.btnUpdateDelivery.Text = "Update Delivery";
+            this.btnUpdateDelivery.UseVisualStyleBackColor = false;
+            this.btnUpdateDelivery.Click += new System.EventHandler(this.btnUpdateDelivery_Click);
+            // 
+            // cbEditDelivCouriers
+            // 
+            this.cbEditDelivCouriers.FormattingEnabled = true;
+            this.cbEditDelivCouriers.Location = new System.Drawing.Point(696, 336);
+            this.cbEditDelivCouriers.Name = "cbEditDelivCouriers";
+            this.cbEditDelivCouriers.Size = new System.Drawing.Size(243, 33);
+            this.cbEditDelivCouriers.TabIndex = 25;
+            // 
+            // cbEditDelivTimeslots
+            // 
+            this.cbEditDelivTimeslots.FormattingEnabled = true;
+            this.cbEditDelivTimeslots.Location = new System.Drawing.Point(343, 336);
+            this.cbEditDelivTimeslots.Name = "cbEditDelivTimeslots";
+            this.cbEditDelivTimeslots.Size = new System.Drawing.Size(238, 33);
+            this.cbEditDelivTimeslots.TabIndex = 24;
+            // 
+            // dtpEditDelivery
+            // 
+            this.dtpEditDelivery.Location = new System.Drawing.Point(32, 340);
+            this.dtpEditDelivery.Name = "dtpEditDelivery";
+            this.dtpEditDelivery.Size = new System.Drawing.Size(200, 30);
+            this.dtpEditDelivery.TabIndex = 23;
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(691, 243);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(146, 25);
+            this.label39.TabIndex = 32;
+            this.label39.Text = "Client Address:";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(338, 243);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(128, 25);
+            this.label40.TabIndex = 31;
+            this.label40.Text = "Select Client:";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(4, 4);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(126, 25);
+            this.label26.TabIndex = 7;
+            this.label26.Text = "Edit Delivery:";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(36, 312);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(194, 25);
+            this.label37.TabIndex = 28;
+            this.label37.Text = "Select Delivery Date:";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(338, 312);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(237, 25);
+            this.label36.TabIndex = 29;
+            this.label36.Text = "Select Available Timeslot:";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(691, 309);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(227, 25);
+            this.label35.TabIndex = 30;
+            this.label35.Text = "Select Available Courier:";
+            // 
+            // panelCancelDeliveryPage
+            // 
+            this.panelCancelDeliveryPage.BackColor = System.Drawing.Color.Plum;
+            this.panelCancelDeliveryPage.Controls.Add(this.label27);
+            this.panelCancelDeliveryPage.Location = new System.Drawing.Point(685, 253);
+            this.panelCancelDeliveryPage.Name = "panelCancelDeliveryPage";
+            this.panelCancelDeliveryPage.Size = new System.Drawing.Size(1190, 434);
+            this.panelCancelDeliveryPage.TabIndex = 5;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(3, 4);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(155, 25);
+            this.label27.TabIndex = 8;
+            this.label27.Text = "Cancel Delivery:";
+            // 
             // panelCreateDeliveryPage
             // 
             this.panelCreateDeliveryPage.BackColor = System.Drawing.Color.Transparent;
@@ -1009,15 +1209,6 @@
             this.dgvAddDelivery.Size = new System.Drawing.Size(1115, 206);
             this.dgvAddDelivery.TabIndex = 8;
             // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(71, 50);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(202, 25);
-            this.label34.TabIndex = 19;
-            this.label34.Text = "Select Contract Type:";
-            // 
             // comBoxClientTypeDelivery
             // 
             this.comBoxClientTypeDelivery.FormattingEnabled = true;
@@ -1027,30 +1218,12 @@
             this.comBoxClientTypeDelivery.TabIndex = 1;
             this.comBoxClientTypeDelivery.SelectedIndexChanged += new System.EventHandler(this.comBoxClientTypeDelivery_SelectedIndexChanged);
             // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(114, 155);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(146, 25);
-            this.label33.TabIndex = 17;
-            this.label33.Text = "Client Address:";
-            // 
             // txtBoxClientAddressDelivery
             // 
             this.txtBoxClientAddressDelivery.Location = new System.Drawing.Point(235, 153);
             this.txtBoxClientAddressDelivery.Name = "txtBoxClientAddressDelivery";
             this.txtBoxClientAddressDelivery.Size = new System.Drawing.Size(238, 30);
             this.txtBoxClientAddressDelivery.TabIndex = 3;
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(130, 105);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(128, 25);
-            this.label32.TabIndex = 15;
-            this.label32.Text = "Select Client:";
             // 
             // comBoxClientsDelivery
             // 
@@ -1131,41 +1304,32 @@
             this.label25.TabIndex = 6;
             this.label25.Text = "Create a Delivery:";
             // 
-            // panelEditDeliveryPage
+            // label34
             // 
-            this.panelEditDeliveryPage.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.panelEditDeliveryPage.Controls.Add(this.label26);
-            this.panelEditDeliveryPage.Location = new System.Drawing.Point(685, 253);
-            this.panelEditDeliveryPage.Name = "panelEditDeliveryPage";
-            this.panelEditDeliveryPage.Size = new System.Drawing.Size(1190, 434);
-            this.panelEditDeliveryPage.TabIndex = 5;
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(71, 50);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(202, 25);
+            this.label34.TabIndex = 19;
+            this.label34.Text = "Select Contract Type:";
             // 
-            // label26
+            // label33
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(4, 4);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(126, 25);
-            this.label26.TabIndex = 7;
-            this.label26.Text = "Edit Delivery:";
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(114, 155);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(146, 25);
+            this.label33.TabIndex = 17;
+            this.label33.Text = "Client Address:";
             // 
-            // panelCancelDeliveryPage
+            // label32
             // 
-            this.panelCancelDeliveryPage.BackColor = System.Drawing.Color.Plum;
-            this.panelCancelDeliveryPage.Controls.Add(this.label27);
-            this.panelCancelDeliveryPage.Location = new System.Drawing.Point(685, 253);
-            this.panelCancelDeliveryPage.Name = "panelCancelDeliveryPage";
-            this.panelCancelDeliveryPage.Size = new System.Drawing.Size(1190, 434);
-            this.panelCancelDeliveryPage.TabIndex = 5;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(3, 4);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(155, 25);
-            this.label27.TabIndex = 8;
-            this.label27.Text = "Cancel Delivery:";
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(130, 105);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(128, 25);
+            this.label32.TabIndex = 15;
+            this.label32.Text = "Select Client:";
             // 
             // panelReportsPage
             // 
@@ -1247,13 +1411,14 @@
             this.panelEditClients.PerformLayout();
             this.panelDeliveriesPage.ResumeLayout(false);
             this.panelDeliveriesPage.PerformLayout();
+            this.panelEditDeliveryPage.ResumeLayout(false);
+            this.panelEditDeliveryPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEditDelivery)).EndInit();
+            this.panelCancelDeliveryPage.ResumeLayout(false);
+            this.panelCancelDeliveryPage.PerformLayout();
             this.panelCreateDeliveryPage.ResumeLayout(false);
             this.panelCreateDeliveryPage.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddDelivery)).EndInit();
-            this.panelEditDeliveryPage.ResumeLayout(false);
-            this.panelEditDeliveryPage.PerformLayout();
-            this.panelCancelDeliveryPage.ResumeLayout(false);
-            this.panelCancelDeliveryPage.PerformLayout();
             this.panelReportsPage.ResumeLayout(false);
             this.panelReportsPage.PerformLayout();
             this.panelCouriersPage.ResumeLayout(false);
@@ -1363,5 +1528,20 @@
         private System.Windows.Forms.DataGridView dgvAddDelivery;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.ComboBox comBoxClientTypeDelivery;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.DataGridView dgvEditDelivery;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Button btnUpdateDelivery;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.ComboBox cbEditDelivCouriers;
+        private System.Windows.Forms.ComboBox cbEditDelivTimeslots;
+        private System.Windows.Forms.DateTimePicker dtpEditDelivery;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.TextBox txtBoxDeliveryID;
+        private System.Windows.Forms.Label label42;
     }
 }

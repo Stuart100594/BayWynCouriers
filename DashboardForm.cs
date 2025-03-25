@@ -43,7 +43,8 @@ namespace BayWynCouriers
             //loads client type into delivery page dropdown//
             comBoxClientTypeDelivery.Items.Add("Contracted");
             comBoxClientTypeDelivery.Items.Add("Non-Contracted");
-
+            //allows row to be selected in DataGridView//
+            dgvEditDelivery.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void MovePanel(Control btn)
@@ -590,6 +591,9 @@ namespace BayWynCouriers
             panelCreateDeliveryPage.Hide();
             panelEditDeliveryPage.Show();
             panelCancelDeliveryPage.Hide();
+            LoadDeliveries(); //loads deliveries into DataGridView when edit delivery section opens//
+            LoadCouriers(); //loads couriers into dropdown in edit delivery section//
+            LoadTimeSlots(cbEditDelivTimeslots);  //load time slots for editing//
         }
         //opens cancel delivery page//
         private void btnCancelDelivery_Click(object sender, EventArgs e)
@@ -622,6 +626,19 @@ namespace BayWynCouriers
             return timeSlots;
         }
 
+        // Load available time slots dynamically when opening edit delivery
+        private void LoadTimeSlots(ComboBox comboBox)
+        {
+            comboBox.Items.Clear();
+            List<string> timeSlots = GetAvailableTimeSlots();
+
+            foreach (string slot in timeSlots)
+            {
+                comboBox.Items.Add(slot);
+            }
+            comboBox.SelectedIndex = -1;
+        }
+
         //function to load couriers in delivery page dropdown//
         private void LoadCouriers()
         {
@@ -639,6 +656,11 @@ namespace BayWynCouriers
                     comBoxCourierList.DataSource = dt;
                     comBoxCourierList.DisplayMember = "StaffName";  //shows courier name in dropdown//
                     comBoxCourierList.ValueMember = "StaffID";  //stores ID for reference//
+
+                    cbEditDelivCouriers.DataSource = dt;
+                    cbEditDelivCouriers.DisplayMember = "StaffName";
+                    cbEditDelivCouriers.ValueMember = "StaffID";
+                    cbEditDelivCouriers.SelectedIndex = -1;
                 }
             }
         }
@@ -869,7 +891,7 @@ namespace BayWynCouriers
             try
             {
                 // Query to retrieve all deliveries from the Deliveries table
-                string query = "SELECT DeliveryID, StaffName, DeliveryDate, DeliveryTime, Address, Status FROM Deliveries";
+                string query = "SELECT DeliveryID, StaffID, StaffName, DeliveryDate, DeliveryTime, Address, Status FROM Deliveries";
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
@@ -881,11 +903,112 @@ namespace BayWynCouriers
 
                     // Bind the DataTable to the DataGridView
                     dgvAddDelivery.DataSource = dt; // Assuming your DataGridView is named dataGridViewDeliveries
+                    dgvEditDelivery.DataSource = dt; //DataGridView on edit delivery section//
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error loading deliveries: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //allowing delivery selection to be edited//
+        private void dgvEditDelivery_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvEditDelivery.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = dgvEditDelivery.SelectedRows[0];
+
+                // Assign DeliveryID
+                txtBoxDeliveryID.Text = row.Cells["DeliveryID"].Value.ToString();
+
+                // Assign StaffID safely
+                if (row.Cells["StaffID"].Value != null && int.TryParse(row.Cells["StaffID"].Value.ToString(), out int staffID))
+                {
+                    cbEditDelivCouriers.SelectedValue = staffID;
+                }
+                else
+                {
+                    cbEditDelivCouriers.SelectedIndex = -1; // Clear selection if invalid
+                }
+
+                // Assign DeliveryTime
+                cbEditDelivTimeslots.SelectedItem = row.Cells["DeliveryTime"].Value.ToString();
+
+                // Assign DeliveryDate safely
+                if (row.Cells["DeliveryDate"].Value != null && DateTime.TryParse(row.Cells["DeliveryDate"].Value.ToString(), out DateTime deliveryDate))
+                {
+                    dtpEditDelivery.Value = deliveryDate;
+                }
+                else
+                {
+                    dtpEditDelivery.Value = DateTime.Now;
+                }
+            }
+        }
+
+        //updates delivery when pressed//
+        private void btnUpdateDelivery_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBoxDeliveryID.Text))
+            {
+                MessageBox.Show("Please select a delivery to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int deliveryID = Convert.ToInt32(txtBoxDeliveryID.Text);
+            string newTimeSlot = cbEditDelivTimeslots.SelectedItem?.ToString();
+            string newCourierID = cbEditDelivCouriers.SelectedValue?.ToString();
+            DateTime newDeliveryDate = dtpEditDelivery.Value;
+
+            if (string.IsNullOrEmpty(newTimeSlot) || string.IsNullOrEmpty(newCourierID))
+            {
+                MessageBox.Show("Please select both a new time slot and a courier.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "UPDATE Deliveries SET DeliveryDate = @DeliveryDate, DeliveryTime = @DeliveryTime, StaffID = @StaffID WHERE DeliveryID = @DeliveryID";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@DeliveryDate", newDeliveryDate.ToString("dd-MM-yyyy"));
+                        cmd.Parameters.AddWithValue("@DeliveryTime", newTimeSlot);
+                        cmd.Parameters.AddWithValue("@StaffID", newCourierID);
+                        cmd.Parameters.AddWithValue("@DeliveryID", deliveryID);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Delivery updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadDeliveries();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to update delivery.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating delivery: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvEditDelivery_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvEditDelivery.Rows[e.RowIndex];
+
+                txtBoxDeliveryID.Text = row.Cells["DeliveryID"].Value.ToString();
+                cbEditDelivTimeslots.Text = row.Cells["DeliveryTime"].Value.ToString();
+                cbEditDelivCouriers.SelectedValue = row.Cells["StaffID"].Value;
             }
         }
     }
