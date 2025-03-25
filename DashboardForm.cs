@@ -36,6 +36,14 @@ namespace BayWynCouriers
             //adds client type into client type dropdown box on edit client panel//
             comBoxClientType.Items.Add("Contracted");
             comBoxClientType.Items.Add("Non-Contracted");
+            //calls function to fill timeslots in dropdown on delivery page//
+            comBoxTimeslots.DataSource = GetAvailableTimeSlots();
+            //calls function to load courier list in dropdown on delivery page//
+            LoadCouriers();
+            //loads client type into delivery page dropdown//
+            comBoxClientTypeDelivery.Items.Add("Contracted");
+            comBoxClientTypeDelivery.Items.Add("Non-Contracted");
+
         }
 
         private void MovePanel(Control btn)
@@ -206,7 +214,7 @@ namespace BayWynCouriers
         //details enter Clients table in database//
         private void AddContractedClient(string businessName, string address, string phoneNumber, string email, string notes)
         {
-            
+
             string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
 
             try
@@ -242,7 +250,7 @@ namespace BayWynCouriers
         //details enter CourierJobs table in database//
         private void AddNonContractedClient(string businessName, string address, string phoneNumber, string email, string notes)
         {
-            
+
             string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
 
             try
@@ -354,7 +362,7 @@ namespace BayWynCouriers
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
                     DataTable dataTable = new DataTable();
                     dataAdapter.Fill(dataTable);
-                    dgvViewClients.DataSource = dataTable; 
+                    dgvViewClients.DataSource = dataTable;
                 }
             }
             catch (Exception ex)
@@ -405,7 +413,7 @@ namespace BayWynCouriers
         {
             string query = isContractedClient
             ? "SELECT * FROM Clients WHERE ClientID = @ClientID"
-            : "SELECT * FROM CourierJobs WHERE JobID = @JobID"; 
+            : "SELECT * FROM CourierJobs WHERE JobID = @JobID";
 
             try
             {
@@ -443,7 +451,7 @@ namespace BayWynCouriers
                 MessageBox.Show("Error loading client details: " + ex.Message);
             }
         }
-        
+
 
         //update client details button event//
         private void btnUpdateClientDetails_Click(object sender, EventArgs e)
@@ -571,6 +579,10 @@ namespace BayWynCouriers
             panelCreateDeliveryPage.Show();
             panelEditDeliveryPage.Hide();
             panelCancelDeliveryPage.Hide();
+            comBoxClientTypeDelivery.Text = "Please select contract type...";
+            comBoxClientsDelivery.Text = "Please select client...";
+            comBoxTimeslots.Text = "Please select timeslot...";
+            comBoxCourierList.Text = "Please select courier...";
         }
         //opens edit delivery page//
         private void btnEditDelivery_Click(object sender, EventArgs e)
@@ -585,6 +597,271 @@ namespace BayWynCouriers
             panelCreateDeliveryPage.Hide();
             panelEditDeliveryPage.Hide();
             panelCancelDeliveryPage.Show();
+        }
+
+        //function to retrieve time slots//
+        private List<string> GetAvailableTimeSlots()
+        {
+            List<string> timeSlots = new List<string>();
+
+            DateTime startTime = DateTime.Parse("08:30"); //times start at 8:30 am//
+            DateTime endTime = DateTime.Parse("16:30"); //times end at 4:30pm//
+
+            while (startTime < endTime)
+            {
+                //Exclude the lunch break (12:00 - 14:00)//
+                //will generate time slots in 15 minute intervals from 8:30am - 12:00pm//
+                //and 2:00pm - 4:30pm//
+                if (startTime.Hour < 12 || startTime.Hour >= 14)
+                {
+                    timeSlots.Add(startTime.ToString("HH:mm"));
+                }
+                startTime = startTime.AddMinutes(15);
+            }
+
+            return timeSlots;
+        }
+
+        //function to load couriers in delivery page dropdown//
+        private void LoadCouriers()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT StaffID, StaffName FROM Staff WHERE StaffRole = 'Courier'";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    comBoxCourierList.DataSource = dt;
+                    comBoxCourierList.DisplayMember = "StaffName";  //shows courier name in dropdown//
+                    comBoxCourierList.ValueMember = "StaffID";  //stores ID for reference//
+                }
+            }
+        }
+
+        //loads contract type in dropdown on delivery page//
+        private void comBoxClientTypeDelivery_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedType = comBoxClientTypeDelivery.SelectedItem?.ToString();
+
+            if (!string.IsNullOrEmpty(selectedType))
+            {
+                //loads client based on contract type//
+                LoadClients(selectedType);
+            }
+            else
+            {
+                //resets client dropdown if no type selected//
+                comBoxClientsDelivery.DataSource = null;
+                comBoxClientsDelivery.Items.Clear();
+            }
+        }
+
+        //loads clients on delivery page//
+        private void LoadClients(string clientType)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "";
+
+                    // Query based on contract selection
+                    if (clientType == "Contracted")
+                        query = "SELECT ClientID, BusinessName, Address FROM Clients";  // Use ClientID!
+                    else if (clientType == "Non-Contracted")
+                        query = "SELECT JobID, ClientName, Address FROM CourierJobs";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        // Ensures there is at least one client before populating dropdown
+                        if (dt.Rows.Count == 0)
+                        {
+                            MessageBox.Show("No clients found!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
+                        // Update the ComboBox based on client type
+                        comBoxClientsDelivery.DataSource = dt;
+                        comBoxClientsDelivery.DisplayMember = clientType == "Contracted" ? "BusinessName" : "ClientName";  // Show correct names
+                        comBoxClientsDelivery.ValueMember = clientType == "Contracted" ? "ClientID" : "JobID"; // Use correct IDs
+                        comBoxClientsDelivery.SelectedIndex = -1;  // Ensure nothing pre-selected
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading clients: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void comBoxClientsDelivery_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comBoxClientsDelivery.SelectedIndex != -1)
+            {
+                DataRowView selectedClient = (DataRowView)comBoxClientsDelivery.SelectedItem;
+                string clientAddress = selectedClient["Address"].ToString(); //gets address from selected client//
+
+                txtBoxClientAddressDelivery.Text = clientAddress; //auto-fills address in textbox//
+            }
+            else
+            {
+                txtBoxClientAddressDelivery.Clear(); //clears address when no client selected//
+            }
+        }
+
+        //add delivery button//
+        private void btnAddDelivery_Click(object sender, EventArgs e)
+        {
+            // Step 1: Get values from form fields
+            string clientType = comBoxClientTypeDelivery.SelectedItem?.ToString();
+            string selectedTimeSlot = comBoxTimeslots.SelectedItem?.ToString();
+            string selectedCourierID = comBoxCourierList.SelectedValue?.ToString(); // Courier ID
+            DateTime selectedDate = dateTimePickDelivery.Value;
+
+            // Step 2: Retrieve client address based on the selected client type
+            string address = string.Empty;
+            int clientID = 0;
+            int jobID = 0;
+
+            if (comBoxClientsDelivery.SelectedItem != null)
+            {
+                object selectedValue = comBoxClientsDelivery.SelectedValue;
+
+                if (selectedValue == null || string.IsNullOrEmpty(selectedValue.ToString()))
+                {
+                    MessageBox.Show("No client selected or value is empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (clientType == "Contracted")
+                {
+                    if (!int.TryParse(selectedValue.ToString(), out clientID))
+                    {
+                        MessageBox.Show($"Invalid ClientID format! Value: {selectedValue}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    address = GetClientAddress(clientID, "Contracted");
+                }
+                else if (clientType == "Non-Contracted")
+                {
+                    if (!int.TryParse(selectedValue.ToString(), out jobID))
+                    {
+                        MessageBox.Show("Invalid JobID format!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    address = GetClientAddress(jobID, "Non-Contracted");
+                }
+            }
+
+            // Step 3: Validate inputs
+            if (string.IsNullOrEmpty(clientType) || string.IsNullOrEmpty(selectedTimeSlot) || string.IsNullOrEmpty(selectedCourierID))
+            {
+                MessageBox.Show("Please fill in all required fields before adding the delivery.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(address))
+            {
+                MessageBox.Show("Could not retrieve address for the selected client.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Step 4: Insert the delivery into the Deliveries table
+            try
+            {
+                string query = "INSERT INTO Deliveries (StaffID, DeliveryDate, DeliveryTime, Address, Status) " +
+                               "VALUES (@StaffID, @DeliveryDate, @DeliveryTime, @Address, @Status)";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    // Add parameters for the query
+                    cmd.Parameters.AddWithValue("@StaffID", selectedCourierID);  // Courier ID (Staff)
+                    cmd.Parameters.AddWithValue("@DeliveryDate", selectedDate.ToString("yyyy-MM-dd")); // Format date
+                    cmd.Parameters.AddWithValue("@DeliveryTime", selectedTimeSlot); // Timeslot
+                    cmd.Parameters.AddWithValue("@Address", address); // Address from client table
+                    cmd.Parameters.AddWithValue("@Status", "Scheduled");  // Default status
+
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Delivery added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to add delivery. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding delivery: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //retrieving client address based on chosen contract type//
+        private string GetClientAddress(int clientID, string clientType)
+        {
+            string address = string.Empty;
+            try
+            {
+                string query = string.Empty;
+
+                // Set the correct query based on the client type
+                if (clientType == "Contracted")
+                {
+                    query = "SELECT Address FROM Clients WHERE ClientID = @ClientID";
+                }
+                else if (clientType == "Non-Contracted")
+                {
+                    query = "SELECT Address FROM CourierJobs WHERE JobID = @JobID";
+                }
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    if (clientType == "Contracted")
+                    {
+                        cmd.Parameters.AddWithValue("@ClientID", clientID);
+                    }
+                    else if (clientType == "Non-Contracted")
+                    {
+                        cmd.Parameters.AddWithValue("@JobID", clientID);  // For non-contracted client, JobID is used
+                    }
+
+                    conn.Open();
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != DBNull.Value && result != null)
+                    {
+                        address = result.ToString();
+                        MessageBox.Show($"Address retrieved: {address}"); // Debugging: show retrieved address
+                    }
+                    else
+                    {
+                        address = string.Empty;  // If no address found, set it to empty
+                        MessageBox.Show("No address found for the client.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving address: " + ex.Message);
+            }
+            return address;
         }
     }
 }
