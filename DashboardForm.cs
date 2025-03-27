@@ -601,6 +601,9 @@ namespace BayWynCouriers
             panelCreateDeliveryPage.Hide();
             panelEditDeliveryPage.Hide();
             panelCancelDeliveryPage.Show();
+            LoadDeliveries();
+            dgvCancelDelivery.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCancelDelivery.MultiSelect = false; // Ensure only one row is selected at a time
         }
 
         //function to retrieve time slots//
@@ -902,9 +905,11 @@ namespace BayWynCouriers
                     DataTable dt = new DataTable();
 
                     da.Fill(dt);
-
+                    //populates the datagridviews with the created deliveries//
                     dgvAddDelivery.DataSource = dt;
                     dgvEditDelivery.DataSource = dt;
+                    DeliveryManager deliveryManager = new DeliveryManager();
+                    dgvCancelDelivery.DataSource = deliveryManager.GetActiveDeliveries(true);
                 }
             }
             catch (Exception ex)
@@ -1010,6 +1015,39 @@ namespace BayWynCouriers
                 txtBoxDeliveryID.Text = row.Cells["DeliveryID"].Value.ToString();
                 cbEditDelivTimeslots.Text = row.Cells["DeliveryTime"].Value.ToString();
                 cbEditDelivCouriers.SelectedValue = row.Cells["StaffID"].Value;
+            }
+        }
+
+        private void btnCancelSelectedDelivery_Click(object sender, EventArgs e)
+        {
+            if (dgvCancelDelivery.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a delivery to cancel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int deliveryID;
+            if (!int.TryParse(dgvCancelDelivery.SelectedRows[0].Cells["DeliveryID"].Value.ToString(), out deliveryID))
+            {
+                MessageBox.Show("Invalid Delivery ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult confirmResult = MessageBox.Show("Are you sure you want to cancel this delivery?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmResult != DialogResult.Yes)
+                return;
+
+            DeliveryManager deliveryManager = new DeliveryManager();
+            bool success = deliveryManager.CancelDelivery(deliveryID);
+
+            if (success)
+            {
+                MessageBox.Show("Delivery cancelled successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvCancelDelivery.DataSource = deliveryManager.GetActiveDeliveries(true); // ✅ Now includes cancelled deliveries
+            }
+            else
+            {
+                MessageBox.Show("Failed to cancel delivery.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

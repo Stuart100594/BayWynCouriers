@@ -140,7 +140,7 @@
             this.panelCouriersPage = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvCancelDelivery = new System.Windows.Forms.DataGridView();
             this.btnCancelSelectedDelivery = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
@@ -162,7 +162,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddDelivery)).BeginInit();
             this.panelReportsPage.SuspendLayout();
             this.panelCouriersPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCancelDelivery)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -1125,7 +1125,7 @@
             this.panelCancelDeliveryPage.BackColor = System.Drawing.Color.Silver;
             this.panelCancelDeliveryPage.Controls.Add(this.btnCancelSelectedDelivery);
             this.panelCancelDeliveryPage.Controls.Add(this.label38);
-            this.panelCancelDeliveryPage.Controls.Add(this.dataGridView1);
+            this.panelCancelDeliveryPage.Controls.Add(this.dgvCancelDelivery);
             this.panelCancelDeliveryPage.Controls.Add(this.label27);
             this.panelCancelDeliveryPage.Location = new System.Drawing.Point(685, 253);
             this.panelCancelDeliveryPage.Name = "panelCancelDeliveryPage";
@@ -1346,16 +1346,16 @@
             this.label38.TabIndex = 37;
             this.label38.Text = "Select Delivery to Cancel:";
             // 
-            // dataGridView1
+            // dgvCancelDelivery
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(38, 84);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1115, 284);
-            this.dataGridView1.TabIndex = 36;
+            this.dgvCancelDelivery.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCancelDelivery.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCancelDelivery.Location = new System.Drawing.Point(38, 84);
+            this.dgvCancelDelivery.Name = "dgvCancelDelivery";
+            this.dgvCancelDelivery.RowHeadersWidth = 51;
+            this.dgvCancelDelivery.RowTemplate.Height = 24;
+            this.dgvCancelDelivery.Size = new System.Drawing.Size(1115, 284);
+            this.dgvCancelDelivery.TabIndex = 36;
             // 
             // btnCancelSelectedDelivery
             // 
@@ -1366,6 +1366,7 @@
             this.btnCancelSelectedDelivery.TabIndex = 38;
             this.btnCancelSelectedDelivery.Text = "Cancel Delivery";
             this.btnCancelSelectedDelivery.UseVisualStyleBackColor = false;
+            this.btnCancelSelectedDelivery.Click += new System.EventHandler(this.btnCancelSelectedDelivery_Click);
             // 
             // DashboardForm
             // 
@@ -1419,7 +1420,7 @@
             this.panelReportsPage.PerformLayout();
             this.panelCouriersPage.ResumeLayout(false);
             this.panelCouriersPage.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCancelDelivery)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1537,7 +1538,7 @@
         private System.Windows.Forms.TextBox txtBoxDeliveryID;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvCancelDelivery;
         private System.Windows.Forms.Button btnCancelSelectedDelivery;
     }
 }

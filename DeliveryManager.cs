@@ -17,23 +17,38 @@ namespace BayWynCouriers
         private string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
 
         // Method to load all active deliveries
-        public DataTable GetActiveDeliveries()
+        public DataTable GetActiveDeliveries(bool includeCancelled = false)
         {
             DataTable dt = new DataTable();
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT DeliveryID, StaffID, DeliveryDate, DeliveryTime, Address, Status FROM Deliveries WHERE Status <> 'Cancelled'";
+                    conn.Open();
 
-                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    da.Fill(dt);
+                    // Modify query to optionally include canceled deliveries
+                    string query = @"SELECT d.DeliveryID, s.StaffID, s.StaffName, d.DeliveryDate, 
+                                    d.DeliveryTime, d.Address, d.Status 
+                             FROM Deliveries d
+                             INNER JOIN Staff s ON d.StaffID = s.StaffID";
+
+                    if (!includeCancelled)
+                    {
+                        query += " WHERE d.Status != 'Cancelled'";  // Exclude cancelled if not requested
+                    }
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                    {
+                        da.Fill(dt);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading deliveries: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error retrieving deliveries: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
             return dt;
         }
 
@@ -43,22 +58,22 @@ namespace BayWynCouriers
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
-                {   //changes default 'scheduled' status to 'cancelled' when successful//
-                    string query = "UPDATE Deliveries SET Status = 'Cancelled' WHERE DeliveryID = @DeliveryID"; 
+                {
+                    conn.Open();
+                    string query = "UPDATE Deliveries SET Status = 'Cancelled' WHERE DeliveryID = @DeliveryID";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@DeliveryID", deliveryID);
-
-                        conn.Open();
                         int rowsAffected = cmd.ExecuteNonQuery();
-                        return rowsAffected > 0; //returns true if cancellation was successful//
+
+                        return rowsAffected > 0; // ✅ Returns true if update was successful
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error cancelling delivery: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error canceling delivery: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
