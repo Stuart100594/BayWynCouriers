@@ -890,20 +890,21 @@ namespace BayWynCouriers
         {
             try
             {
-                // Query to retrieve all deliveries from the Deliveries table
-                string query = "SELECT DeliveryID, StaffID, StaffName, DeliveryDate, DeliveryTime, Address, Status FROM Deliveries";
+                // Use JOIN to get Staff Name from the Staff table
+                string query = @"SELECT d.DeliveryID, s.StaffID, s.StaffName, d.DeliveryDate, 
+                                d.DeliveryTime, d.Address, d.Status 
+                         FROM Deliveries d
+                         INNER JOIN Staff s ON d.StaffID = s.StaffID"; // Join to get StaffName
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
 
-                    // Fill the DataTable with the results of the query
                     da.Fill(dt);
 
-                    // Bind the DataTable to the DataGridView
-                    dgvAddDelivery.DataSource = dt; // Assuming your DataGridView is named dataGridViewDeliveries
-                    dgvEditDelivery.DataSource = dt; //DataGridView on edit delivery section//
+                    dgvAddDelivery.DataSource = dt;
+                    dgvEditDelivery.DataSource = dt;
                 }
             }
             catch (Exception ex)
@@ -922,7 +923,7 @@ namespace BayWynCouriers
                 // Assign DeliveryID
                 txtBoxDeliveryID.Text = row.Cells["DeliveryID"].Value.ToString();
 
-                // Assign StaffID safely
+                // Assign StaffID safely//
                 if (row.Cells["StaffID"].Value != null && int.TryParse(row.Cells["StaffID"].Value.ToString(), out int staffID))
                 {
                     cbEditDelivCouriers.SelectedValue = staffID;
@@ -976,7 +977,7 @@ namespace BayWynCouriers
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        cmd.Parameters.AddWithValue("@DeliveryDate", newDeliveryDate.ToString("dd-MM-yyyy"));
+                        cmd.Parameters.AddWithValue("@DeliveryDate", newDeliveryDate.ToString("yyyy-MM-dd")); // Use correct format
                         cmd.Parameters.AddWithValue("@DeliveryTime", newTimeSlot);
                         cmd.Parameters.AddWithValue("@StaffID", newCourierID);
                         cmd.Parameters.AddWithValue("@DeliveryID", deliveryID);
