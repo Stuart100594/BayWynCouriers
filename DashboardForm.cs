@@ -36,6 +36,15 @@ namespace BayWynCouriers
             //adds client type into client type dropdown box on edit client panel//
             comBoxClientType.Items.Add("Contracted");
             comBoxClientType.Items.Add("Non-Contracted");
+            //calls function to fill timeslots in dropdown on delivery page//
+            comBoxTimeslots.DataSource = GetAvailableTimeSlots();
+            //calls function to load courier list in dropdown on delivery page//
+            LoadCouriers();
+            //loads client type into delivery page dropdown//
+            comBoxClientTypeDelivery.Items.Add("Contracted");
+            comBoxClientTypeDelivery.Items.Add("Non-Contracted");
+            //allows row to be selected in DataGridView//
+            dgvEditDelivery.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void MovePanel(Control btn)
@@ -113,6 +122,9 @@ namespace BayWynCouriers
             panelClientsPage.Hide();
             panelReportsPage.Hide();
             panelCouriersPage.Hide();
+            panelCreateDeliveryPage.Hide();
+            panelEditDeliveryPage.Hide();
+            panelCancelDeliveryPage.Hide();
         }
         //reports button click event//
         private void btnReports_Click(object sender, EventArgs e)
@@ -203,7 +215,7 @@ namespace BayWynCouriers
         //details enter Clients table in database//
         private void AddContractedClient(string businessName, string address, string phoneNumber, string email, string notes)
         {
-            
+
             string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
 
             try
@@ -239,7 +251,7 @@ namespace BayWynCouriers
         //details enter CourierJobs table in database//
         private void AddNonContractedClient(string businessName, string address, string phoneNumber, string email, string notes)
         {
-            
+
             string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
 
             try
@@ -351,7 +363,7 @@ namespace BayWynCouriers
                     SqlDataAdapter dataAdapter = new SqlDataAdapter(command);
                     DataTable dataTable = new DataTable();
                     dataAdapter.Fill(dataTable);
-                    dgvViewClients.DataSource = dataTable; 
+                    dgvViewClients.DataSource = dataTable;
                 }
             }
             catch (Exception ex)
@@ -402,7 +414,7 @@ namespace BayWynCouriers
         {
             string query = isContractedClient
             ? "SELECT * FROM Clients WHERE ClientID = @ClientID"
-            : "SELECT * FROM CourierJobs WHERE JobID = @JobID"; 
+            : "SELECT * FROM CourierJobs WHERE JobID = @JobID";
 
             try
             {
@@ -440,7 +452,7 @@ namespace BayWynCouriers
                 MessageBox.Show("Error loading client details: " + ex.Message);
             }
         }
-        
+
 
         //update client details button event//
         private void btnUpdateClientDetails_Click(object sender, EventArgs e)
@@ -560,6 +572,483 @@ namespace BayWynCouriers
             txtEmail.Clear();
             txtPhoneNumber.Clear();
             txtNotes.Clear();
+        }
+
+        //opens create delivery page//
+        private void btnCreateDelivery_Click(object sender, EventArgs e)
+        {
+            panelCreateDeliveryPage.Show();
+            panelEditDeliveryPage.Hide();
+            panelCancelDeliveryPage.Hide();
+            comBoxClientTypeDelivery.Text = "Please select contract type...";
+            comBoxClientsDelivery.Text = "Please select client...";
+            comBoxTimeslots.Text = "Please select timeslot...";
+            comBoxCourierList.Text = "Please select courier...";
+        }
+        //opens edit delivery page//
+        private void btnEditDelivery_Click(object sender, EventArgs e)
+        {
+            panelCreateDeliveryPage.Hide();
+            panelEditDeliveryPage.Show();
+            panelCancelDeliveryPage.Hide();
+            LoadDeliveries(); //loads deliveries into DataGridView when edit delivery section opens//
+            LoadCouriers(); //loads couriers into dropdown in edit delivery section//
+            LoadTimeSlots(cbEditDelivTimeslots);  //load time slots for editing//
+        }
+        //opens cancel delivery page//
+        private void btnCancelDelivery_Click(object sender, EventArgs e)
+        {
+            panelCreateDeliveryPage.Hide();
+            panelEditDeliveryPage.Hide();
+            panelCancelDeliveryPage.Show();
+            LoadDeliveries();
+            dgvCancelDelivery.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCancelDelivery.MultiSelect = false; // Ensure only one row is selected at a time
+        }
+
+        //function to retrieve time slots//
+        private List<string> GetAvailableTimeSlots()
+        {
+            List<string> timeSlots = new List<string>();
+
+            DateTime startTime = DateTime.Parse("08:30"); //times start at 8:30 am//
+            DateTime endTime = DateTime.Parse("16:30"); //times end at 4:30pm//
+
+            while (startTime < endTime)
+            {
+                //Exclude the lunch break (12:00 - 14:00)//
+                //will generate time slots in 15 minute intervals from 8:30am - 12:00pm//
+                //and 2:00pm - 4:30pm//
+                if (startTime.Hour < 12 || startTime.Hour >= 14)
+                {
+                    timeSlots.Add(startTime.ToString("HH:mm"));
+                }
+                startTime = startTime.AddMinutes(15);
+            }
+
+            return timeSlots;
+        }
+
+        // Load available time slots dynamically when opening edit delivery
+        private void LoadTimeSlots(ComboBox comboBox)
+        {
+            comboBox.Items.Clear();
+            List<string> timeSlots = GetAvailableTimeSlots();
+
+            foreach (string slot in timeSlots)
+            {
+                comboBox.Items.Add(slot);
+            }
+            comboBox.SelectedIndex = -1;
+        }
+
+        //function to load couriers in delivery page dropdown//
+        private void LoadCouriers()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT StaffID, StaffName FROM Staff WHERE StaffRole = 'Courier'";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    comBoxCourierList.DataSource = dt;
+                    comBoxCourierList.DisplayMember = "StaffName";  //shows courier name in dropdown//
+                    comBoxCourierList.ValueMember = "StaffID";  //stores ID for reference//
+
+                    cbEditDelivCouriers.DataSource = dt;
+                    cbEditDelivCouriers.DisplayMember = "StaffName";
+                    cbEditDelivCouriers.ValueMember = "StaffID";
+                    cbEditDelivCouriers.SelectedIndex = -1;
+                }
+            }
+        }
+
+        //loads contract type in dropdown on delivery page//
+        private void comBoxClientTypeDelivery_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedType = comBoxClientTypeDelivery.SelectedItem?.ToString();
+
+            if (!string.IsNullOrEmpty(selectedType))
+            {
+                //loads client based on contract type//
+                LoadClients(selectedType);
+            }
+            else
+            {
+                //resets client dropdown if no type selected//
+                comBoxClientsDelivery.DataSource = null;
+                comBoxClientsDelivery.Items.Clear();
+            }
+        }
+
+        //loads clients on delivery page//
+        private void LoadClients(string clientType)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "";
+
+                    // Query based on contract selection
+                    if (clientType == "Contracted")
+                        query = "SELECT ClientID, BusinessName, Address FROM Clients";  // Use ClientID!
+                    else if (clientType == "Non-Contracted")
+                        query = "SELECT JobID, ClientName, Address FROM CourierJobs";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        // Ensures there is at least one client before populating dropdown
+                        if (dt.Rows.Count == 0)
+                        {
+                            MessageBox.Show("No clients found!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+
+                        // Update the ComboBox based on client type
+                        comBoxClientsDelivery.DataSource = dt;
+                        comBoxClientsDelivery.DisplayMember = clientType == "Contracted" ? "BusinessName" : "ClientName";  // Show correct names
+                        comBoxClientsDelivery.ValueMember = clientType == "Contracted" ? "ClientID" : "JobID"; // Use correct IDs
+                        comBoxClientsDelivery.SelectedIndex = -1;  // Ensure nothing pre-selected
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading clients: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void comBoxClientsDelivery_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comBoxClientsDelivery.SelectedIndex != -1)
+            {
+                DataRowView selectedClient = (DataRowView)comBoxClientsDelivery.SelectedItem;
+                string clientAddress = selectedClient["Address"].ToString(); //gets address from selected client//
+
+                txtBoxClientAddressDelivery.Text = clientAddress; //auto-fills address in textbox//
+            }
+            else
+            {
+                txtBoxClientAddressDelivery.Clear(); //clears address when no client selected//
+            }
+        }
+
+        //add delivery button//
+        private void btnAddDelivery_Click(object sender, EventArgs e)
+        {
+            // Step 1: Get values from form fields
+            string clientType = comBoxClientTypeDelivery.SelectedItem?.ToString();
+            string selectedTimeSlot = comBoxTimeslots.SelectedItem?.ToString();
+            string selectedCourierName = comBoxCourierList.Text; // Get Staff Name
+            DateTime selectedDate = dateTimePickDelivery.Value;
+
+            // Step 2: Retrieve client address based on the selected client type
+            string address = string.Empty;
+            int clientID = 0, jobID = 0;
+
+            if (comBoxClientsDelivery.SelectedItem != null)
+            {
+                object selectedValue = comBoxClientsDelivery.SelectedValue;
+                if (selectedValue == null || string.IsNullOrEmpty(selectedValue.ToString()))
+                {
+                    MessageBox.Show("No client selected or value is empty!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (clientType == "Contracted")
+                {
+                    if (!int.TryParse(selectedValue.ToString(), out clientID))
+                    {
+                        MessageBox.Show($"Invalid ClientID format! Value: {selectedValue}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    address = GetClientAddress(clientID, "Contracted");
+                }
+                else if (clientType == "Non-Contracted")
+                {
+                    if (!int.TryParse(selectedValue.ToString(), out jobID))
+                    {
+                        MessageBox.Show("Invalid JobID format!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    address = GetClientAddress(jobID, "Non-Contracted");
+                }
+            }
+
+            // Step 3: Validate inputs
+            if (string.IsNullOrEmpty(clientType) || string.IsNullOrEmpty(selectedTimeSlot) || string.IsNullOrEmpty(selectedCourierName))
+            {
+                MessageBox.Show("Please fill in all required fields before adding the delivery.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (string.IsNullOrEmpty(address))
+            {
+                MessageBox.Show("Could not retrieve address for the selected client.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Step 4: Insert the delivery into the Deliveries table
+            try
+            {
+                string query = "INSERT INTO Deliveries (StaffName, DeliveryDate, DeliveryTime, Address, Status) " +
+                               "VALUES (@StaffName, @DeliveryDate, @DeliveryTime, @Address, @Status)";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    // Add parameters for the query
+                    cmd.Parameters.AddWithValue("@StaffName", selectedCourierName);  // Store Staff Name
+                    cmd.Parameters.AddWithValue("@DeliveryDate", selectedDate.ToString("yyyy-MM-dd")); // Format date
+                    cmd.Parameters.AddWithValue("@DeliveryTime", selectedTimeSlot); // Timeslot
+                    cmd.Parameters.AddWithValue("@Address", address); // Address from client table
+                    cmd.Parameters.AddWithValue("@Status", "Scheduled");  // Default status
+
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Delivery added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        // Refresh the DataGridView with the new deliveries
+                        LoadDeliveries();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to add delivery. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding delivery: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //retrieving client address based on chosen contract type//
+        private string GetClientAddress(int clientID, string clientType)
+        {
+            string address = string.Empty;
+            try
+            {
+                string query = string.Empty;
+
+                // Set the correct query based on the client type
+                if (clientType == "Contracted")
+                {
+                    query = "SELECT Address FROM Clients WHERE ClientID = @ClientID";
+                }
+                else if (clientType == "Non-Contracted")
+                {
+                    query = "SELECT Address FROM CourierJobs WHERE JobID = @JobID";
+                }
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    if (clientType == "Contracted")
+                    {
+                        cmd.Parameters.AddWithValue("@ClientID", clientID);
+                    }
+                    else if (clientType == "Non-Contracted")
+                    {
+                        cmd.Parameters.AddWithValue("@JobID", clientID);  // For non-contracted client, JobID is used
+                    }
+
+                    conn.Open();
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != DBNull.Value && result != null)
+                    {
+                        address = result.ToString();
+                        MessageBox.Show($"Address retrieved: {address}"); // Debugging: show retrieved address
+                    }
+                    else
+                    {
+                        address = string.Empty;  // If no address found, set it to empty
+                        MessageBox.Show("No address found for the client.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving address: " + ex.Message);
+            }
+            return address;
+        }
+        //method to load deliveries into datagridview on deliveries page//
+        private void LoadDeliveries()
+        {
+            try
+            {
+                // Use JOIN to get Staff Name from the Staff table
+                string query = @"SELECT d.DeliveryID, s.StaffID, s.StaffName, d.DeliveryDate, 
+                                d.DeliveryTime, d.Address, d.Status 
+                         FROM Deliveries d
+                         INNER JOIN Staff s ON d.StaffID = s.StaffID"; // Join to get StaffName
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+
+                    da.Fill(dt);
+                    //populates the datagridviews with the created deliveries//
+                    dgvAddDelivery.DataSource = dt;
+                    dgvEditDelivery.DataSource = dt;
+                    DeliveryManager deliveryManager = new DeliveryManager();
+                    dgvCancelDelivery.DataSource = deliveryManager.GetActiveDeliveries(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading deliveries: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //allowing delivery selection to be edited//
+        private void dgvEditDelivery_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvEditDelivery.SelectedRows.Count > 0)
+            {
+                DataGridViewRow row = dgvEditDelivery.SelectedRows[0];
+
+                // Assign DeliveryID
+                txtBoxDeliveryID.Text = row.Cells["DeliveryID"].Value.ToString();
+
+                // Assign StaffID safely//
+                if (row.Cells["StaffID"].Value != null && int.TryParse(row.Cells["StaffID"].Value.ToString(), out int staffID))
+                {
+                    cbEditDelivCouriers.SelectedValue = staffID;
+                }
+                else
+                {
+                    cbEditDelivCouriers.SelectedIndex = -1; // Clear selection if invalid
+                }
+
+                // Assign DeliveryTime
+                cbEditDelivTimeslots.SelectedItem = row.Cells["DeliveryTime"].Value.ToString();
+
+                // Assign DeliveryDate safely
+                if (row.Cells["DeliveryDate"].Value != null && DateTime.TryParse(row.Cells["DeliveryDate"].Value.ToString(), out DateTime deliveryDate))
+                {
+                    dtpEditDelivery.Value = deliveryDate;
+                }
+                else
+                {
+                    dtpEditDelivery.Value = DateTime.Now;
+                }
+            }
+        }
+
+        //updates delivery when pressed//
+        private void btnUpdateDelivery_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtBoxDeliveryID.Text))
+            {
+                MessageBox.Show("Please select a delivery to update.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int deliveryID = Convert.ToInt32(txtBoxDeliveryID.Text);
+            string newTimeSlot = cbEditDelivTimeslots.SelectedItem?.ToString();
+            string newCourierID = cbEditDelivCouriers.SelectedValue?.ToString();
+            DateTime newDeliveryDate = dtpEditDelivery.Value;
+
+            if (string.IsNullOrEmpty(newTimeSlot) || string.IsNullOrEmpty(newCourierID))
+            {
+                MessageBox.Show("Please select both a new time slot and a courier.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string query = "UPDATE Deliveries SET DeliveryDate = @DeliveryDate, DeliveryTime = @DeliveryTime, StaffID = @StaffID WHERE DeliveryID = @DeliveryID";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@DeliveryDate", newDeliveryDate.ToString("yyyy-MM-dd")); // Use correct format
+                        cmd.Parameters.AddWithValue("@DeliveryTime", newTimeSlot);
+                        cmd.Parameters.AddWithValue("@StaffID", newCourierID);
+                        cmd.Parameters.AddWithValue("@DeliveryID", deliveryID);
+
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        if (rowsAffected > 0)
+                        {
+                            MessageBox.Show("Delivery updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadDeliveries();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to update delivery.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating delivery: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvEditDelivery_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvEditDelivery.Rows[e.RowIndex];
+
+                txtBoxDeliveryID.Text = row.Cells["DeliveryID"].Value.ToString();
+                cbEditDelivTimeslots.Text = row.Cells["DeliveryTime"].Value.ToString();
+                cbEditDelivCouriers.SelectedValue = row.Cells["StaffID"].Value;
+            }
+        }
+
+        private void btnCancelSelectedDelivery_Click(object sender, EventArgs e)
+        {
+            if (dgvCancelDelivery.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a delivery to cancel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int deliveryID;
+            if (!int.TryParse(dgvCancelDelivery.SelectedRows[0].Cells["DeliveryID"].Value.ToString(), out deliveryID))
+            {
+                MessageBox.Show("Invalid Delivery ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DialogResult confirmResult = MessageBox.Show("Are you sure you want to cancel this delivery?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmResult != DialogResult.Yes)
+                return;
+
+            DeliveryManager deliveryManager = new DeliveryManager();
+            bool success = deliveryManager.CancelDelivery(deliveryID);
+
+            if (success)
+            {
+                MessageBox.Show("Delivery cancelled successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvCancelDelivery.DataSource = deliveryManager.GetActiveDeliveries(true); // ✅ Now includes cancelled deliveries
+            }
+            else
+            {
+                MessageBox.Show("Failed to cancel delivery.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
