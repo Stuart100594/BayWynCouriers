@@ -176,6 +176,11 @@ namespace BayWynCouriers
         //opens view clients panel//
         private void btnViewClients_Click(object sender, EventArgs e)
         {
+            if (StaffRole == "logisticscoordinator")
+            {
+                MessageBox.Show("Access Denied: You do not have access to edit clients contracts, please contract administration.", "Restricted Access", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             panelAddClients.Hide();
             panelViewClients.Show();
             panelEditClients.Hide();
@@ -209,6 +214,11 @@ namespace BayWynCouriers
             // Check if the client is contracted or non-contracted
             if (radioButtonContracted.Checked)
             {
+                if (StaffRole == "logisticscoordinator")
+                {
+                    MessageBox.Show("Access Denied: You do not have access to create contracted clients, please contract administration.", "Restricted Access", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 AddContractedClient(businessName, address, phoneNumber, email, notes);
             }
             else if (radioButtonNonContracted.Checked)
@@ -587,6 +597,11 @@ namespace BayWynCouriers
         //opens create delivery page//
         private void btnCreateDelivery_Click(object sender, EventArgs e)
         {
+            if (StaffRole == "admin")
+            {
+                MessageBox.Show("Access Denied: You do not have access to create deliveries, please contract the logistics coordinator.", "Restricted Access", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             panelCreateDeliveryPage.Show();
             panelEditDeliveryPage.Hide();
             panelCancelDeliveryPage.Hide();

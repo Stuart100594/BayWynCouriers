@@ -142,6 +142,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.panelCouriersPage = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtBoxCourDeliveryID = new System.Windows.Forms.TextBox();
+            this.label46 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
             this.txtBoxDeliveryTime = new System.Windows.Forms.TextBox();
@@ -154,8 +156,6 @@
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.txtBoxCourDeliveryID = new System.Windows.Forms.TextBox();
-            this.label46 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -1403,6 +1403,23 @@
             this.panel2.Size = new System.Drawing.Size(1190, 434);
             this.panel2.TabIndex = 6;
             // 
+            // txtBoxCourDeliveryID
+            // 
+            this.txtBoxCourDeliveryID.Location = new System.Drawing.Point(150, 293);
+            this.txtBoxCourDeliveryID.Name = "txtBoxCourDeliveryID";
+            this.txtBoxCourDeliveryID.Size = new System.Drawing.Size(85, 30);
+            this.txtBoxCourDeliveryID.TabIndex = 46;
+            this.txtBoxCourDeliveryID.Visible = false;
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Location = new System.Drawing.Point(53, 296);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(112, 25);
+            this.label46.TabIndex = 47;
+            this.label46.Text = "Delivery ID:";
+            // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(983, 45);
@@ -1515,23 +1532,6 @@
             this.label7.TabIndex = 5;
             this.label7.Text = "Couriers Page";
             // 
-            // txtBoxCourDeliveryID
-            // 
-            this.txtBoxCourDeliveryID.Location = new System.Drawing.Point(150, 293);
-            this.txtBoxCourDeliveryID.Name = "txtBoxCourDeliveryID";
-            this.txtBoxCourDeliveryID.Size = new System.Drawing.Size(85, 30);
-            this.txtBoxCourDeliveryID.TabIndex = 46;
-            this.txtBoxCourDeliveryID.Visible = false;
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(53, 296);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(112, 25);
-            this.label46.TabIndex = 47;
-            this.label46.Text = "Delivery ID:";
-            // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1539,10 +1539,10 @@
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1924, 1052);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panelCouriersPage);
-            this.Controls.Add(this.panelClientsPage);
             this.Controls.Add(this.panelDeliveriesPage);
             this.Controls.Add(this.panelReportsPage);
+            this.Controls.Add(this.panelCouriersPage);
+            this.Controls.Add(this.panelClientsPage);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
