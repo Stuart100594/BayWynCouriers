@@ -156,6 +156,18 @@
             this.label44 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.panelSingleCourierReport = new System.Windows.Forms.Panel();
+            this.dgvReport = new System.Windows.Forms.DataGridView();
+            this.cmbCouriers = new System.Windows.Forms.ComboBox();
+            this.btnGenerateReport = new System.Windows.Forms.Button();
+            this.label49 = new System.Windows.Forms.Label();
+            this.dtpDeliveryDate = new System.Windows.Forms.DateTimePicker();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label51 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnViewCourierReport = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -179,6 +191,8 @@
             this.panelCouriersPage.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCourierDeliveries)).BeginInit();
+            this.panelSingleCourierReport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -1355,6 +1369,11 @@
             // 
             this.panelReportsPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelReportsPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelReportsPage.Controls.Add(this.button4);
+            this.panelReportsPage.Controls.Add(this.button1);
+            this.panelReportsPage.Controls.Add(this.button2);
+            this.panelReportsPage.Controls.Add(this.btnViewCourierReport);
+            this.panelReportsPage.Controls.Add(this.panelSingleCourierReport);
             this.panelReportsPage.Controls.Add(this.label6);
             this.panelReportsPage.Location = new System.Drawing.Point(0, 0);
             this.panelReportsPage.Name = "panelReportsPage";
@@ -1384,7 +1403,7 @@
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Silver;
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.txtBoxCourDeliveryID);
             this.panel2.Controls.Add(this.label46);
             this.panel2.Controls.Add(this.textBox1);
@@ -1532,6 +1551,135 @@
             this.label7.TabIndex = 5;
             this.label7.Text = "Couriers Page";
             // 
+            // panelSingleCourierReport
+            // 
+            this.panelSingleCourierReport.BackColor = System.Drawing.Color.Transparent;
+            this.panelSingleCourierReport.Controls.Add(this.dgvReport);
+            this.panelSingleCourierReport.Controls.Add(this.cmbCouriers);
+            this.panelSingleCourierReport.Controls.Add(this.btnGenerateReport);
+            this.panelSingleCourierReport.Controls.Add(this.label49);
+            this.panelSingleCourierReport.Controls.Add(this.dtpDeliveryDate);
+            this.panelSingleCourierReport.Controls.Add(this.label50);
+            this.panelSingleCourierReport.Controls.Add(this.label51);
+            this.panelSingleCourierReport.Location = new System.Drawing.Point(685, 253);
+            this.panelSingleCourierReport.Name = "panelSingleCourierReport";
+            this.panelSingleCourierReport.Size = new System.Drawing.Size(1190, 434);
+            this.panelSingleCourierReport.TabIndex = 6;
+            // 
+            // dgvReport
+            // 
+            this.dgvReport.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReport.Location = new System.Drawing.Point(34, 113);
+            this.dgvReport.Name = "dgvReport";
+            this.dgvReport.RowHeadersWidth = 51;
+            this.dgvReport.RowTemplate.Height = 24;
+            this.dgvReport.Size = new System.Drawing.Size(1115, 302);
+            this.dgvReport.TabIndex = 8;
+            // 
+            // cmbCouriers
+            // 
+            this.cmbCouriers.FormattingEnabled = true;
+            this.cmbCouriers.Location = new System.Drawing.Point(236, 47);
+            this.cmbCouriers.Name = "cmbCouriers";
+            this.cmbCouriers.Size = new System.Drawing.Size(237, 33);
+            this.cmbCouriers.TabIndex = 1;
+            // 
+            // btnGenerateReport
+            // 
+            this.btnGenerateReport.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnGenerateReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGenerateReport.Location = new System.Drawing.Point(861, 42);
+            this.btnGenerateReport.Name = "btnGenerateReport";
+            this.btnGenerateReport.Size = new System.Drawing.Size(200, 40);
+            this.btnGenerateReport.TabIndex = 7;
+            this.btnGenerateReport.Text = "Generate Report";
+            this.btnGenerateReport.UseVisualStyleBackColor = false;
+            this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(496, 52);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(119, 25);
+            this.label49.TabIndex = 10;
+            this.label49.Text = "Select Date:";
+            // 
+            // dtpDeliveryDate
+            // 
+            this.dtpDeliveryDate.Location = new System.Drawing.Point(616, 49);
+            this.dtpDeliveryDate.Name = "dtpDeliveryDate";
+            this.dtpDeliveryDate.Size = new System.Drawing.Size(200, 30);
+            this.dtpDeliveryDate.TabIndex = 4;
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(3, 5);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(347, 25);
+            this.label50.TabIndex = 6;
+            this.label50.Text = "View Courier Report for Selected Date:";
+            // 
+            // label51
+            // 
+            this.label51.AutoSize = true;
+            this.label51.Location = new System.Drawing.Point(87, 52);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(142, 25);
+            this.label51.TabIndex = 19;
+            this.label51.Text = "Select Courier:";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(1400, 99);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(162, 95);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "Edit Client";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(1200, 99);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(162, 95);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "View Client";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // btnViewCourierReport
+            // 
+            this.btnViewCourierReport.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnViewCourierReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnViewCourierReport.ForeColor = System.Drawing.Color.White;
+            this.btnViewCourierReport.Location = new System.Drawing.Point(1000, 99);
+            this.btnViewCourierReport.Name = "btnViewCourierReport";
+            this.btnViewCourierReport.Size = new System.Drawing.Size(162, 95);
+            this.btnViewCourierReport.TabIndex = 7;
+            this.btnViewCourierReport.Text = "View Courier Report";
+            this.btnViewCourierReport.UseVisualStyleBackColor = false;
+            this.btnViewCourierReport.Click += new System.EventHandler(this.btnViewCourierReport_Click);
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.DodgerBlue;
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(1600, 99);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(162, 95);
+            this.button4.TabIndex = 10;
+            this.button4.Text = "Edit Client";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
             // DashboardForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1539,10 +1687,10 @@
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.ClientSize = new System.Drawing.Size(1924, 1052);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panelDeliveriesPage);
             this.Controls.Add(this.panelReportsPage);
             this.Controls.Add(this.panelCouriersPage);
             this.Controls.Add(this.panelClientsPage);
+            this.Controls.Add(this.panelDeliveriesPage);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -1588,6 +1736,9 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCourierDeliveries)).EndInit();
+            this.panelSingleCourierReport.ResumeLayout(false);
+            this.panelSingleCourierReport.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1721,5 +1872,17 @@
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.TextBox txtBoxCourDeliveryID;
         private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Panel panelSingleCourierReport;
+        private System.Windows.Forms.DataGridView dgvReport;
+        private System.Windows.Forms.ComboBox cmbCouriers;
+        private System.Windows.Forms.Button btnGenerateReport;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.DateTimePicker dtpDeliveryDate;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Label label51;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnViewCourierReport;
+        private System.Windows.Forms.Button button4;
     }
 }

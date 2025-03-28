@@ -148,6 +148,8 @@ namespace BayWynCouriers
             panelDeliveriesPage.Hide();
             panelReportsPage.Show();
             panelCouriersPage.Hide();
+            LoadCouriers();
+            panelSingleCourierReport.Hide();
         }
         //couriers button click event//
         private void btnCouriers_Click(object sender, EventArgs e)
@@ -689,6 +691,10 @@ namespace BayWynCouriers
                     cbEditDelivCouriers.DisplayMember = "StaffName";
                     cbEditDelivCouriers.ValueMember = "StaffID";
                     cbEditDelivCouriers.SelectedIndex = -1;
+
+                    cmbCouriers.DataSource = dt;
+                    cmbCouriers.DisplayMember = "StaffName";
+                    cmbCouriers.ValueMember = "StaffID";
                 }
             }
         }
@@ -1239,6 +1245,33 @@ namespace BayWynCouriers
                 // Debugging message to ensure the correct DeliveryID is selected
                 MessageBox.Show($"DeliveryID {deliveryID} selected");
             }
+        }
+
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            int selectedCourierID = Convert.ToInt32(cmbCouriers.SelectedValue);
+            DateTime selectedDate = dtpDeliveryDate.Value.Date;
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "SELECT DeliveryID, StaffID, StaffName, DeliveryDate, DeliveryTime, Address, Status " +
+                               "FROM Deliveries WHERE StaffID = @StaffID AND DeliveryDate = @SelectedDate";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                da.SelectCommand.Parameters.AddWithValue("@StaffID", selectedCourierID);
+                da.SelectCommand.Parameters.AddWithValue("@SelectedDate", selectedDate);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgvReport.DataSource = dt;
+            }
+        }
+
+        //shows courier report when button pressed//
+        private void btnViewCourierReport_Click(object sender, EventArgs e)
+        {
+            panelSingleCourierReport.Show();
+            cmbCouriers.Text = "Please select courier...";
         }
     }
 }
