@@ -84,7 +84,7 @@ namespace BayWynCouriers
             {
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    string query = "SELECT StaffName, Gender, StaffRole FROM Staff WHERE Uname = @Username AND Password = @Password";
+                    string query = "SELECT StaffID, StaffName, Gender, StaffRole FROM Staff WHERE Uname = @Username AND Password = @Password";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Username", username);
                     command.Parameters.AddWithValue("@Password", password);
@@ -94,14 +94,16 @@ namespace BayWynCouriers
 
                     if (reader.Read())  // If user exists
                     {
+                        int courierID = Convert.ToInt32(reader["StaffID"]);  // Get StaffID
                         string StaffName = reader["StaffName"].ToString();
                         string Gender = reader["Gender"].ToString();
-                        string StaffRole = reader["StaffRole"].ToString().Trim().ToLower(); // Ensure lowercase
+                        string StaffRole = reader["StaffRole"].ToString().Trim().ToLower();
 
                         reader.Close();
 
-                        // Open DashboardForm and pass role
-                        var dashboardForm = new DashboardForm(StaffName, Gender, StaffRole);
+
+                        // Open DashboardForm and pass all required parameters
+                        var dashboardForm = new DashboardForm(courierID, StaffName, Gender, StaffRole);
                         dashboardForm.Show();
                         this.Hide();
                     }

@@ -19,37 +19,20 @@ namespace BayWynCouriers
         // Method to load all active deliveries
         public DataTable GetActiveDeliveries(bool includeCancelled = false)
         {
-            DataTable dt = new DataTable();
+            string query = "SELECT DeliveryID, StaffID, DeliveryDate, DeliveryTime, Address, Status FROM Deliveries WHERE Status <> 'Completed'";
 
-            try
+            if (includeCancelled)
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-
-                    // Modify query to optionally include canceled deliveries
-                    string query = @"SELECT d.DeliveryID, s.StaffID, s.StaffName, d.DeliveryDate, 
-                                    d.DeliveryTime, d.Address, d.Status 
-                             FROM Deliveries d
-                             INNER JOIN Staff s ON d.StaffID = s.StaffID";
-
-                    if (!includeCancelled)
-                    {
-                        query += " WHERE d.Status != 'Cancelled'";  // Exclude cancelled if not requested
-                    }
-
-                    using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
-                    {
-                        da.Fill(dt);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error retrieving deliveries: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                query = "SELECT DeliveryID, StaffID, DeliveryDate, DeliveryTime, Address, Status FROM Deliveries";
             }
 
-            return dt;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
         }
 
         //cancel delivery method//

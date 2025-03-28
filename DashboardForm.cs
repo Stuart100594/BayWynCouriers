@@ -16,17 +16,24 @@ namespace BayWynCouriers
     public partial class DashboardForm : Form
     {
         //inserting additional parameters//
+        private int StaffID;
         private string StaffRole;
         private string connectionString = ConfigurationManager.ConnectionStrings["BayWyn"].ConnectionString;
         private int selectedClientID;
         private bool isContractedClient;
+        private int courierID;
 
-        public DashboardForm(string StaffName, string Gender, string StaffRole)
+
+        public DashboardForm(int courierID, string StaffName, string Gender, string StaffRole)
         {
             InitializeComponent();
             lblUsername.Text = StaffName;
+            
             this.StaffRole = StaffRole.Trim().ToLower();  // Ensure lowercase comparison
 
+            // Store the courier ID
+            currentCourierID = courierID;
+            MessageBox.Show($"Courier ID set: {currentCourierID}"); // Debugging step
             // Display correct avatar based on gender
             string genderLower = Gender.Trim().ToLower();
             picBoy.Visible = genderLower == "male";
@@ -45,6 +52,8 @@ namespace BayWynCouriers
             comBoxClientTypeDelivery.Items.Add("Non-Contracted");
             //allows row to be selected in DataGridView//
             dgvEditDelivery.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            //load deliveries//
+            LoadCourierDeliveries(currentCourierID);
         }
 
         private void MovePanel(Control btn)
@@ -153,6 +162,7 @@ namespace BayWynCouriers
             panelDeliveriesPage.Hide();
             panelReportsPage.Hide();
             panelCouriersPage.Show();
+            LoadDeliveries();
         }
 
         //opens add clients panel//
@@ -166,6 +176,11 @@ namespace BayWynCouriers
         //opens view clients panel//
         private void btnViewClients_Click(object sender, EventArgs e)
         {
+            if (StaffRole == "logisticscoordinator")
+            {
+                MessageBox.Show("Access Denied: You do not have access to edit clients contracts, please contract administration.", "Restricted Access", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             panelAddClients.Hide();
             panelViewClients.Show();
             panelEditClients.Hide();
@@ -199,6 +214,11 @@ namespace BayWynCouriers
             // Check if the client is contracted or non-contracted
             if (radioButtonContracted.Checked)
             {
+                if (StaffRole == "logisticscoordinator")
+                {
+                    MessageBox.Show("Access Denied: You do not have access to create contracted clients, please contract administration.", "Restricted Access", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
                 AddContractedClient(businessName, address, phoneNumber, email, notes);
             }
             else if (radioButtonNonContracted.Checked)
@@ -577,6 +597,11 @@ namespace BayWynCouriers
         //opens create delivery page//
         private void btnCreateDelivery_Click(object sender, EventArgs e)
         {
+            if (StaffRole == "admin")
+            {
+                MessageBox.Show("Access Denied: You do not have access to create deliveries, please contract the logistics coordinator.", "Restricted Access", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             panelCreateDeliveryPage.Show();
             panelEditDeliveryPage.Hide();
             panelCancelDeliveryPage.Hide();
@@ -1020,14 +1045,13 @@ namespace BayWynCouriers
 
         private void btnCancelSelectedDelivery_Click(object sender, EventArgs e)
         {
-            if (dgvCancelDelivery.SelectedRows.Count == 0)
+            if (dgvCancelDelivery.SelectedRows.Count == 0 || dgvCancelDelivery.SelectedRows[0].Cells["DeliveryID"].Value == null)
             {
-                MessageBox.Show("Please select a delivery to cancel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a valid delivery to cancel.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            int deliveryID;
-            if (!int.TryParse(dgvCancelDelivery.SelectedRows[0].Cells["DeliveryID"].Value.ToString(), out deliveryID))
+            if (!int.TryParse(dgvCancelDelivery.SelectedRows[0].Cells["DeliveryID"].Value.ToString(), out int deliveryID))
             {
                 MessageBox.Show("Invalid Delivery ID!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -1043,11 +1067,177 @@ namespace BayWynCouriers
             if (success)
             {
                 MessageBox.Show("Delivery cancelled successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dgvCancelDelivery.DataSource = deliveryManager.GetActiveDeliveries(true); // ✅ Now includes cancelled deliveries
+                dgvCancelDelivery.DataSource = deliveryManager.GetActiveDeliveries(true); // Ensure refresh
             }
             else
             {
                 MessageBox.Show("Failed to cancel delivery.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //method to load deliveries in dgv on courier page//
+        private void LoadCourierDeliveries(int courierID)
+        {
+            try
+            {
+                // Debugging: Show courierID for clarity
+                MessageBox.Show($"Loading deliveries for Courier ID: {courierID}");
+
+                string query = @"SELECT DeliveryID, DeliveryDate, DeliveryTime, Address, Status 
+                         FROM Deliveries
+                         WHERE StaffID = @CourierID AND Status IN ('Scheduled', 'Accepted')";
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@CourierID", courierID);
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    MessageBox.Show($"Deliveries found: {dt.Rows.Count}"); // Debugging: Shows how many records were found
+
+                    // Bind the new data to the DataGridView
+                    dgvCourierDeliveries.DataSource = dt;
+
+                    // Refresh the DataGridView to reflect the changes
+                    dgvCourierDeliveries.Refresh();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading deliveries: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        //parameter and method to load deliveries of courier signed in//
+        private int currentCourierID;
+        private void SetCourier(int courierID)
+        {
+            currentCourierID = courierID;
+            MessageBox.Show($"Courier ID set: {currentCourierID}"); // Debugging step
+            LoadCourierDeliveries(courierID);  // Load the deliveries assigned to this courier
+        }
+
+        
+
+        //accept delivery button on courier page//
+        private void btnAcceptDelivery_Click(object sender, EventArgs e)
+        {
+            // Check if a delivery is selected
+            if (string.IsNullOrEmpty(txtBoxCourDeliveryID.Text))
+            {
+                MessageBox.Show("Please select a delivery to accept.");
+                return;
+            }
+
+            // Convert the text to integer
+            int deliveryID = Convert.ToInt32(txtBoxCourDeliveryID.Text);
+
+            // Debugging: Show the DeliveryID being used for the update
+            MessageBox.Show($"Attempting to update delivery status to 'Accepted' for DeliveryID: {deliveryID}");
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string query = "UPDATE Deliveries SET Status = 'Accepted' WHERE DeliveryID = @DeliveryID";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@DeliveryID", deliveryID);
+
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery(); // Execute the query
+                    conn.Close();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Delivery accepted successfully!");
+
+                        // Refresh the deliveries list by using the currentCourierID to load the updated data
+                        LoadCourierDeliveries(currentCourierID); // Refresh deliveries for the current courier
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to accept delivery.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error accepting delivery: " + ex.Message);
+            }
+        }
+        //complete delivery button on courier page//
+        private void btnCompleteDelivery_Click(object sender, EventArgs e)
+        {
+            // Check if the DeliveryID text box is empty
+            if (string.IsNullOrEmpty(txtBoxCourDeliveryID.Text))
+            {
+                MessageBox.Show("Please select a delivery to complete.");
+                return;
+            }
+
+            // Get the DeliveryID from the text box
+            int deliveryID = Convert.ToInt32(txtBoxCourDeliveryID.Text);
+
+            // Debugging: Display the DeliveryID to confirm it's correct
+            MessageBox.Show($"Attempting to complete delivery with DeliveryID: {deliveryID}");
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string query = "UPDATE Deliveries SET Status = 'Completed' WHERE DeliveryID = @DeliveryID";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@DeliveryID", deliveryID);
+
+                    conn.Open();
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    conn.Close();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Delivery marked as completed!");
+
+                        // Manually update the DataGridView without reloading all deliveries
+                        foreach (DataGridViewRow row in dgvCourierDeliveries.Rows)
+                        {
+                            if (Convert.ToInt32(row.Cells["DeliveryID"].Value) == deliveryID)
+                            {
+                                row.Cells["Status"].Value = "Completed"; // Update the status cell
+                                break; // Stop once the correct row is found
+                            }
+                        }
+
+                        // Optionally, you can still reload the deliveries if you want to reflect any other changes
+                        // LoadCourierDeliveries(currentCourierID); // Refresh deliveries
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to complete delivery.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error completing delivery: " + ex.Message);
+            }
+        }
+
+        private void dgvCourierDeliveries_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0 && dgvCourierDeliveries.Rows[e.RowIndex].Cells["DeliveryID"].Value != null)
+            {
+                DataGridViewRow row = dgvCourierDeliveries.Rows[e.RowIndex];
+                txtBoxDeliveryAddress.Text = row.Cells["Address"].Value.ToString();
+                txtBoxDeliveryTime.Text = row.Cells["DeliveryTime"].Value.ToString();
+
+                // Store and show the DeliveryID for debugging
+                int deliveryID = Convert.ToInt32(row.Cells["DeliveryID"].Value);
+                txtBoxCourDeliveryID.Text = deliveryID.ToString();
+
+                // Debugging message to ensure the correct DeliveryID is selected
+                MessageBox.Show($"DeliveryID {deliveryID} selected");
             }
         }
     }
