@@ -165,9 +165,13 @@
             this.label50 = new System.Windows.Forms.Label();
             this.label51 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnDelCurrMonReport = new System.Windows.Forms.Button();
             this.btnViewCourierReport = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.panelDeliveriesCurrMonReport = new System.Windows.Forms.Panel();
+            this.dgvMonDelReport = new System.Windows.Forms.DataGridView();
+            this.btnMonthlyDeliveryReport = new System.Windows.Forms.Button();
+            this.label48 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -193,6 +197,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCourierDeliveries)).BeginInit();
             this.panelSingleCourierReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).BeginInit();
+            this.panelDeliveriesCurrMonReport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMonDelReport)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -1369,9 +1375,10 @@
             // 
             this.panelReportsPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.panelReportsPage.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.panelReportsPage.Controls.Add(this.panelDeliveriesCurrMonReport);
             this.panelReportsPage.Controls.Add(this.button4);
             this.panelReportsPage.Controls.Add(this.button1);
-            this.panelReportsPage.Controls.Add(this.button2);
+            this.panelReportsPage.Controls.Add(this.btnDelCurrMonReport);
             this.panelReportsPage.Controls.Add(this.btnViewCourierReport);
             this.panelReportsPage.Controls.Add(this.panelSingleCourierReport);
             this.panelReportsPage.Controls.Add(this.label6);
@@ -1643,17 +1650,18 @@
             this.button1.Text = "Edit Client";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnDelCurrMonReport
             // 
-            this.button2.BackColor = System.Drawing.Color.DodgerBlue;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(1200, 99);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(162, 95);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "View Client";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnDelCurrMonReport.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnDelCurrMonReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelCurrMonReport.ForeColor = System.Drawing.Color.White;
+            this.btnDelCurrMonReport.Location = new System.Drawing.Point(1200, 99);
+            this.btnDelCurrMonReport.Name = "btnDelCurrMonReport";
+            this.btnDelCurrMonReport.Size = new System.Drawing.Size(162, 95);
+            this.btnDelCurrMonReport.TabIndex = 8;
+            this.btnDelCurrMonReport.Text = "View Deliveries for Current Month";
+            this.btnDelCurrMonReport.UseVisualStyleBackColor = false;
+            this.btnDelCurrMonReport.Click += new System.EventHandler(this.btnDelCurrMonReport_Click);
             // 
             // btnViewCourierReport
             // 
@@ -1679,6 +1687,49 @@
             this.button4.TabIndex = 10;
             this.button4.Text = "Edit Client";
             this.button4.UseVisualStyleBackColor = false;
+            // 
+            // panelDeliveriesCurrMonReport
+            // 
+            this.panelDeliveriesCurrMonReport.BackColor = System.Drawing.Color.LightSalmon;
+            this.panelDeliveriesCurrMonReport.Controls.Add(this.dgvMonDelReport);
+            this.panelDeliveriesCurrMonReport.Controls.Add(this.btnMonthlyDeliveryReport);
+            this.panelDeliveriesCurrMonReport.Controls.Add(this.label48);
+            this.panelDeliveriesCurrMonReport.Location = new System.Drawing.Point(685, 253);
+            this.panelDeliveriesCurrMonReport.Name = "panelDeliveriesCurrMonReport";
+            this.panelDeliveriesCurrMonReport.Size = new System.Drawing.Size(1190, 434);
+            this.panelDeliveriesCurrMonReport.TabIndex = 11;
+            // 
+            // dgvMonDelReport
+            // 
+            this.dgvMonDelReport.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMonDelReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMonDelReport.Location = new System.Drawing.Point(34, 113);
+            this.dgvMonDelReport.Name = "dgvMonDelReport";
+            this.dgvMonDelReport.RowHeadersWidth = 51;
+            this.dgvMonDelReport.RowTemplate.Height = 24;
+            this.dgvMonDelReport.Size = new System.Drawing.Size(1115, 302);
+            this.dgvMonDelReport.TabIndex = 8;
+            // 
+            // btnMonthlyDeliveryReport
+            // 
+            this.btnMonthlyDeliveryReport.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnMonthlyDeliveryReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMonthlyDeliveryReport.Location = new System.Drawing.Point(34, 67);
+            this.btnMonthlyDeliveryReport.Name = "btnMonthlyDeliveryReport";
+            this.btnMonthlyDeliveryReport.Size = new System.Drawing.Size(265, 40);
+            this.btnMonthlyDeliveryReport.TabIndex = 7;
+            this.btnMonthlyDeliveryReport.Text = "Generate Monthly Report";
+            this.btnMonthlyDeliveryReport.UseVisualStyleBackColor = false;
+            this.btnMonthlyDeliveryReport.Click += new System.EventHandler(this.btnMonthlyDeliveryReport_Click);
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(3, 5);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(332, 25);
+            this.label48.TabIndex = 6;
+            this.label48.Text = "View all Deliveries for Current Month:";
             // 
             // DashboardForm
             // 
@@ -1739,6 +1790,9 @@
             this.panelSingleCourierReport.ResumeLayout(false);
             this.panelSingleCourierReport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReport)).EndInit();
+            this.panelDeliveriesCurrMonReport.ResumeLayout(false);
+            this.panelDeliveriesCurrMonReport.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMonDelReport)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1881,8 +1935,12 @@
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnDelCurrMonReport;
         private System.Windows.Forms.Button btnViewCourierReport;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Panel panelDeliveriesCurrMonReport;
+        private System.Windows.Forms.DataGridView dgvMonDelReport;
+        private System.Windows.Forms.Button btnMonthlyDeliveryReport;
+        private System.Windows.Forms.Label label48;
     }
 }

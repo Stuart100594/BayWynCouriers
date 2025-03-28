@@ -150,6 +150,7 @@ namespace BayWynCouriers
             panelCouriersPage.Hide();
             LoadCouriers();
             panelSingleCourierReport.Hide();
+            panelDeliveriesCurrMonReport.Hide();
         }
         //couriers button click event//
         private void btnCouriers_Click(object sender, EventArgs e)
@@ -1270,8 +1271,34 @@ namespace BayWynCouriers
         //shows courier report when button pressed//
         private void btnViewCourierReport_Click(object sender, EventArgs e)
         {
+            panelDeliveriesCurrMonReport.Hide();
             panelSingleCourierReport.Show();
             cmbCouriers.Text = "Please select courier...";
+        }
+
+        //shows the page when button pressed//
+        private void btnDelCurrMonReport_Click(object sender, EventArgs e)
+        {
+            panelDeliveriesCurrMonReport.Show();
+            panelSingleCourierReport.Hide();
+        }
+
+        //provides deliveries for current month in datagridview when button pressed//
+        private void btnMonthlyDeliveryReport_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string query = "SELECT DeliveryID, StaffID, StaffName, DeliveryDate, DeliveryTime, Address, Status " +
+                               "FROM Deliveries " +
+                               "WHERE MONTH(DeliveryDate) = MONTH(GETDATE()) " +
+                               "AND YEAR(DeliveryDate) = YEAR(GETDATE()) " +
+                               "ORDER BY DeliveryDate, DeliveryTime;";
+
+                SqlDataAdapter da = new SqlDataAdapter(query, con);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dgvMonDelReport.DataSource = dt;
+            }
         }
     }
 }
